@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="wrapper">
+        <div class="image-container">
+            <img src="image/event-image.jpeg" alt="Event Image">
+        </div>
+        <div class="form-container">
+            <form class="login-form">
+                <h2 class="form-title">Request For Club Account</h2>
+                <p>You can request for an club account or claim an existing club ownership</p>
+                <div class="form-group">
+                    <label for="owner_phone">Owner’s Phone number*</label>
+                    <input type="number" id="owner_phone" placeholder="Enter the telephone number of the owner of the premises" required>
+                </div>
+                <div class="form-group">
+                    <label for="owner_email">Owner’s email*</label>
+                    <input type="email" id="owner_email" placeholder="Enter the email address of the owner of the venue" required>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <input type="text" id="country" placeholder="Country name" required>
+                </div>
+                <div class="form-group-row">
+                    <div class="form-group half-width">
+                        <label for="city">City</label>
+                        <select name="city" id="city">
+                            <option value="">City</option>
+                        </select>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="postal_code">Postal Code</label>
+                        <input type="text" id="postal_code" placeholder="Postal code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select the date and time of the on-site visit for verifications*</label>
+                </div>
+                <div class="form-group-row">
+                    <div class="form-group half-width">
+                        <input type="date" id="=date" name="date">
+                    </div>  
+                    <div class="form-group half-width">
+                        <input type="time" id="time" name="time">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Name of Authorised Contact Person* (If Different From Owner)</label>
+                    <input type="text" name="name_authorize" id="name_authorize">
+                </div>
+                <div class="form-group">
+                    <label>Telephone Number of Contact Person* (If Different From Owner)</label>
+                    <input type="text" name="telephone_number" id="telephone_number">
+                </div>
+                <div class="form-group">
+                    <label>Add any additional details or pertinent notes*</label>
+                    <textarea name="additional_details" id="additional_details" rows="4" placeholder="Enter any additional details or notes here"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="termini_condition" id="termini_condition" class="custom-checkbox">
+                    <label for="termini_condition" class="custom-checkbox-label">Accetta i termini e condizioni</label>
+                </div>
+                <button type="submit">Next</button>
+                <p>Already have club Account? <a href="signup.html" class="link">Log In Now</a></p>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
