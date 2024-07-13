@@ -28,3 +28,19 @@ Route::get('/registration', function () {
 Route::get('/registration-confirmation', function () {
     return view('layouts.registration-confirmation');
 });
+
+Route::get('/home', function () {
+    return view('admin.dashboard.dashboard');
+});
+
+Route::get('/clubs', function () {
+    return view('admin.clubs.index');
+});
+
+Route::get('/club-detail', function () {
+    return view('admin.clubs.show');
+});
+
+Route::get('/pending-club', function () {
+    return view('admin.clubs.pending');
+});
