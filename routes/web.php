@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Web\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// -------------------------------------------- Login & Register  --------------------------------------------
+Route::get('/login', [AuthController::class, 'login']);
+Route::get('/registration', [AuthController::class, 'register']);
+Route::get('/registration-confirmation', [AuthController::class, 'registerConfirmation']);

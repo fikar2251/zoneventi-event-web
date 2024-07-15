@@ -1,0 +1,401 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+
+
+body {
+    background-color: #0D0A1C;
+}
+
+.sidebar {
+    background-color: #1D1F36;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .nav-link {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-left: 4px solid transparent;
+    transition: background-color 0.3s, border-left-color 0.3s;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #292b4e;
+    border-left-color: #6C63FF; 
+}
+
+.sidebar .nav-link.active {
+    background-color: #292b4e;
+    border-left-color: #6C63FF; 
+}
+
+.sidebar .nav-link img {
+    width: 23px;
+    margin-right: 15px;
+}
+
+.text-center img {
+    margin-bottom: 15px;
+}
+
+.profile-img {
+    margin-top: 80px;
+    width: 80px; 
+    height: 80px;
+    border: 2px solid #1D1F36;
+}
+
+.user-name {
+    font-family: 'Lexend', sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    color: #ffffff;
+    text-align: center;
+}
+
+.left-user-info {
+    font-size: 10px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.user-pro-dropdown .notify-item {
+    color: #ffffff;
+}
+
+.nav-item.logout {
+    margin-top: 20px;
+}
+
+.nav-link.logout {
+    color: red;
+}
+
+.text-section {
+    font-size: 24px;
+}
+
+.text-section-left {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+h5 {
+    color: #898C9F;
+    font-size: 18px;
+}
+
+.total-pending {
+    font-size: 30px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400; 
+}
+
+.total-active {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.text-green {
+    color: #fff;
+    font-weight: 500;
+    text-align: right;
+    font-size: 14px;
+}
+
+.right-section {
+    text-align: right;
+}
+
+.vs-last-week {
+    font-size: 14px;
+    font-weight: 400;
+    color: #898C9F;
+}
+
+.card-body .d-flex {
+    align-items: center;
+}
+
+
+.club-item {
+    padding: 10px 0;
+}
+
+.city-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.city-name {
+    width: 100px;
+    text-align: left;
+    padding-right: 10px;
+    font-size: 14px;
+    color: #898C9F;
+}
+.bar-wrapper {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+.bar {
+    height: 10px;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
+.data-value {
+    float: left;
+    font-size: 14px;
+}
+
+.city-bar:hover .data-value {
+    opacity: 1;
+}
+
+.club-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.club-info h6 {
+    font-size: 16px;
+    margin-bottom: 9px;
+}
+
+.club-info p {
+    font-size: 14px;
+    color: #898C9F;
+    display: flex;
+    align-items: center;
+}
+
+.location-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.club-item span {
+    font-size: 14px;
+    color: #898C9F;
+}
+
+.participant-number {
+    display: block;
+    font-size: 14px;
+    color: #fff;
+}
+
+.mt-60 {
+    margin-top: 60px;
+}
+
+.custom-height-card {
+    height: 120px;
+}
+
+
+.card-bg {
+    background-color: #1D1F36;
+    border-radius: 23px;
+}
+
+.search-group {
+    max-width: 572px;
+}
+
+.search-input {
+    background-color: #252945;
+    color: #fff;
+    height: 65px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 300;
+    font-size: 26px;
+    border: none;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.search-input:focus {
+    background-color: #252945;
+    color: #fff;
+    border-color: #3E4259;
+    box-shadow: none;
+}
+
+.search-input::placeholder {
+    color: #6C7080;
+}
+
+.search-btn {
+    background-color: #FC5C65;
+    height: 65px;
+    width: 80px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.add-club-btn {
+    background-color: #252945;
+    color: #6C63FF;
+    width: 439px;
+    height: 65px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    font-size: 26px;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+.text-muted {
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px;
+}
+
+.text-white {
+    font-family: 'Lexend', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.text-success {
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    margin-top: -14px;
+}
+
+.text-header-club {
+    font-size: 24px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.club-card {
+    background-color: #1D1F36;
+    border-radius: 30px;
+    position: relative;
+}
+
+.club-img {
+    width: 70px;
+    height: 70px;
+}
+
+.location-icon {
+    margin-right: 5px;
+    width: 18px;    
+    height: 18px;
+}
+
+.location-text {
+    font-size: 16px;
+    color: #898C9F;
+    line-height: 1; 
+    margin-bottom: 15px;
+}
+
+.club-location {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-btn {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background-color: #6C63FF;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    z-index: 1000;
+}
+
+.filter-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+
+.header {
+    margin-top: 80px;
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.back-button {  
+    display: flex;
+    margin-left: 40px; 
+}
+
+.nav-icon {
+    width: 50px; 
+    height: 50px; 
+}
+
+.header h2 {
+    font-size: 20px;
+    font-family: 'Lexend', sans-serif;
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+    margin-left: 356px; 
+    font-weight: 400;
+}
+
+.club-list {
+    background-color: #1D1F36;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.club-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #2A2C42;
+}
+
+.club-info {
+    align-items: center;
+}
+
+.club-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+
+.club-info h2 {
+    font-size: 16px;
+    margin: 0 0 5px 0;
+}
+
+.club-info p {
+    font-size: 12px;
+    color: #888;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.location-icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+.arrow {
+    font-size: 20px;
+    color: #888;
+}

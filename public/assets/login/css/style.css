@@ -42,10 +42,15 @@ body {
     margin-bottom: 14px;
 }
 
+.p-weight {
+    font-weight: 400;
+}
+
 .form-container p {
-    font-size: 12px;
+    font-size: 16px;
     text-align: left;
-    margin-top: 8px;
+    margin-top: 0;
+    margin-bottom: 40px;
 }
 
 .form-group {
@@ -55,6 +60,16 @@ body {
 .form-group-row {
     display: flex;
     justify-content: space-between;
+}
+
+.form-group.owner-phone, 
+.form-group.owner-name,
+.form-group.owner-email,
+.form-group.country,
+.form-group.name-authorize,
+.form-group.telephone,
+.form-group.additional-details {
+    margin-bottom: 30px;
 }
 
 .half-width {
@@ -67,8 +82,8 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: #282828;
-    border: 2px solid #555;
+    background-color: #1D1F36;
+    border: 2px solid #1D1F36;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -78,7 +93,7 @@ body {
 }
 
 .file-upload-button:hover {
-    background-color: #333;
+    background-color: #1D1F36;
 }
 
 .file-upload-button i {
@@ -97,14 +112,27 @@ body {
     color: #B0B0B0;
 }
 
+.input-register {
+    font-size: 14px;
+}
+
+#user_id, #email, #passsord {
+    height: 40px;
+}
+
+option {
+    font-size: 14px;
+}
+
 label {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
     display: block;
 }
 
 input, select, textarea {
     padding: 10px;
-    border: 1px solid #333;
+    border: 1px solid #1D1F36;
     border-radius: 16px;
     background-color: #1D1F36;
     color: #898C9F;
@@ -112,9 +140,59 @@ input, select, textarea {
     box-sizing: border-box;
     margin-top: 10px;
     font-size: 14px;
+    font-weight: 500;
     -webkit-appearance: none; 
     -moz-appearance: none;
     appearance: none; 
+    height: 40px;
+}
+
+textarea {
+    height: auto; 
+}
+
+
+select {
+    padding-right: 30px;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23898C9F" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.form-group, .form-group-row {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    display: block;
+}
+
+.form-group-row .form-group {
+    margin-bottom: 0; 
+}
+
+.form-group-date-time {
+    margin-bottom: 20px;
+}
+
+.form-group-date-time > label {
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-group-date-time .form-group-row {
+    margin-top: 10px;
+}
+
+.form-group-date-time .form-group-row .form-group {
+    margin-bottom: 0;
+}
+
+.form-group-date-time input[type="date"],
+.form-group-date-time input[type="time"] {
+    margin-top: 0;
 }
 
 button {
@@ -123,11 +201,15 @@ button {
     background-color: #7A5BFF;
     color: #fff;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     border: none;
     border-radius: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.btn {
+    margin-bottom: 40px;
 }
 
 button:hover {
@@ -151,14 +233,16 @@ a:hover {
     color: #7C8394;
 }
 
+.form-group.password, .form-group.file-upload {
+    margin-bottom: 40px; 
+}
+
 label .upload-info {
     margin-top: 10px;
     font-size: 8px;
     color: #B0B0B0;
 }
 
-
-/* Custom checkbox styles */
 .custom-checkbox {
     position: absolute;
     opacity: 0;
@@ -187,4 +271,85 @@ label .upload-info {
 .custom-checkbox:checked + .custom-checkbox-label::before {
     background-color: #7A5BFF;
     border-color: #7A5BFF;
+}
+
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .image-container {
+        width: 100%;
+        height: 200px;
+    }
+
+    .image-container img {
+        border-radius: 0;
+    }
+
+    .form-container {
+        width: 100%;
+        margin-left: 0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .form-title {
+        font-size: 24px;
+    }
+
+    .form-container p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .form-group, .form-group-row {
+        margin-bottom: 15px;
+    }
+
+    .form-group-row {
+        flex-direction: column;
+    }
+
+    .half-width {
+        width: 100%;
+    }
+
+    input, select, textarea {
+        font-size: 16px;
+        margin-top: 5px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .form-group-date-time .form-group-row {
+        flex-direction: column;
+    }
+
+    .form-group-date-time .form-group-row .form-group {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .form-title {
+        font-size: 20px;
+    }
+
+    .form-container p {
+        font-size: 12px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input, select, textarea {
+        font-size: 14px;
+    }
 }
