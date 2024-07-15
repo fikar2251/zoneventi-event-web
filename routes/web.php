@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Web\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,30 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('layouts.login');
-});
-
-Route::get('/registration', function () {
-    return view('layouts.registration');
-});
-
-Route::get('/registration-confirmation', function () {
-    return view('layouts.registration-confirmation');
-});
-
-Route::get('/home', function () {
-    return view('admin.dashboard.dashboard');
-});
-
-Route::get('/clubs', function () {
-    return view('admin.clubs.index');
-});
-
-Route::get('/club-detail', function () {
-    return view('admin.clubs.show');
-});
-
-Route::get('/pending-club', function () {
-    return view('admin.clubs.pending');
-});
+// -------------------------------------------- Login & Register  --------------------------------------------
+Route::get('/login', [AuthController::class, 'login']);
+Route::get('/registration', [AuthController::class, 'register']);
+Route::get('/registration-confirmation', [AuthController::class, 'registerConfirmation']);
