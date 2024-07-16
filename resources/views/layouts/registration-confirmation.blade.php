@@ -28,7 +28,7 @@
                 <p>You can request for an club account or claim an existing club ownership</p>
                 <div class="form-group owner-name">
                     <label for="owner_name">Name of Premises Owner*</label>
-                    <input type="number" id="owner_name" name="owner_name" class="input-register"
+                    <input type="text" id="owner_name" name="owner_name" class="input-register"
                         placeholder="Enter full name of premises owner" required>
                 </div>
                 <div class="form-group owner-phone">

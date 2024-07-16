@@ -1,0 +1,69 @@
+.notification-form {
+    padding: 20px;
+}
+
+.form-label {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.form-control {
+    background-color: #1D1F36;
+    border-radius: 16px;
+    border: none;
+    color: white;
+    padding: 10px 20px; 
+    font-family: 'Lexend', sans-serif; 
+}
+
+.form-control::placeholder {
+    color: #6e6b7b;
+    font-family: 'Lexend', sans-serif; 
+    font-size: 14px;
+}
+
+.form-control:focus {
+    background-color: #1D1F36; 
+    color: white; 
+    outline: none; 
+    box-shadow: none; 
+}
+
+.btn-primary {
+    background-color: #7367f0;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 16px; 
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #635ac7;
+}
+
+label {
+    color: white;
+    margin-bottom: 8px;
+}
+
+.text-muted {
+    color: #6e6b7b !important;
+}
+
+select.form-control {
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23898C9F" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+}
+
+select.form-control:focus {
+    background-color: #1D1F36; 
+    color: white; 
+    outline: none; 
+    box-shadow: none; 
+}

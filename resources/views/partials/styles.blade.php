@@ -2,6 +2,11 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link rel="shortcut icon" href="{{ asset('assets/login/image/logo.png') }}">
 <link rel="stylesheet" href="{{ asset('assets/template/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/template/css/sidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/template/css/club.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/template/css/club-detail.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/template/css/club-pending.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/template/css/notification.css') }}">
 
 <style type="text/css">
     .preloader1 {
