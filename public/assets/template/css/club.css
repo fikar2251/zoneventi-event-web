@@ -1,0 +1,206 @@
+.custom-height-card {
+    height: 120px;
+}
+
+.card-bg {
+    background-color: var(--card-bg-color);
+    border-radius: 23px;
+}
+
+.search-group {
+    max-width: 572px;
+}
+
+.search-input {
+    background-color: var(--search-bg-color);
+    color: var(--font-color-white);
+    height: 60px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 300;
+    font-size: 23px;
+    border: none;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.search-input:focus {
+    background-color: var(--search-bg-color);
+    color: var(--font-color-white);
+    border-color: var(--search-border-color);
+    box-shadow: none;
+}
+
+.search-input::placeholder {
+    color: var(--search-placeholder-color);
+}
+
+.search-btn {
+    background-color: var(--btn-bg-color);
+    height: 60px;
+    width: 80px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.add-club-btn {
+    background-color: var(--search-bg-color);
+    color: var(--font-color-highlight);
+    width: 439px;
+    height: 60px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+.blocked-club-btn {
+    background-color: var(--btn-color-blocked);
+    color: #FF4646;
+    width: 439px;
+    height: 60px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+.text-muted {
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px;
+}
+
+.text-white {
+    font-family: 'Lexend', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.text-success {
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    margin-top: -14px;
+}
+
+.text-header-club {
+    font-size: 20px;
+    color: var(--font-color-white);
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.filter-btn {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background-color: var(--filter-btn-bg-color);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    z-index: 1000;
+}
+
+.filter-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.search-group {
+    max-width: 572px;
+}
+
+.search-input {
+    background-color: var(--search-bg-color);
+    color: var(--font-color-white);
+    height: 60px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 300;
+    font-size: 23px;
+    border: none;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.search-input:focus {
+    background-color: var(--search-bg-color);
+    color: var(--font-color-white);
+    border-color: var(--search-border-color);
+    box-shadow: none;
+}
+
+.search-input::placeholder {
+    color: var(--search-placeholder-color);
+}
+
+.search-btn {
+    background-color: var(--btn-bg-color);
+    height: 60px;
+    width: 80px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.add-club-btn {
+    background-color: var(--search-bg-color);
+    color: var(--font-color-highlight);
+    width: 439px;
+    height: 60px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+.text-muted {
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px;
+}
+
+.text-white {
+    font-family: 'Lexend', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.text-success {
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    margin-top: -14px;
+}
+
+.text-header-club {
+    font-size: 24px;
+    color: var(--font-color-white);
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.custom-height-card {
+    height: 120px;
+}
+
+.card-bg {
+    background-color: var(--card-bg-color);
+    border-radius: 23px;
+}
+
+.club-card {
+    background-color: var(--card-bg-color);
+    border-radius: 30px;
+    position: relative;
+}
+
+.club-img {
+    width: 70px;
+    height: 70px;
+}
+
+.location-icon {
+    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+}
