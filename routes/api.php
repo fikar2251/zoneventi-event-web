@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\API\v1\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->group(function() {
+    Route::post('/login',[AuthController::class, 'login']); 
+    Route::post('/register',[AuthController::class, 'register']); 
+    Route::post('/logout',[AuthController::class, 'logout']); 
+    Route::middleware('jwt.verify')->get('/user', [AuthController::class, 'getUser']);
+
+    Route::group([
+        'middleware' => 'jwt.verify',
+        'prefix' => 'master'
+    ], function() {
+        // Route::prefix('category')->name('category.')->group(function (){
+        //     Route::get('', [CategoriesController::class, 'index']);
+        // });
+    });
 });
