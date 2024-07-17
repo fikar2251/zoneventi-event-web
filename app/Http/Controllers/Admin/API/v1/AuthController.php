@@ -65,7 +65,17 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return (new ResponseResource('false', $validator->errors(), null))->response()->setStatusCode(400);
+            $errors = $validator->errors()->toArray();
+            $formattedErrors = [];
+
+            foreach ($errors as $field => $message) {
+                $formattedErrors[$field] = $message[0];
+            }
+            return response()->json([
+                'success' => 'false',
+                'message' => $formattedErrors,
+            ], 400);
+            // return (new ResponseResource('false', $formattedErrors, null))->response()->setStatusCode(400);
         }
 
         $user = User::create([
