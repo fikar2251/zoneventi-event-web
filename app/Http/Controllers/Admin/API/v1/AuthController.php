@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ResponseResource;
 use App\Models\MobUsers;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -86,14 +88,25 @@ class AuthController extends Controller
     }
 
     public function updateProfile(Request $request) {
+        $picUrl = null;
         if ($request->hasFile('profile_picture')) {
-            
+            $file = $request->file('profile_picture');
+            $path = $file->storeAs('public/profile_picture',Auth::user()->name . '.'.$file->getClientOriginalExtension());
+            $picUrl  = url(Storage::url($path));
         }
-        // MobUsers::create([
-        //     'gender' => $request->gender, 
-        //     'birthdate' => $request->birthdate,  
-        //     'user_id' => Auth::user()->id, 
-        // ]);
+        try {
+            $data = MobUsers::updateOrCreate([ 
+                'user_id' => Auth::user()->id, 
+            ], [
+                'gender' => $request->gender, 
+                'birthdate' => $request->birthdate, 
+                'profile_picture' =>  $picUrl,
+            ]);
+            return new ResponseResource('true', 'Data Successfully Inserted', $data);
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', 'Data Failed Inserted', $th->getMessage()))->response()->setStatusCode(500);
+        }
+
     }
     
 
