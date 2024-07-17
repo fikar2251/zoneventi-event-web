@@ -114,6 +114,12 @@ class AuthController extends Controller
             $picUrl  = url(Storage::url($path));
         }
         try {
+            $userData = User::updateOrCreate([
+                'id' => Auth::user()->id
+            ],[
+                'name' => $request->name,
+                'email' => $request->email
+            ]);
             $data = MobUsers::updateOrCreate([ 
                 'user_id' => Auth::user()->id, 
             ], [
@@ -121,7 +127,7 @@ class AuthController extends Controller
                 'birthdate' => $request->birthdate, 
                 'profile_picture' =>  $picUrl,
             ]);
-            return new ResponseResource('true', 'Data Successfully Inserted', $data);
+            return new ResponseResource('true', 'Data Successfully Updated', null);
         } catch (\Throwable $th) {
             return (new ResponseResource('false', 'Data Failed Inserted', $th->getMessage()))->response()->setStatusCode(500);
         }
