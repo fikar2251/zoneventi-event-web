@@ -1,5 +1,22 @@
 .notification-form {
-    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 10px; /* Added padding for small screens */
+}   
+
+.detail-form {
+    margin: 0 40px;
+    width: 100%;
+    padding: 10px; /* Added padding for small screens */
+}   
+
+.text-12 {
+    font-size: 12px !important;
+}
+
+.form-control.text-12::placeholder {
+    font-size: 12px;
 }
 
 .form-label {
@@ -13,57 +30,211 @@
     border-radius: 16px;
     border: none;
     color: white;
-    padding: 10px 20px; 
-    font-family: 'Lexend', sans-serif; 
+    padding: 12px 20px;
+    font-family: 'Lexend', sans-serif;
+    height: 50px;
+    font-size: 16px;
+    width: 100%;
+}
+
+textarea.form-control {
+    height: auto;
+    min-height: 100px;
 }
 
 .form-control::placeholder {
     color: #6e6b7b;
-    font-family: 'Lexend', sans-serif; 
+    font-family: 'Lexend', sans-serif;
     font-size: 14px;
 }
 
 .form-control:focus {
-    background-color: #1D1F36; 
-    color: white; 
-    outline: none; 
-    box-shadow: none; 
+    background-color: #1D1F36;
+    color: white;
+    outline: none;
+    box-shadow: none;
 }
 
 .btn-primary {
     background-color: #7367f0;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    font-size: 16px; 
     border: none;
 }
+
+.btn-danger {
+    background-color: #FF4646;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-lg {
+    padding: 10px 30px; 
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+.btn-primary.btn-lg {
+    font-size: 12px; 
+}
+
+.btn-danger.btn-lg {
+    font-size: 12px;
+}
+
 
 .btn-primary:hover {
     background-color: #635ac7;
 }
 
+.btn-danger:hover {
+    background-color: #e73d3e;
+}
+
 label {
     color: white;
     margin-bottom: 8px;
+    display: block;
 }
 
 .text-muted {
-    color: #6e6b7b !important;
+    color: #898C9F !important;
+    font-size: 13px;
+}
+
+.text-count {
+    color: #fff;
 }
 
 select.form-control {
-    appearance: none; 
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     background-image: url('data:image/svg+xml;utf8,<svg fill="%23898C9F" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
     background-repeat: no-repeat;
-    background-position: right 10px center;
-    padding-right: 30px;
+    background-position: right 20px center;
+    padding-right: 40px;
 }
 
 select.form-control:focus {
-    background-color: #1D1F36; 
-    color: white; 
-    outline: none; 
-    box-shadow: none; 
+    background-color: #1D1F36;
+    color: white;
+    outline: none;
+    box-shadow: none;
+}
+
+select.form-control option {
+    font-size: 14px;
+    color: black;
+}
+
+.header {
+    width: 100%;
+}
+
+.text-center .btn-primary {
+    font-size: 14px;
+    height: 40px;
+    width: 150px;
+    max-width: 100%;
+    padding: 0 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.upload-logo-container {
+    margin-bottom: 30px;
+}
+
+.upload-logo-label {
+    cursor: pointer;
+}
+
+.upload-logo-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #1D1F36;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.upload-logo-circle .upload-logo-small {
+    color: #898C9F;
+    font-size: 6px;
+}
+
+.upload-logo-circle .upload-logo-text {
+    font-family: 'Lexend', sans-serif;
+    font-size: 10px;
+}
+
+.upload-logo-circle .upload-icon {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.upload-logo-circle span {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.upload-logo-circle small {
+    color: #6e6b7b;
+    font-size: 12px;
+}
+
+.input-group-text {
+    background-color: #1D1F36;
+    border: none;
+    border-left: 1px solid #2b2c40;
+    border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+    .notification-form {
+        padding: 10px;
+    }
+
+    .form-control {
+        font-size: 14px;
+        height: 45px;
+        padding: 10px 15px;
+    }
+
+    .text-center .btn-primary {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .col-md-6 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .header .title {
+        margin-left: 0;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .header .back-button img {
+        width: 40px;
+        height: 40px;
+        margin-right: 20px;
+    }
 }

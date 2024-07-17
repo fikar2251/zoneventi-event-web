@@ -23,22 +23,23 @@
         <div class="form-container">
             <form class="login-form">
                 <h2 class="form-title">Log In to Zoneventi</h2>
-                <p class="p-weight">Log in with the details that we send to you</p>
+                <p class="p-weight" style="font-size: 13px">Log in with the details that we send to you</p>
                 <div class="form-group input-register">
-                    <label for="user_id">User ID*</label>
+                    <label for="user_id" style="font-size: 12px;">User ID*</label>
                     <input type="text" id="user_id" class="input-register" placeholder="Enter user ID" required>
                 </div>
                 <div class="form-group input-register">
-                    <label for="email">Email Address*</label>
+                    <label for="email" style="font-size: 12px;">Email Address*</label>
                     <input type="email" id="email" class="input-register" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group password input-register">
-                    <label for="password">Password*</label>
+                    <label for="password" style="font-size: 12px;">Password*</label>
                     <input type="password" id="password" class="input-register" placeholder="Enter your password"
                         required>
                 </div>
                 <button type="submit" class="btn">Log In</button>
-                <p>Are you a club owner? <a href="{{ url('/registration') }}" class="link">Request for club
+                <p style="font-size: 12px">Are you a club owner? <a href="{{ url('/registration') }}"
+                        class="link">Request for club
                         account</a></p>
             </form>
         </div>

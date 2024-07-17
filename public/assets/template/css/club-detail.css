@@ -81,6 +81,8 @@
 .buttons .btn-add {
     background-color: #1D1F36;
     color: #fff;
+    align-items: center;
+    display: flex;
 }
 
 .buttons .btn-delete {

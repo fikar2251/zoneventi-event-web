@@ -44,7 +44,9 @@ body {
 
 
 .text-section {
-    font-size: 20px;
+    font-size: 18px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
 }
 
 .text-section-left {
@@ -58,7 +60,7 @@ h5 {
 }
 
 .total-pending {
-    font-size: 25px;
+    font-size: 20px;
     font-family: 'Lexend', sans-serif;
     font-weight: 400;
 }
@@ -97,6 +99,10 @@ h5 {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.custom-height-card {
+    height: 120px;
 }
 
 .city-name {
@@ -241,13 +247,8 @@ h5 {
     max-width: 500px;
 }
 
-.search-input {
-    border-radius: 20px 0 0 20px;
-    border-right: 0;
-}
-
 .search-btn {
-    border-radius: 0 20px 20px 0;
+    border-radius: 0 18px 18px 0;
     background-color: #FF5C5C;
 }
 
@@ -316,4 +317,13 @@ tbody tr td {
     color: var(--font-color-white);
     font-weight: 500;
     font-size: 22px;
+}
+
+.footer {
+    font-family: 'Lexend', sans-serif;
+    color: var(--font-color-white);
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 20px;
+    right: 20px;
 }

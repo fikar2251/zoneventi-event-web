@@ -37,7 +37,7 @@ body {
 }
 
 .form-title {
-    font-size: 36px;
+    font-size: 30px;
     text-align: left;
     margin-bottom: 14px;
 }
@@ -97,7 +97,7 @@ body {
 }
 
 .file-upload-button i {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 10px;
 }
 
@@ -113,20 +113,21 @@ body {
 }
 
 .input-register {
-    font-size: 14px;
+    font-size: 12px;
 }
 
-#user_id, #email, #passsord {
+#user_id, #email, #password {
     height: 40px;
+    font-size: 12px;
 }
 
 option {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 label {
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 12px;
     display: block;
 }
 
@@ -197,7 +198,7 @@ label {
 
 button {
     width: 60%;
-    padding: 12px 20px;
+    padding: 15px 20px;
     background-color: #7A5BFF;
     color: #fff;
     margin-top: 20px;
@@ -210,6 +211,7 @@ button {
 
 .btn {
     margin-bottom: 40px;
+    font-size: 13px;
 }
 
 button:hover {
@@ -223,6 +225,7 @@ a {
 
 .link {
     color: #FF5B5E;
+    font-size: 12px;
 }
 
 a:hover {
@@ -258,8 +261,8 @@ label .upload-info {
 .custom-checkbox-label::before {
     content: "";
     display: inline-block;
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     margin-right: 10px;
     border-radius: 50%;
     border: 2px solid #fff;
@@ -292,7 +295,7 @@ label .upload-info {
     .form-container {
         width: 100%;
         margin-left: 0;
-        padding: 20px;
+        padding: 30px;
         box-sizing: border-box;
     }
 
@@ -319,7 +322,6 @@ label .upload-info {
 
     input, select, textarea {
         font-size: 16px;
-        margin-top: 5px;
     }
 
     button {
@@ -339,6 +341,7 @@ label .upload-info {
 @media screen and (max-width: 480px) {
     .form-title {
         font-size: 20px;
+        margin-bottom: 20px;
     }
 
     .form-container p {
@@ -347,6 +350,7 @@ label .upload-info {
 
     label {
         font-size: 14px;
+        margin-bottom: 10px;
     }
 
     input, select, textarea {

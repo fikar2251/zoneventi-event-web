@@ -71,3 +71,39 @@
 .sidebar::-webkit-scrollbar-track {
     background: transparent;
 }
+
+.hamburger {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s;
+    background-color: var(--font-color-white);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar {
+        transform: translateX(0);
+    }
+
+    .hamburger {
+        display: block;
+    }
+}

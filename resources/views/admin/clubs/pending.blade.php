@@ -36,7 +36,10 @@
                             </div>
                         </div>
                         <div class="list-item-right">
-                            <img src="{{ asset('assets/template/icon/Stroke1.svg') }}" alt="Arrow" class="arrow-icon">
+                            <a href="{{ route('clubs-pending-request') }}">
+                                <img src="{{ asset('assets/template/icon/Stroke1.svg') }}" alt="Arrow"
+                                    class="arrow-icon">
+                            </a>
                         </div>
                     </div>
                 @endforeach

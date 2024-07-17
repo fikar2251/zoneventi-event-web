@@ -1,4 +1,3 @@
-<!-- resources/views/layout.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,12 +11,18 @@
 
 <body>
     <div class="container-fluid">
+        <button class="hamburger" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
         <div class="row">
             @include('partials.sidebar')
 
             @yield('content')
         </div>
     </div>
+    {{-- @include('partials.footer') --}}
 
     @include('partials.scripts')
 </body>
