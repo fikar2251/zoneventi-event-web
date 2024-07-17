@@ -1,0 +1,121 @@
+.detail-form {
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
+    padding: 10px;
+}
+
+.file-upload-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #1D1F36;
+    border: 2px solid #1D1F36;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.file-upload-button:hover {
+    background-color: #1D1F36;
+}
+
+.file-upload-button i {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.file-upload-button span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.upload-info {
+    font-size: 14px;
+    color: #B0B0B0;
+}
+
+#event_details {
+    height: 255px;
+}
+
+label .upload-info {
+    font-size: 8px;
+    color: #B0B0B0;
+}
+
+
+/* .upload-logo-container {
+    margin-bottom: 30px;
+}
+
+.upload-logo-label {
+    cursor: pointer;
+}
+
+.upload-logo-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #1D1F36;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.upload-logo-circle .upload-logo-small {
+    color: #898C9F;
+    font-size: 6px;
+}
+
+.upload-logo-circle .upload-logo-text {
+    font-family: 'Lexend', sans-serif;
+    font-size: 10px;
+}
+
+.upload-logo-circle .upload-icon {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.upload-logo-circle span {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.upload-logo-circle small {
+    color: #6e6b7b;
+    font-size: 12px;
+}
+
+.input-group-text {
+    background-color: #1D1F36;
+    border: none;
+    border-left: 1px solid #2b2c40;
+} */
+
+/* .header {
+    padding-left: 50px; 
+    padding-right: 50px;
+}
+
+.back-button {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.title {
+    margin: 0;
+} */

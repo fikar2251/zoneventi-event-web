@@ -19,10 +19,11 @@
                         </div>
                         <div class="admin-edit">
                             <div class="admin-top">
-                                <span>Club admins</span> <a href="#">Edit</a>
+                                <span style="font-size: 14px">Club admins</span> <a href="#"
+                                    style="font-size: 12px">Edit</a>
                             </div>
                             <div class="admin-bottom">
-                                <span>All Admins</span>
+                                <span style="font-size: 18px;">All Admins</span>
                             </div>
                         </div>
                     </div>
@@ -41,9 +42,9 @@
                             </div>
                         </div>
                         <div class="buttons d-flex">
-                            <button class="btn btn-edit">Edit Club Details</button>
-                            <button class="btn btn-add">Add New Event</button>
-                            <button class="btn btn-delete">Delete Club</button>
+                            <button class="btn btn-edit text-12">Edit Club Details</button>
+                            <a href="{{ route('event-create') }}" class="btn btn-add text-12">Add New Event</a>
+                            <button class="btn btn-delete text-12">Delete Club</button>
                         </div>
                     </div>
 

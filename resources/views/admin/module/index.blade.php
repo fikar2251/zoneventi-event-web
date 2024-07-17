@@ -16,7 +16,8 @@
                                 </button>
                             </div>
                         </div>
-                        <button class="btn add-club-btn" type="button">Add New Admin</button>
+                        <a href="{{ route('admins-create') }}" class="btn add-club-btn" type="button">Add New
+                            Admin</a>
                     </div>
                 </div>
             </div>
@@ -43,12 +44,8 @@
                                         <td class="text-center">Admin</td>
                                         <td class="text-center">email@gmail.com</td>
                                         <td>
-                                            <div>
-                                                <button class="btn btn-block"
-                                                    style="background-color: #7A5BFF">Edit</button>
-                                                <button class="btn btn-block"
-                                                    style="background-color: #FF5B5B">Delete</button>
-                                            </div>
+                                            <button class="btn btn-block" style="background-color: #7A5BFF">Edit</button>
+                                            <button class="btn btn-block" style="background-color: #FF5B5B">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach

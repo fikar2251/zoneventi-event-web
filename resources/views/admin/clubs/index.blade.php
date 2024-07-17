@@ -38,7 +38,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <button class="btn add-club-btn" type="button">Add new Club</button>
+                            <a href="{{ route('club-create') }}" class="btn add-club-btn" type="button">Add new Club</a>
                         </div>
                     </div>
                 </div>
@@ -50,18 +50,20 @@
                             @for ($i = 0; $i < 8; $i++)
                                 <div class="col-md-3 col-sm-6 mb-4">
                                     <div class="card club-card">
-                                        <div class="card-body text-center">
-                                            <img src="{{ asset('assets/template/icon/ImgClub.svg') }}" alt="Club Image"
-                                                class="img-fluid rounded-circle mb-3 club-img">
-                                            <h5 class="text-header-club">Heaven</h5>
-                                            <div class="club-location">
-                                                <img src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
-                                                    class="location-icon-club">
-                                                <span class="location-text">Teramo (TE)</span>
+                                        <a href="{{ route('club-detail') }}" class="club-link">
+                                            <div class="card-body text-center">
+                                                <img src="{{ asset('assets/template/icon/ImgClub.svg') }}" alt="Club Image"
+                                                    class="img-fluid rounded-circle mb-3 club-img">
+                                                <h5 class="text-header-club">Heaven</h5>
+                                                <div class="club-location">
+                                                    <span class="location-text"><img
+                                                            src="{{ asset('assets/template/icon/Location.svg') }}"
+                                                            alt="location" class="location-icon-club"> Teramo (TE)</span>
+                                                </div>
+                                                <p class="text-post-event">5 Posted Events</p>
+                                                <p class="text-success">2 Event Online</p>
                                             </div>
-                                            <p class="text-white">5 Posted Events</p>
-                                            <p class="text-success">2 Event Online</p>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             @endfor

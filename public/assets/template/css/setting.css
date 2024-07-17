@@ -1,0 +1,81 @@
+.card-bg {
+    background-color: #1D1F36;
+    border: none;
+}
+.form-control {
+    background-color: #1D1F36;
+    border: none;
+    color: white;
+}
+.form-control::placeholder {
+    color: #6c757d;
+}
+.btn-outline-danger {
+    color: #FF5B5C;
+    border-color: #FF5B5C;
+}
+.btn-outline-danger:hover {
+    background-color: #FF5B5C;
+    color: white;
+}
+.btn-primary {
+    background-color: #7367F0;
+    border-color: #7367F0;
+}
+.btn-primary:hover {
+    background-color: #635ac7;
+    border-color: #635ac7;
+}
+.card-header {
+    background-color: #1D1F36;
+}
+.btn-link {
+    color: white;
+}
+.btn-link:hover {
+    text-decoration: none;
+}
+
+.fas {
+    transition: transform 0.3s ease;
+}
+
+[aria-expanded="true"] .fas {
+    transform: rotate(180deg);
+}
+
+.faq-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.faq-card {
+    flex: 1 1 300px;
+    margin: 0 10px 20px;
+    min-width: 250px;
+}
+
+.faq-header {
+    background: transparent;
+    border: 0;
+}
+
+.faq-header h6 {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.faq-header .btn-link {
+    line-height: 1;
+    padding: 0;
+}
+
+.faq-divider {
+    border-top: 1px solid white;
+    margin: 0;
+}
+
+.card-body {
+    padding: 1rem;
+}

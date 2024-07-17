@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Web\Admin;
+namespace App\Http\Controllers\Web\Admin\Module;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminsController extends Controller
+class SettingsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.module.index');
+        return view('admin.settings.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class AdminsController extends Controller
      */
     public function create()
     {
-        return view('admin.module.create');
+        //
     }
 
     /**

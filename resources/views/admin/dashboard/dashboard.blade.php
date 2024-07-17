@@ -42,7 +42,7 @@
                                     <h3 class="vs-last-week">VS LAST WEEK</h3>
                                 </div>
                             </div>
-                            <div class="flex-grow-1">
+                            <div class="flex-grow-3">
                                 <canvas id="activeUsersChart"></canvas>
                             </div>
                         </div>
@@ -54,56 +54,56 @@
                             <h5 class="text-section mb-2">Statistics</h5>
                             <p class="total-active mb-3">Popular city's</p>
                             <div class="flex-grow-1">
-                                <div class="city-bar d-flex align-items-center mb-2">
+                                <div class="city-bar d-flex align-items-center mb-3">
                                     <span class="city-name">Madrid</span>
                                     <div class="bar-wrapper">
                                         <div class="bar" data-value="1025" style="background-color: #4B48D2;"></div>
                                     </div>
                                     <span class="data-value">1025</span>
                                 </div>
-                                <div class="city-bar d-flex align-items-center mb-2">
+                                <div class="city-bar d-flex align-items-center mb-3">
                                     <span class="city-name">Seville</span>
                                     <div class="bar-wrapper">
                                         <div class="bar" data-value="436" style="background-color: #DBB7EE;"></div>
                                     </div>
                                     <span class="data-value">436</span>
                                 </div>
-                                <div class="city-bar d-flex align-items-center mb-2">
+                                <div class="city-bar d-flex align-items-center mb-3">
                                     <span class="city-name">Barcelona</span>
                                     <div class="bar-container flex-grow-1 mx-3">
                                         <div class="bar" data-value="312" style="background-color: #9A4CED;"></div>
                                     </div>
                                     <span class="data-value">312</span>
                                 </div>
-                                <div class="city-bar d-flex align-items-center mb-2">
+                                <div class="city-bar d-flex align-items-center mb-3">
                                     <span class="city-name">Málaga</span>
                                     <div class="bar-container flex-grow-1 mx-3">
                                         <div class="bar" data-value="198" style="background-color: #A5C7F0;"></div>
                                     </div>
                                     <span class="data-value">198</span>
                                 </div>
-                                <div class="city-bar d-flex align-items-center mb-2">
+                                <div class="city-bar d-flex align-items-center mb-3">
                                     <span class="city-name">Bilbao</span>
                                     <div class="bar-container flex-grow-1 mx-3">
                                         <div class="bar" data-value="78" style="background-color: #EEB7D3;"></div>
                                     </div>
                                     <span class="data-value">78</span>
                                 </div>
-                                <div class="city-bar d-flex align-items-center mb-2">
+                                <div class="city-bar d-flex align-items-center mb-3">
                                     <span class="city-name">Zaragoza</span>
                                     <div class="bar-container flex-grow-1 mx-3">
                                         <div class="bar" data-value="12" style="background-color: #F2CCD7;"></div>
                                     </div>
                                     <span class="data-value">12</span>
                                 </div>
-                                <div class="city-bar d-flex align-items-center mb-2">
+                                <div class="city-bar d-flex align-items-center mb-3">
                                     <span class="city-name">Valencia</span>
                                     <div class="bar-container flex-grow-1 mx-3">
                                         <div class="bar" data-value="8" style="background-color: #F2E1B2;"></div>
                                     </div>
                                     <span class="data-value">8</span>
                                 </div>
-                                <div class="city-bar d-flex align-items-center mb-2">
+                                <div class="city-bar d-flex align-items-center mb-3">
                                     <span class="city-name">Granada</span>
                                     <div class="bar-container flex-grow-1 mx-3">
                                         <div class="bar" data-value="2" style="background-color: #A5C7F0;"></div>
@@ -125,7 +125,7 @@
                                 <img src="{{ asset('assets/template/icon/Profile.svg') }}" alt="Club"
                                     class="club-image mr-3">
                                 <div class="club-info">
-                                    <h6 class="mb-1" style="font-size: 20px;">Zoldic Club</h6>
+                                    <h6 class="mb-1" style="font-size: 18px;">Zoldic Club</h6>
                                     <p class="mb-0">
                                         <img src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
                                             class="location-icon">
@@ -140,7 +140,7 @@
                                 <img src="{{ asset('assets/template/icon/Profile.svg') }}" alt="Club"
                                     class="club-image mr-3">
                                 <div class="club-info">
-                                    <h6 class="mb-1">Zoldic Club</h6>
+                                    <h6 class="mb-1" style="font-size: 18px;">Zoldic Club</h6>
                                     <p class="mb-0">
                                         <img src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
                                             class="location-icon">
@@ -155,7 +155,7 @@
                                 <img src="{{ asset('assets/template/icon/Profile.svg') }}" alt="Club"
                                     class="club-image mr-3">
                                 <div class="club-info">
-                                    <h6 class="mb-1">Zoldic Club</h6>
+                                    <h6 class="mb-1" style="font-size: 18px;">Zoldic Club</h6>
                                     <p class="mb-0">
                                         <img src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
                                             class="location-icon">
@@ -175,15 +175,15 @@
                                 <img src="{{ asset('assets/template/icon/Profile.svg') }}" alt="Club"
                                     class="club-image mr-3">
                                 <div class="club-info">
-                                    <h6 class="mb-1" style="font-size: 20px;">La Terrazza - Hola Chica</h6>
+                                    <h6 class="mb-1" style="font-size: 18px;">La Terrazza - Hola Chica</h6>
                                     <p class="mb-0">
                                         <img src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
                                             class="location-icon">
                                         San Benedetto (AP) - Via G.Melozzi 2
                                     </p>
                                 </div>
-                                <div class="ml-auto">
-                                    <span class="participant-number">1456</span>
+                                <div class="ml-auto text-right">
+                                    <span class="participant-number" style="color: #fff">1456</span>
                                     <span class="participant-text">Participant's</span>
                                 </div>
                             </div>
@@ -193,15 +193,15 @@
                                 <img src="{{ asset('assets/template/icon/Profile.svg') }}" alt="Club"
                                     class="club-image mr-3">
                                 <div class="club-info">
-                                    <h6 class="mb-1" style="font-size: 20px;">La Terrazza - Hola Chica</h6>
+                                    <h6 class="mb-1" style="font-size: 18px;">La Terrazza - Hola Chica</h6>
                                     <p class="mb-0">
                                         <img src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
                                             class="location-icon">
                                         San Benedetto (AP) - Via G.Melozzi 2
                                     </p>
                                 </div>
-                                <div class="ml-auto">
-                                    <span class="participant-number">1456</span>
+                                <div class="ml-auto text-right">
+                                    <span class="participant-number" style="color: #fff">1456</span>
                                     <span class="participant-text">Participant's</span>
                                 </div>
                             </div>
@@ -211,15 +211,15 @@
                                 <img src="{{ asset('assets/template/icon/Profile.svg') }}" alt="Club"
                                     class="club-image mr-3">
                                 <div class="club-info">
-                                    <h6 class="mb-1" style="font-size: 20px;">La Terrazza - Hola Chica</h6>
+                                    <h6 class="mb-1" style="font-size: 18px;">La Terrazza - Hola Chica</h6>
                                     <p class="mb-0">
                                         <img src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
                                             class="location-icon">
                                         San Benedetto (AP) - Via G.Melozzi 2
                                     </p>
                                 </div>
-                                <div class="ml-auto">
-                                    <span class="participant-number">1456</span>
+                                <div class="ml-auto text-right">
+                                    <span class="participant-number" style="color: #fff">1456</span>
                                     <span class="participant-text">Participant's</span>
                                 </div>
                             </div>

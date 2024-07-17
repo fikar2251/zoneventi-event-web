@@ -1,12 +1,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap" rel="stylesheet">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="shortcut icon" href="{{ asset('assets/login/image/logo.png') }}">
 <link rel="stylesheet" href="{{ asset('assets/template/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/template/css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/template/css/club.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/template/css/club-detail.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/template/css/club-pending.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/template/css/club-new.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/template/css/notification.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/template/css/setting.css') }}">
 
 <style type="text/css">
     .preloader1 {

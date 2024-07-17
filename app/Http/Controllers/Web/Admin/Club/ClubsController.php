@@ -20,7 +20,7 @@ class ClubsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.clubs.create');
     }
 
     /**
@@ -37,6 +37,14 @@ class ClubsController extends Controller
     public function show()
     {
         return view('admin.clubs.show');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function detail()
+    {
+        return view('admin.clubs.detail');
     }
 
     /**
@@ -66,5 +74,10 @@ class ClubsController extends Controller
     public function pending()
     {
         return view('admin.clubs.pending');
+    }
+
+    public function createEvent()
+    {
+        return view('admin.clubs.create-event');
     }
 }
