@@ -3,10 +3,10 @@
 @section('title', 'Detail Club')
 
 @section('content')
+<main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
     <div class="content-wrapper">
-        <main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row mt-60">
                     <div class="header d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                             <div class="back-button">
@@ -14,8 +14,8 @@
                                     <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
                                         style="width: 50px; height: 50px">
                                 </a>
+                                <h2 class="title">Club Details</h2>
                             </div>
-                            <h2 class="title">Club Details</h2>
                         </div>
                         <div class="admin-edit">
                             <div class="admin-top">

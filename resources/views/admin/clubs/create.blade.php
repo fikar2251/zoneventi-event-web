@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="notification-form">
+            <div class="form-container">
                 <div class="text-center">
                     <div class="upload-logo-container">
                         <input type="file" id="club-logo" class="d-none" accept="image/*">

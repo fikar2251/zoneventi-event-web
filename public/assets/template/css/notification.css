@@ -1,15 +1,15 @@
-.notification-form {
+.form-container {
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
     padding: 10px; /* Added padding for small screens */
-}   
+}
 
 .detail-form {
     margin: 0 40px;
     width: 100%;
     padding: 10px; /* Added padding for small screens */
-}   
+}
 
 .text-12 {
     font-size: 12px !important;
@@ -70,13 +70,13 @@ textarea.form-control {
 }
 
 .btn-lg {
-    padding: 10px 30px; 
+    padding: 10px 30px;
     font-size: 12px;
     border-radius: 8px;
 }
 
 .btn-primary.btn-lg {
-    font-size: 12px; 
+    font-size: 12px;
 }
 
 .btn-danger.btn-lg {
@@ -201,7 +201,7 @@ select.form-control option {
 }
 
 @media (max-width: 768px) {
-    .notification-form {
+    .form-container {
         padding: 10px;
     }
 

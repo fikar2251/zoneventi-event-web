@@ -28,7 +28,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card mb-4" style="background-color: #1D1F36; border-radius: 20px; height: 400px;">
+                    <div class="card mb-4" style="background-color: #1D1F36; border-radius: 20px;">
                         <div class="card-body text-white d-flex flex-column">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="left-section">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card mb-4" style="background-color: #1D1F36; border-radius: 20px; height: 400px;">
+                    <div class="card mb-4" style="background-color: #1D1F36; border-radius: 20px;">
                         <div class="card-body text-white d-flex flex-column">
                             <h5 class="text-section mb-2">Statistics</h5>
                             <p class="total-active mb-3">Popular city's</p>

@@ -55,8 +55,8 @@
     margin-top: 20px;
 }
 
-.nav-link.logout {
-    color: var(--font-color-red);
+.nav-item.settings {
+    margin-bottom: 20px;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -97,9 +97,10 @@
 @media screen and (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
+        transition: transform 0.3s ease;
     }
 
-    .sidebar {
+    .sidebar.active {
         transform: translateX(0);
     }
 

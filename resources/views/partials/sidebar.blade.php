@@ -44,15 +44,15 @@
                     <span>Notifications</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item settings">
                 <a class="nav-link {{ request()->routeIs('settings') ? 'active' : '' }}"
                     href="{{ route('settings') }}">
                     <img src="{{ asset('assets/template/icon/Setting.svg') }}" alt="Settings" class="nav-icon">
                     <span>Settings</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link logout" href="#">
+            <li class="nav-item logout">
+                <a class="nav-link" href="#">
                     <img src="{{ asset('assets/template/icon/Login.svg') }}" alt="Log Out" class="nav-icon">
                     <span>Log Out</span>
                 </a>

@@ -12,7 +12,7 @@
                 </a>
             </div>
         </div>
-        <div class="notification-form">
+        <div class="form-container">
             <div class="text-center">
                 <h2 class="title text-white">Add New Admin</h2>
             </div>
