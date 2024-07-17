@@ -31,7 +31,7 @@ class AuthController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return (new ResponseResource('false', $validator->errors(), null))->response()->setStatusCode(422);
+            return (new ResponseResource('false', $validator->errors(), null))->response()->setStatusCode(400);
         }
         $credentials = $request->only('email', 'password');
         
@@ -65,7 +65,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return (new ResponseResource('false', $validator->errors(), null))->response()->setStatusCode(422);
+            return (new ResponseResource('false', $validator->errors(), null))->response()->setStatusCode(400);
         }
 
         $user = User::create([
