@@ -20,6 +20,7 @@ Route::prefix('v1')->group(function() {
     Route::post('/register',[AuthController::class, 'register']); 
     Route::post('/logout',[AuthController::class, 'logout']); 
     Route::middleware('jwt.verify')->get('/user', [AuthController::class, 'getUser']);
+    Route::middleware('jwt.verify')->post('/update-profile', [AuthController::class, 'updateProfile']);
 
     Route::group([
         'middleware' => 'jwt.verify',
