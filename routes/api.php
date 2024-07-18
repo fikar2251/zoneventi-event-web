@@ -21,6 +21,10 @@ Route::prefix('v1')->group(function() {
     Route::post('/logout',[AuthController::class, 'logout']); 
     Route::middleware('jwt.verify')->get('/user', [AuthController::class, 'getUser']);
     Route::middleware('jwt.verify')->post('/update-profile', [AuthController::class, 'updateProfile']);
+    Route::post('/send-otp', [AuthController::class, 'sendOtp']);
+    Route::post('/verify-otp', [AuthController::class, 'verifyOtp']);
+    Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+    Route::middleware('jwt.verify')->post('/change-password', [AuthController::class, 'changePassword']);
 
     Route::group([
         'middleware' => 'jwt.verify',

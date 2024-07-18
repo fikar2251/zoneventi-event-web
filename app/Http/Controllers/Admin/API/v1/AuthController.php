@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin\API\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ResponseResource;
+use App\Mail\ResetPasswordMail;
 use App\Models\MobUsers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -132,6 +135,70 @@ class AuthController extends Controller
             return (new ResponseResource('false', 'Data Failed Inserted', $th->getMessage()))->response()->setStatusCode(500);
         }
 
+    }
+
+    public function sendOtp(Request $request) {
+        $otp = random_int(100000, 999999);
+        try {
+            $check = User::where('email', $request->email)->first();
+            if ($check) {
+                DB::table('password_reset_tokens')->updateOrInsert([
+                    'email' => $request->email
+                ],[
+                    'email' => $request->email,
+                    'token' => $otp,
+                    'created_at' => Carbon::now()
+                ]);
+                
+                Mail::to($request->email)->send(new ResetPasswordMail($otp));
+                return (new ResponseResource('true', 'OTP Successfully Send', $otp));
+            }else{
+                return (new ResponseResource('false', 'Email is not registered!', null))->response()->setStatusCode(400);
+            }
+
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', 'OTP Failed Send', $th->getMessage()))->response()->setStatusCode(500);
+        }
+       
+    }
+
+    public function verifyOtp(Request $request) {
+        $otp = $request->otp;
+        try {
+            $check = DB::table('password_reset_tokens')->where('token', $otp)->first();
+            if (!$check || Carbon::parse($check->created_at)->addMinutes(10)->isPast()) {
+                return (new ResponseResource('false', 'Invalid or expired OTP.', null))->response()->setStatusCode(400);
+            }
+            return new ResponseResource('true', 'OTP is valid', $check->token);
+
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', 'Errors', $th->getMessage()))->response()->setStatusCode(500);
+        }
+       
+    }
+
+    public function resetPassword(Request $request){
+        try {
+            $user = User::where('email', $request->email)->first();
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return new ResponseResource('true', 'Successfully Reset Password', $user);
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', 'Failed Reset Password', $th->getMessage()))->response()->setStatusCode(500);
+        }
+    }
+
+    public function changePassword(Request $request){
+        try {
+            $user = User::where('email', Auth::user()->email)->first();
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return new ResponseResource('true', 'Successfully Reset Password', $user);
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', 'Failed Reset Password', $th->getMessage()))->response()->setStatusCode(500);
+        }
     }
     
 

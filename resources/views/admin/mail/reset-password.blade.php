@@ -1,0 +1,1 @@
+<h1>Your OTP Reset Password Code is : {{$otp}}</h1>
