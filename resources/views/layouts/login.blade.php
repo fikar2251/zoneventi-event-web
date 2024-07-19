@@ -34,9 +34,14 @@
                 </div>
                 <div class="form-group password input-register">
                     <label for="password" style="font-size: 12px;">Password*</label>
-                    <input type="password" id="password" class="input-register" placeholder="Enter your password"
-                        required>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" class="input-register"
+                            placeholder="Enter your password">
+                        <img src="{{ asset('assets/template/icon/Frame.svg') }}" alt="Toggle Password Visibility"
+                            class="eye-icon" id="togglePassword" onclick="togglePasswordVisibility()">
+                    </div>
                 </div>
+
                 <button type="submit" class="btn">Log In</button>
                 <p style="font-size: 12px">Are you a club owner? <a href="{{ url('/registration') }}"
                         class="link">Request for club
@@ -44,6 +49,26 @@
             </form>
         </div>
     </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordFieldType = passwordField.getAttribute('type');
+
+            if (passwordFieldType === 'password') {
+                passwordField.setAttribute('type', 'text');
+                togglePassword.src = '{{ asset('assets/template/icon/Show.svg') }}';
+            } else {
+                passwordField.setAttribute('type', 'password');
+                togglePassword.src = '{{ asset('assets/template/icon/Frame.svg') }}';
+            }
+
+            togglePassword.style.width = '20px';
+            togglePassword.style.height = '20px';
+        }
+    </script>
+
 </body>
 
 </html>
