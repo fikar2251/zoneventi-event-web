@@ -64,6 +64,7 @@ body {
 
 .form-group.owner-phone, 
 .form-group.owner-name,
+.form-group.user-id,
 .form-group.owner-email,
 .form-group.country,
 .form-group.name-authorize,
@@ -193,7 +194,6 @@ textarea:focus {
     outline: none;
     box-shadow: none;
 }
-
 
 select {
     padding-right: 30px;

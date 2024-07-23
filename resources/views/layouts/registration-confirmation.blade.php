@@ -26,6 +26,11 @@
             <form class="login-form">
                 <h2 class="form-title">Request For Club Account</h2>
                 <p style="font-size: 13px">You can request for an club account or claim an existing club ownership</p>
+                <div class="form-group input-register user-id">
+                    <label for="user_id" style="font-size: 12px;">User ID*</label>
+                    <input type="text" id="user_id" name="user_id" class="input-register"
+                        placeholder="Enter User ID" required>
+                </div>
                 <div class="form-group input-register owner-name">
                     <label for="owner_name" style="font-size: 12px;">Name of Premises Owner*</label>
                     <input type="text" id="owner_name" name="owner_name" class="input-register"
