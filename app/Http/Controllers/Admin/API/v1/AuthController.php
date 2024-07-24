@@ -76,7 +76,7 @@ class AuthController extends Controller
             }
             return response()->json([
                 'success' => 'false',
-                'message' => $formattedErrors,
+                'message' => $message[0],
             ], 400);
             // return (new ResponseResource('false', $formattedErrors, null))->response()->setStatusCode(400);
         }
