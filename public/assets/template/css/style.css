@@ -175,24 +175,22 @@ h5 {
 }
 
 .club-location {
-    align-items: center;
+    display: flex;
+    align-items: flex-start;
     justify-content: center;
 }
 
-.filter-btn {
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    background-color: var(--filter-btn-bg-color);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    z-index: 1000;
+.location-icon-club {
+    width: 16px;  
+    height: 16px; 
+    margin-right: 4px;
+    margin-top: 2px; 
 }
 
-.filter-btn img {
-    width: 24px;
-    height: 24px;
+.location-text {
+    font-size: 14px;
+    line-height: 2;
+    padding-top: 1px; 
 }
 
 .header {
@@ -229,6 +227,16 @@ h5 {
     border-bottom: 1px solid #454d55;
 }
 
+.table thead {
+    background-color: #1D1F36;
+    color: white;
+    border: none;
+}
+
+.table thead th {
+    border: none;
+}
+
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
     background-color: #1D1F36;
 }
@@ -252,14 +260,6 @@ h5 {
     background-color: #FF5C5C;
 }
 
-.blocked-club-btn {
-    background-color: #FF5C5C;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    padding: 0.375rem 0.75rem;
-}
-
 h2 {
     margin-top: 0;
     margin-bottom: 1.5rem;
@@ -271,11 +271,6 @@ h2 {
     width: 100%;
     color: #fff;
     background-color: #1D1F36;
-}
-
-.thead-dark {
-    background-color: #1D1F36;
-    color: #fff;
 }
 
 .thead-custom {
@@ -293,24 +288,31 @@ tbody tr td {
     border-right: 1px solid #1D1F36;
 }
 
-.filter-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #7A5BFF;
-    border: none;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.table {
+    border-collapse: collapse;
 }
 
-.filter-btn img {
-    width: 24px;
-    height: 24px;
+.table thead {
+    background-color: #1D1F36;
+    color: white;
 }
+
+.table thead th {
+    border: 1px solid #1D1F36; 
+}
+
+.table tbody tr {
+    border-top: 1px solid #1D1F36; 
+}
+
+.table tbody tr td {
+    border-right: 1px solid #1D1F36; 
+}
+
+.table tbody tr:last-child {
+    border-bottom: 1px solid #1D1F36; 
+}
+
 
 .header-all-users {
     font-family: 'Lexend', sans-serif;

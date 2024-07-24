@@ -15,7 +15,7 @@
                                     <p class="total-pending">10 club request pending</p>
                                 </div>
                                 <div>
-                                    <a href="">
+                                    <a href="{{ route('club-pending') }}">
                                         <img src="{{ asset('assets/template/icon/Arrow.svg') }}" alt="Log Out"
                                             class="nav-icon">
                                     </a>
@@ -132,7 +132,8 @@
                                         San Benedetto (AP) - Via G.Melozzi 2
                                     </p>
                                 </div>
-                                <span class="ml-auto count-event" style="color: #fff;">16 Events</span>
+                                <span class="ml-auto count-event" style="color: #fff; white-space: nowrap;">16
+                                    Events</span>
                             </div>
                             <hr class="club-separator">
 
@@ -147,7 +148,8 @@
                                         San Benedetto (AP) - Via G.Melozzi 2
                                     </p>
                                 </div>
-                                <span class="ml-auto count-event" style="color: #fff;">16 Events</span>
+                                <span class="ml-auto count-event" style="color: #fff; white-space: nowrap;">16
+                                    Events</span>
                             </div>
                             <hr class="club-separator">
 
@@ -162,7 +164,8 @@
                                         San Benedetto (AP) - Via G.Melozzi 2
                                     </p>
                                 </div>
-                                <span class="ml-auto count-event" style="color: #fff;">16 Events</span>
+                                <span class="ml-auto count-event" style="color: #fff; white-space: nowrap;">16
+                                    Events</span>
                             </div>
                         </div>
                     </div>

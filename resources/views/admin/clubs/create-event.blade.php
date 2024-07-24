@@ -6,22 +6,24 @@
     <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
         <div class="container-fluid">
             <div class="row">
-                <div class="header d-flex align-items-center justify-content-between flex-wrap">
-                    <div class="d-flex align-items-center">
-                        <div class="back-button">
-                            <a href="{{ route('clubs-index') }}">
-                                <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
-                                    style="width: 50px; height: 50px">
-                            </a>
+                <div class="container">
+                    <div class="header d-flex align-items-center justify-content-between flex-wrap">
+                        <div class="d-flex align-items-center w-100">
+                            <div class="back-button">
+                                <a href="{{ route('club-detail') }}">
+                                    <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
+                                        style="width: 50px; height: 50px">
+                                </a>
+                            </div>
+                            <h2 class="title">Add New Event</h2>
                         </div>
-                        <h2 class="title">Add New Event</h2>
                     </div>
                 </div>
 
                 <div class="detail-form">
                     <form class="mt-5">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-md-12">
                                 <div class="form-group input-register file-upload text-center">
                                     <label for="file-upload" class="file-upload-button">
                                         <img src="{{ asset('assets/template/icon/Vector.svg') }}" alt="upload-icon"
@@ -62,7 +64,7 @@
                                     <input type="number" class="form-control text-12" id="whats_app" placeholder="Number">
                                 </div>
                                 <div class="form-group">
-                                    <label for="contact_number" class="form-label">Contact Number</label>
+                                    <label for="contact_number" class="form-label text-12">Contact Number</label>
                                     <input type="number" class="form-control" id="contact_number" placeholder="Number">
                                 </div>
                                 <div class="form-group">
@@ -108,7 +110,7 @@
                     preview.style.backgroundSize = 'cover';
                     preview.style.backgroundPosition = 'center';
                     preview.style.width = '100%';
-                    preview.style.height = '200px'; // Anda bisa menyesuaikan ukurannya
+                    preview.style.height = '150px';
                     preview.style.marginTop = '10px';
                     preview.style.borderRadius = '8px';
 

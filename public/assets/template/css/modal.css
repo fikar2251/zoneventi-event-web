@@ -1,3 +1,7 @@
+body.modal-open {
+    overflow: hidden;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -6,36 +10,50 @@
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.4);
-    opacity: 0;
     transition: opacity 0.3s ease;
+    opacity: 0;
 }
 
 .modal.show {
     opacity: 1;
+    display: block;
 }
 
 .modal-content {
     background-color: #0D0A1C;
-    margin: 15% auto;
+    margin: auto;
     padding: 20px;
     border: 1px solid #0D0A1C;
     width: 100%;
     max-width: 700px;
     border-radius: 10px;
     box-shadow: none;
-    transform: scale(0.7);
     opacity: 0;
     transition: all 0.3s ease;
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%) scale(0.7);
+    
+    max-height: 95vh; 
+    overflow-y: auto; 
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--hover-bg-color);
+    border-radius: 10px;
 }
 
 .modal.show .modal-content {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
 }
-
-/* Rest of your CSS remains the same */
 
 .modal-header {
     display: flex;
@@ -51,6 +69,11 @@
     padding: 0;
 }
 
+.back-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 .back-modal-icon {
     width: 40px;
     height: 40px;
@@ -61,7 +84,7 @@
     text-align: center;
     margin: 0;
     font-family: 'Lexend', sans-serif;
-    font-size: 24px;
+    font-size: 18px;
     color: #fff;
 }
 
@@ -87,7 +110,7 @@
 .modal-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .modal-buttons button {
@@ -109,5 +132,226 @@
 #confirmBlock {
     background-color: #7A5BFF;
     color: white;
+}
 
+.block-btn:hover {
+    background-color: #FF3B3B; 
+    color: white; 
+}
+
+.btn-block {
+    background-color: #7A5BFF;
+    color: white;
+}
+
+.btn-block:hover {
+    background-color: #6748D1; 
+    color: white; 
+}
+
+.filter-popup {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    background-color: #24253B;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    font-family: 'Lexend', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.filter-popup.filter-popup-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+.filter-header-popup {
+    color: #898C9F;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.filter-section h3 {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.search-icon {
+    color: #fff;
+    font-size: 14px;
+}
+
+.scrollable-options {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 5px;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.scrollable-options::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+.option-tag {
+    background-color: #0D0A1C;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.option-tag.selected {
+    background-color: #FF5B5E;
+}
+
+#applyFilter {
+    width: 100%;
+    padding: 12px;
+    background-color: #7A5BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+#applyFilter:hover {
+    background-color: #6748D1;
+}
+
+.user-info-section {
+    text-align: left;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.user-details p {
+    margin: 5px 0;
+    font-family: 'Lexend', sans-serif;
+}
+
+.label {
+    color: #898C9F;
+    margin-right: 10px;
+}
+
+.value {
+    color: white;
+}
+
+.edit-form .form-group {
+    margin-bottom: 15px;
+}
+
+.edit-form label {
+    font-family: 'Lexend', sans-serif;
+    color: #898C9F;
+}
+
+.edit-form .form-control {
+    background-color: #1D1F36;
+    color: white;
+    border: 1px solid #1D1F36;
+    font-family: 'Lexend', sans-serif;
+    border-radius: 10px;
+}
+
+.edit-form select option {
+    color: #fff;
+}
+
+.edit-form .form-control:focus {
+    border-color: #7A5BFF;
+    outline: none;
+    box-shadow: none;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-danger {
+    background-color: #FF4D4D;
+    border: none;
+    font-family: 'Lexend', sans-serif;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #7A5BFF;
+    border: none;
+    font-family: 'Lexend', sans-serif;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Responsive styles */
+@media (min-width: 576px) {
+    .modal-buttons {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .modal-buttons button {
+        padding: 10px 20px;
+        font-size: 14px;
+        min-width: 150px;
+    }
+}
+
+@media (min-width: 768px) {
+    .modal-buttons {
+        gap: 10px;
+    }
+
+    .modal-buttons button {
+        padding: 15px 40px;
+        font-size: 16px;
+        min-width: 200px;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-buttons {
+        gap: 10px;
+    }
+
+    .modal-buttons button {
+        padding: 15px 50px;
+        font-size: 18px;
+        min-width: 250px;
+    }
 }

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="{{ asset('assets/template/css/notification.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/template/css/setting.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/template/css/modal.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/template/css/payment.css') }}">
 
 <style type="text/css">
     .preloader1 {

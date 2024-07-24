@@ -3,10 +3,10 @@
 @section('title', 'Detail Club')
 
 @section('content')
-<main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
-    <div class="content-wrapper">
+    <main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
+        <div class="content-wrapper">
             <div class="container-fluid">
-                <div class="row mt-60">
+                <div class="row">
                     <div class="header d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                             <div class="back-button">
@@ -14,8 +14,10 @@
                                     <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
                                         style="width: 50px; height: 50px">
                                 </a>
-                                <h2 class="title">Club Details</h2>
                             </div>
+                        </div>
+                        <div class="header-title">
+                            <h1>Club Details</h1>
                         </div>
                         <div class="admin-edit">
                             <div class="admin-top">
@@ -53,39 +55,43 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="header-events" style="margin-left: 20px">Ongoing Events</h4>
                         </div>
-                        <div class="event-cards d-flex flex-wrap">
-                            @foreach (range(1, 3) as $item)
-                                <div class="event-card">
-                                    <div class="event-header">
-                                        <img src="{{ asset('assets/template/img/Thumbnail.jpg') }}" alt="Event Thumbnail"
-                                            class="event-thumbnail">
-                                    </div>
-                                    <div class="event-content">
-                                        <div class="event-info">
-                                            <p class="event-date-time text-spacing"><span
-                                                    class="event-date text-spacing">VEN 16
-                                                    GIU</span> <span class="event-time text-spacing"> | 23:59 - 05:00</span>
-                                            </p>
-                                            <h5 class="event-title text-spacing">La Terrazza - Hola Chica</h5>
-                                            <p class="event-location text-spacing">
-                                                La Terrazza
-                                                <img src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
-                                                    class="location-icon-club">
-                                                <span class="location-text text-spacing">San Benedetto (AP)</span>
-                                            </p>
-                                            <div class="event-tags">
-                                                <span class="tag">Hip hop</span>
-                                                <span class="tag">Disco</span>
-                                                <span class="tag">Reggaeton</span>
+                        <div class="event-cards-container {{ $eventCount > 3 ? 'scrollable' : '' }}">
+                            <div class="event-cards">
+                                @foreach ($events as $item)
+                                    <div class="event-card">
+                                        <div class="event-header">
+                                            <img src="{{ asset('assets/template/img/Thumbnail.jpg') }}"
+                                                alt="Event Thumbnail" class="event-thumbnail">
+                                        </div>
+                                        <div class="event-content">
+                                            <div class="event-info">
+                                                <p class="event-date-time text-spacing">
+                                                    <span class="event-date text-spacing">VEN 16 GIU</span>
+                                                    <span class="event-time text-spacing"> | 23:59 - 05:00</span>
+                                                </p>
+                                                <h5 class="event-title text-spacing">La Terrazza - Hola Chica</h5>
+                                                <p class="event-location text-spacing">
+                                                    La Terrazza
+                                                    <img src="{{ asset('assets/template/icon/Location.svg') }}"
+                                                        alt="location" class="location-icon-club">
+                                                    <span class="location-text text-spacing">San Benedetto (AP)</span>
+                                                </p>
+                                                <div class="event-tags">
+                                                    <span class="tag">Hip hop</span>
+                                                    <span class="tag">Disco</span>
+                                                    <span class="tag">Reggaeton</span>
+                                                </div>
+                                            </div>
+                                            <div class="edit-icon">
+                                                <button class="btn btn-edit-event">
+                                                    <img src="{{ asset('assets/template/icon/edit.svg') }}" alt="Edit"
+                                                        class="edit-icon-button" style="width: 40px; height: 40px">
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="edit-icon">
-                                            <img src="{{ asset('assets/template/icon/edit.svg') }}" alt="Edit"
-                                                class="edit-icon-button" style="width: 40px; height: 40px">
-                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
 
@@ -94,43 +100,207 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="header-events" style="margin-left: 20px">Ongoing Events</h4>
                         </div>
-                        <div class="event-cards d-flex flex-wrap">
-                            @foreach (range(1, 3) as $item)
-                                <div class="event-card">
-                                    <div class="event-header">
-                                        <img src="{{ asset('assets/template/img/Event.jpg') }}" alt="Event Thumbnail"
-                                            class="event-thumbnail">
-                                    </div>
-                                    <div class="event-content">
-                                        <div class="event-info ">
-                                            <p class="event-date-time text-spacing"><span
-                                                    class="event-date text-spacing">VEN 16
-                                                    GIU</span> <span class="event-time text-spacing"> | 23:59 - 05:00</span>
-                                            </p>
-                                            <h5 class="event-title text-spacing">La Terrazza - Hola Chica</h5>
-                                            <p class="event-location text-spacing">
-                                                La Terrazza
-                                                <img src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
-                                                    class="location-icon-club">
-                                                <span class="location-text">San Benedetto (AP)</span>
-                                            </p>
-                                            <div class="event-tags">
-                                                <span class="tag">Hip hop</span>
-                                                <span class="tag">Disco</span>
-                                                <span class="tag">Reggaeton</span>
+                        <div class="event-cards-container {{ $eventCount > 3 ? 'scrollable' : '' }}">
+                            <div class="event-cards">
+                                @foreach ($events as $item)
+                                    <div class="event-card">
+                                        <div class="event-header">
+                                            <img src="{{ asset('assets/template/img/Event.jpg') }}" alt="Event Thumbnail"
+                                                class="event-thumbnail">
+                                        </div>
+                                        <div class="event-content">
+                                            <div class="event-info ">
+                                                <p class="event-date-time text-spacing"><span
+                                                        class="event-date text-spacing">VEN 16
+                                                        GIU</span> <span class="event-time text-spacing"> | 23:59 -
+                                                        05:00</span>
+                                                </p>
+                                                <h5 class="event-title text-spacing">La Terrazza - Hola Chica</h5>
+                                                <p class="event-location text-spacing">
+                                                    La Terrazza
+                                                    <img src="{{ asset('assets/template/icon/Location.svg') }}"
+                                                        alt="location" class="location-icon-club">
+                                                    <span class="location-text">San Benedetto (AP)</span>
+                                                </p>
+                                                <div class="event-tags">
+                                                    <span class="tag">Hip hop</span>
+                                                    <span class="tag">Disco</span>
+                                                    <span class="tag">Reggaeton</span>
+                                                </div>
+                                            </div>
+                                            <div class="edit-icon">
+                                                <img src="{{ asset('assets/template/icon/edit.svg') }}" alt="Edit"
+                                                    class="edit-icon-button" id="editEventIcon"
+                                                    style="width: 40px; height: 40px">
                                             </div>
                                         </div>
-                                        <div class="edit-icon">
-                                            <img src="{{ asset('assets/template/icon/edit.svg') }}" alt="Edit"
-                                                style="width: 40px; height: 40px">
-                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
+
+                    {{-- edit modal club --}}
+                    @include('modals.edit-modal-club')
+
+                    {{-- edit modal event --}}
+                    @include('modals.edit-modal-event')
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        document.getElementById('club-logo').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('logo-preview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var fileUpload = document.getElementById('file-upload');
+            var filePreview = document.getElementById('file-preview');
+            var defaultImage = document.getElementById('default-image');
+            var cancelImage = document.getElementById('cancel-image');
+            var uploadButton = document.querySelector('.file-upload-button');
+
+            // Tampilkan gambar default saat halaman dimuat
+            defaultImage.style.display = 'block';
+            uploadButton.style.display = 'none';
+
+            fileUpload.addEventListener('change', function(e) {
+                var file = e.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        defaultImage.style.display = 'none';
+                        filePreview.style.backgroundImage = 'url(' + e.target.result + ')';
+                        filePreview.style.backgroundSize = 'cover';
+                        filePreview.style.backgroundPosition = 'center';
+                        filePreview.style.width = '100%';
+                        filePreview.style.height = '120px';
+                        filePreview.style.marginTop = '10px';
+                        filePreview.style.borderRadius = '8px';
+                        cancelImage.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            cancelImage.addEventListener('click', function() {
+                defaultImage.style.display = 'none';
+                uploadButton.style.display = 'block';
+                filePreview.style.backgroundImage = 'none';
+                fileUpload.value = ''; // Reset file input
+                cancelImage.style.display = 'none';
+            });
+        });
+
+        document.getElementById('file-upload').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var preview = document.getElementById('file-preview');
+                    preview.style.backgroundImage = 'url(' + e.target.result + ')';
+                    preview.style.backgroundSize = 'cover';
+                    preview.style.backgroundPosition = 'center';
+                    preview.style.width = '100%';
+                    preview.style.height = '120px';
+                    preview.style.marginTop = '10px';
+                    preview.style.borderRadius = '8px';
+
+                    var uploadButton = document.querySelector('.file-upload-button');
+                    uploadButton.style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var editModal = document.getElementById('editEventModal');
+            var editModalContent = editModal.querySelector('.edit-modal-content');
+            var editBackButton = document.getElementById('editBackButtonEvent');
+
+            function openEditModal() {
+                editModal.style.display = 'block';
+                document.body.classList.add('modal-open');
+                setTimeout(() => {
+                    editModal.classList.add('show');
+                }, 10);
+            }
+
+            function closeEditModal() {
+                editModal.classList.remove('show');
+                document.body.classList.remove('modal-open');
+                setTimeout(() => {
+                    editModal.style.display = 'none';
+                }, 300);
+            }
+
+            editBackButton.addEventListener('click', closeEditModal);
+
+            editModal.addEventListener('click', function(event) {
+                if (event.target === editModal) {
+                    closeEditModal();
+                }
+            });
+
+            editModalContent.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+
+            // Update this part to select all edit buttons
+            var editButtons = document.querySelectorAll('.btn.btn-edit-event');
+            editButtons.forEach(function(button) {
+                button.addEventListener('click', openEditModal);
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var editModal = document.getElementById('editClubModal');
+            var editModalContent = editModal.querySelector('.edit-modal-content');
+            var editBackButton = document.getElementById('editBackButtonClub');
+
+            function openEditModal() {
+                editModal.style.display = 'block';
+                document.body.classList.add('modal-open');
+                setTimeout(() => {
+                    editModal.classList.add('show');
+                }, 10);
+            }
+
+            function closeEditModal() {
+                editModal.classList.remove('show');
+                document.body.classList.remove('modal-open');
+                setTimeout(() => {
+                    editModal.style.display = 'none';
+                }, 300);
+            }
+
+            editBackButton.addEventListener('click', closeEditModal);
+
+            editModal.addEventListener('click', function(event) {
+                if (event.target === editModal) {
+                    closeEditModal();
+                }
+            });
+
+            editModalContent.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+
+            // Update selector to match the Edit Club Details button
+            document.querySelector('.btn.btn-edit.text-12').addEventListener('click', openEditModal);
+        });
+    </script>
 @endsection
