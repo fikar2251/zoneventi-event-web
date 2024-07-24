@@ -62,9 +62,9 @@ class AuthController extends Controller
 
     public function register(Request $request) {
        $validator =  Validator::make($request->all(),[
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
+            // 'name' => 'required|string|max:255',
+            'email' => 'email|max:255|unique:users',
+            // 'password' => 'required|string|min:6',
         ]);
 
         if ($validator->fails()) {
@@ -100,36 +100,42 @@ class AuthController extends Controller
     }
 
     public function registerGoogle(Request $request) {
-        $validator =  Validator::make($request->all(),[
-             'name' => 'required|string|max:255',
-             'email' => 'required|string|email|max:255|unique:users',
-             'password' => 'required|string|min:6',
-            //  'profile_picture' => 'required',
-             'phone' => 'required',
-         ]);
+        // $validator =  Validator::make($request->all(),[
+        //      'name' => 'required|string|max:255',
+        //      'email' => 'required|string|email|max:255',
+        //      'password' => 'required|string|min:6',
+        //     //  'profile_picture' => 'required',
+        //      'phone' => 'required',
+        //  ]);
  
-         if ($validator->fails()) {
-             $errors = $validator->errors()->toArray();
-             $formattedErrors = [];
+        //  if ($validator->fails()) {
+        //      $errors = $validator->errors()->toArray();
+        //      $formattedErrors = [];
  
-             foreach ($errors as $field => $message) {
-                 $formattedErrors[$field] = $message[0];
-             }
-             return response()->json([
-                 'success' => 'false',
-                 'message' => $formattedErrors,
-             ], 400);
-             // return (new ResponseResource('false', $formattedErrors, null))->response()->setStatusCode(400);
-         }
+        //      foreach ($errors as $field => $message) {
+        //          $formattedErrors[$field] = $message[0];
+        //      }
+        //      return response()->json([
+        //          'success' => 'false',
+        //          'message' => $formattedErrors,
+        //      ], 400);
+        //      // return (new ResponseResource('false', $formattedErrors, null))->response()->setStatusCode(400);
+        //  }
  
-         $user = User::create([
-             'name' => $request->name,
-             'email' => $request->email,
-             'password' => Hash::make($request->password),
-         ]);
+         //  $user = User::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        // ]);
 
-         
+         $user = User::updateOrCreate([
+            'email' => $request->email
+        ],[
+            'name' => $request->name,
+            'password' => Hash::make($request->password),
+        ]);
          $token = Auth::guard('api')->login($user);
+       
          $data = MobUsers::updateOrCreate([ 
             'user_id' => Auth::guard('api')->user()->id, 
             ], [
