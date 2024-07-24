@@ -99,6 +99,54 @@ class AuthController extends Controller
         ]);
     }
 
+    public function registerGoogle(Request $request) {
+        $validator =  Validator::make($request->all(),[
+             'name' => 'required|string|max:255',
+             'email' => 'required|string|email|max:255|unique:users',
+             'password' => 'required|string|min:6',
+            //  'profile_picture' => 'required',
+             'phone' => 'required',
+         ]);
+ 
+         if ($validator->fails()) {
+             $errors = $validator->errors()->toArray();
+             $formattedErrors = [];
+ 
+             foreach ($errors as $field => $message) {
+                 $formattedErrors[$field] = $message[0];
+             }
+             return response()->json([
+                 'success' => 'false',
+                 'message' => $formattedErrors,
+             ], 400);
+             // return (new ResponseResource('false', $formattedErrors, null))->response()->setStatusCode(400);
+         }
+ 
+         $user = User::create([
+             'name' => $request->name,
+             'email' => $request->email,
+             'password' => Hash::make($request->password),
+         ]);
+
+         
+         $token = Auth::guard('api')->login($user);
+         $data = MobUsers::updateOrCreate([ 
+            'user_id' => Auth::guard('api')->user()->id, 
+            ], [
+                'profile_picture' =>  $request->profile_picture,
+                'phone' =>  $request->phone,
+            ]);
+         return response()->json([
+             'data' => [
+                     'user' => $user,
+                     'token' => [
+                     'access_token' => $token,
+                     'token_type' => 'bearer',
+                     ]
+                 ],
+         ]);
+     }
+
     public function getUser() {
         $user = User::with('getDetailMobUser')->find(Auth::guard('api')->user()->id);
         return (new ResponseResource(true, 'Users Data', $user))->response()->setStatusCode(200);

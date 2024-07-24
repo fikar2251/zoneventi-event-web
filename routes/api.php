@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function() {
     Route::post('/login',[AuthController::class, 'login']); 
     Route::post('/register',[AuthController::class, 'register']); 
+    Route::post('/register-google',[AuthController::class, 'registerGoogle']); 
     Route::post('/logout',[AuthController::class, 'logout']); 
     Route::middleware('jwt.verify')->get('/user', [AuthController::class, 'getUser']);
     Route::middleware('jwt.verify')->post('/update-profile', [AuthController::class, 'updateProfile']);
