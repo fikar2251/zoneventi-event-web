@@ -2,13 +2,13 @@
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
-    padding: 10px; /* Added padding for small screens */
+    padding: 10px; 
 }
 
 .detail-form {
     margin: 0 40px;
     width: 100%;
-    padding: 10px; /* Added padding for small screens */
+    padding: 10px; 
 }
 
 .text-12 {
@@ -23,6 +23,13 @@
     font-family: 'Lexend', sans-serif;
     font-weight: 500;
     font-size: 15px;
+}
+
+.form-label-modal {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: left;
 }
 
 .form-control {
@@ -129,10 +136,6 @@ select.form-control option {
     color: black;
 }
 
-.header {
-    width: 100%;
-}
-
 .text-center .btn-primary {
     font-size: 14px;
     height: 40px;
@@ -145,24 +148,88 @@ select.form-control option {
     margin-bottom: 20px;
 }
 
+.save-change-button {
+    background-color: #7A5BFF;
+    border: none;
+    border-radius: 50px;
+    padding: 5px 15px;
+    font-size: 12px;
+}
+
 .upload-logo-container {
-    margin-bottom: 30px;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.logo-preview-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #1D1F36;
+}
+
+.logo-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.club-logo-edit-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #FF5B5E;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.club-logo-edit-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    filter: brightness(0) invert(1);
 }
 
 .upload-logo-label {
     cursor: pointer;
+    display: block;
 }
 
 .upload-logo-circle {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-color: #1D1F36;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    background-color: #1D1F36;
+}
+
+.upload-logo-circle-modal {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .upload-logo-circle .upload-logo-small {

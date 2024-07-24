@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Web\Admin\Club;
+namespace App\Http\Controllers\Web\Owner\Club;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ClubsController extends Controller
+class PaymentsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.clubs.index');
+        return view('owner.module.payment');
     }
 
     /**
@@ -20,7 +20,7 @@ class ClubsController extends Controller
      */
     public function create()
     {
-        return view('admin.clubs.create');
+        //
     }
 
     /**
@@ -34,23 +34,9 @@ class ClubsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $id)
     {
-        $events = range(1, 3);
-        $eventCount = count($events);
-
-        return view('admin.clubs.show', [
-            'events' => $events,
-            'eventCount' => $eventCount
-        ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function detail()
-    {
-        return view('admin.clubs.detail');
+        //
     }
 
     /**
@@ -75,15 +61,5 @@ class ClubsController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function pending()
-    {
-        return view('admin.clubs.pending');
-    }
-
-    public function createEvent()
-    {
-        return view('admin.clubs.create-event');
     }
 }

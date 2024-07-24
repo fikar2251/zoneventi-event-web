@@ -33,6 +33,16 @@
     border-radius: 50%;
 }
 
+.header-title {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
 .club-details {
     margin-left: 20px;
     color: #fff;
@@ -48,7 +58,7 @@
     color: #fff;
 }
 
-.club-details .club-location {
+.club-details {
     margin-bottom: 5px;
 }
 
@@ -90,8 +100,9 @@
     color: #fff;
 }
 
-.events {
-    margin-top: 40px;
+.btn-edit-event:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 .events h4 {
@@ -100,22 +111,83 @@
     margin-bottom: 20px;
 }
 
+.events {
+    overflow: hidden;
+}
+
+.event-cards-container {
+    width: 100%;
+    overflow-x: hidden; 
+    padding-bottom: 15px;
+}
+
+.event-cards-container.scrollable {
+    overflow-x: auto; 
+}
+
 .event-cards {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.event-cards:not(.scrollable) {
+    justify-content: flex-start; 
+}
+
+.event-cards-container.scrollable .event-cards {
+    width: calc(340px * 4 + 60px); 
 }
 
 .event-card {
-    margin-left: 20px;
+    flex: 0 0 auto;
+    width: 320px;
     border-radius: 10px;
     color: #fff;
     position: relative;
-    width: 300px;
 }
 
-.event-header {
-    position: relative;
+.event-cards-container.scrollable::-webkit-scrollbar {
+    height: 3px;
+}
+
+.event-cards-container.scrollable::-webkit-scrollbar-thumb {
+    background-color: var(--hover-bg-color);
+    border-radius: 5px;
+}
+
+.event-cards-container.scrollable::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.event-cards-container.scrollable {
+    scrollbar-width: thin;
+    scrollbar-color: var(--hover-bg-color) transparent;
+}
+
+.event-date-time, .event-title, .event-location, .event-tags {
+    margin-bottom: 10px;
+}
+
+.tag {
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-right: 5px;
+    font-size: 0.8em;
+}
+
+.edit-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.btn-edit-event {
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .events .header-events {
@@ -142,7 +214,12 @@
     margin-bottom: 3px;
 }
 
-
+.location-text {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    color: var(--font-color-muted);
+    font-size: 11px;
+}
 
 .event-info .event-title {
     font-family: 'Lexend', sans-serif;
@@ -190,7 +267,7 @@
     padding: 5px 10px;
     border-radius: 20px;
     font-size: 12px;
-    margin-right: 5px;
+    margin-right: 3px;
     color: #898C9F;
 }
 

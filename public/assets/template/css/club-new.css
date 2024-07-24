@@ -40,6 +40,17 @@
     color: #B0B0B0;
 }
 
+.header-event-club {
+    margin-top: 5px;
+}
+
+.title-header-event {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--font-color-white);
+}
+
 #event_details {
     height: 255px;
 }

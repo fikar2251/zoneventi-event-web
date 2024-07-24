@@ -5,21 +5,23 @@
 @section('content')
     <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
         <div class="row">
-            <div class="header d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center">
-                    <div class="back-button">
-                        <a href="{{ route('clubs-index') }}">
-                            <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
-                                style="width: 50px; height: 50px">
-                        </a>
+            <div class="container">
+                <div class="header d-flex align-items-center justify-content-between flex-wrap">
+                    <div class="d-flex align-items-center w-100">
+                        <div class="back-button">
+                            <a href="{{ route('clubs-index') }}">
+                                <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
+                                    style="width: 50px; height: 50px">
+                            </a>
+                        </div>
+                        <h2 class="title">Pending Club Request</h2>
                     </div>
-                    <h2 class="title">Pending Club Request</h2>
                 </div>
-            </div>
 
-            <div class="tab-buttons">
-                <button class="tab-button active" id="pending-tab">Pending</button>
-                <button class="tab-button" id="declined-tab">Declined</button>
+                <div class="tab-buttons">
+                    <button class="tab-button active" id="pending-tab">Pending</button>
+                    <button class="tab-button" id="declined-tab">Declined</button>
+                </div>
             </div>
 
             <!-- List Data Pending -->
@@ -36,7 +38,7 @@
                             </div>
                         </div>
                         <div class="list-item-right">
-                            <a href="{{ route('clubs-pending-request') }}">
+                            <a href="{{ route('club-pending-request') }}">
                                 <img src="{{ asset('assets/template/icon/Stroke1.svg') }}" alt="Arrow"
                                     class="arrow-icon">
                             </a>
@@ -71,10 +73,10 @@
 @section('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var pendingTab = document.getElementById('pending-tab');
-            var declinedTab = document.getElementById('declined-tab');
-            var pendingData = document.getElementById('pending-data');
-            var declinedData = document.getElementById('declined-data');
+            const pendingTab = document.getElementById('pending-tab');
+            const declinedTab = document.getElementById('declined-tab');
+            const pendingData = document.getElementById('pending-data');
+            const declinedData = document.getElementById('declined-data');
 
             pendingTab.addEventListener('click', function() {
                 pendingTab.classList.add('active');

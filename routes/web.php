@@ -7,6 +7,10 @@ use App\Http\Controllers\Web\Admin\Home\DashboardController;
 use App\Http\Controllers\Web\Admin\Module\NotificationsController;
 use App\Http\Controllers\Web\Admin\Module\SettingsController;
 use App\Http\Controllers\Web\Admin\User\UsersController;
+use App\Http\Controllers\Web\Owner\Club\ClubsController as ClubClubsController;
+use App\Http\Controllers\Web\Owner\Club\ClubSettingsController;
+use App\Http\Controllers\Web\Owner\Club\PaymentsController;
+use App\Http\Controllers\Web\Owner\Module\SettingsController as ModuleSettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,8 +41,8 @@ Route::get('/clubs', [ClubsController::class, 'index'])->name('clubs-index');
 Route::get('/club-create', [ClubsController::class, 'create'])->name('club-create');
 Route::get('/clubs-detail', [ClubsController::class, 'show'])->name('club-detail');
 Route::get('/clubs-detail/event-create', [ClubsController::class, 'createEvent'])->name('event-create');
-Route::get('/clubs-pending', [ClubsController::class, 'pending'])->name('clubs-pending');
-Route::get('/clubs-pending-request', [ClubsController::class, 'detail'])->name('clubs-pending-request');
+Route::get('/clubs-pending', [ClubsController::class, 'pending'])->name('club-pending');
+Route::get('/clubs-pending-request', [ClubsController::class, 'detail'])->name('club-pending-request');
 
 // -------------------------------------------- Users  --------------------------------------------
 Route::get('/users-list', [UsersController::class, 'index'])->name('users-list');
@@ -52,3 +56,15 @@ Route::get('/notifications', [NotificationsController::class, 'index'])->name('n
 
 // -------------------------------------------- Settings  --------------------------------------------
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+
+// -------------------------------------------- Clubs Owner  --------------------------------------------
+Route::get('/owner/club-events', [ClubClubsController::class, 'index'])->name('club-event-owner');
+
+// -------------------------------------------- Settings Owner  --------------------------------------------
+Route::get('/owner/club-create-event', [ClubSettingsController::class, 'index'])->name('club-setting-owner');
+
+// -------------------------------------------- Admins Owner  --------------------------------------------
+Route::get('/owner/admins-list', [AdminsController::class, 'index'])->name('admin-list-owner');
+
+// -------------------------------------------- Admins Owner  --------------------------------------------
+Route::get('/owner/payment', [PaymentsController::class, 'index'])->name('payment-owner');

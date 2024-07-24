@@ -5,15 +5,17 @@
 @section('content')
     <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
         <div class="row">
-            <div class="header d-flex align-items-center justify-content-between flex-wrap">
-                <div class="d-flex align-items-center">
-                    <div class="back-button">
-                        <a href="{{ route('clubs-index') }}">
-                            <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
-                                style="width: 50px; height: 50px">
-                        </a>
+            <div class="container">
+                <div class="header d-flex align-items-center justify-content-between flex-wrap">
+                    <div class="d-flex align-items-center w-100">
+                        <div class="back-button">
+                            <a href="{{ route('clubs-index') }}">
+                                <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
+                                    style="width: 50px; height: 50px">
+                            </a>
+                        </div>
+                        <h2 class="title">Club Details</h2>
                     </div>
-                    <h2 class="title">Club Details</h2>
                 </div>
             </div>
 
@@ -92,9 +94,9 @@
                             </div>
                         </div>
                         <div class="col-md-6" style="text-align: right"> <!-- Added d-flex and align-items-start -->
-                            <button type="submit" class="btn btn-primary btn-lg mr-2">Accept Club</button>
+                            <button type="submit" class="btn btn-primary mr-2 text-12">Accept Club</button>
                             <!-- Changed to btn-lg -->
-                            <button type="submit" class="btn btn-danger btn-lg">Denied</button>
+                            <button type="submit" class="btn btn-danger text-12">Denied</button>
                             <!-- Changed to btn-lg -->
                         </div>
                     </div>

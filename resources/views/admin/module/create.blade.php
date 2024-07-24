@@ -4,18 +4,23 @@
 
 @section('content')
     <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
-        <div class="header d-flex">
-            <div class="back-button" style="left: 0;">
-                <a href="{{ route('admins-list') }}">
-                    <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
-                        style="width: 50px; height: 50px">
-                </a>
+        <div class="row">
+            <div class="container">
+                <div class="header d-flex align-items-center justify-content-between flex-wrap">
+                    <div class="d-flex align-items-center w-100">
+                        <div class="back-button">
+                            <a href="{{ route('admins-list') }}">
+                                <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
+                                    style="width: 50px; height: 50px">
+                            </a>
+                        </div>
+                        <h2 class="title mx-auto">Add New Admin</h2>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="form-container">
-            <div class="text-center">
-                <h2 class="title text-white">Add New Admin</h2>
-            </div>
             <form class="mt-5">
                 <div class="row">
                     <div class="col-md-6">
@@ -42,7 +47,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary btn-lg px-5">Save</button>
+                    <button type="submit" class="btn btn-primary btn-lg px-5 text-12">Save</button>
                 </div>
             </form>
         </div>
