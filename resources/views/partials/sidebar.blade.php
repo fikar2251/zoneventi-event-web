@@ -1,5 +1,5 @@
 @php
-    $role = 'owner';
+    $role = 'superadmin';
 @endphp
 
 <nav class="col-md-2 d-none d-md-block sidebar fixed-sidebar" id="sidebar">
