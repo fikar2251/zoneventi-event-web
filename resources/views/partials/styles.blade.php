@@ -31,4 +31,39 @@
         transform: translate(-50%, -50%);
         font: 14px arial;
     }
+
+    .swal2-popup {
+        background-color: #1D1F36 !important;
+        font-family: 'Lexend', sans-serif;
+    }
+
+    .swal2-title,
+    .swal2-content,
+    .swal2-html-container {
+        color: #fff !important;
+    }
+
+    .swal2-content {
+        font-family: 'Lexend', sans-serif;
+    }
+
+    .swal2-confirm {
+        background-color: #7367f0 !important;
+        width: 100px !important;
+    }
+
+    .swal2-confirm:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    .swal2-cancel {
+        background-color: #FF5C5C !important;
+        width: 100px !important;
+    }
+
+    .swal2-cancel:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
 </style>

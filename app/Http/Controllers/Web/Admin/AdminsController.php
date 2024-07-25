@@ -12,7 +12,8 @@ class AdminsController extends Controller
      */
     public function index()
     {
-        return view('admin.module.index');
+        $users = $this->getStaticUsers();
+        return view('admin.module.index', compact('users'));
     }
 
     /**
@@ -62,4 +63,31 @@ class AdminsController extends Controller
     {
         //
     }
+
+    private function getStaticUsers()
+    {
+        $users = [];
+        for ($i = 1; $i <= 15; $i++) {
+            $users[] = [
+                'id' => sprintf('%03d', $i),
+                'name' => 'Adam Shafiq',
+                'role' => 'Admin',
+                'email' => 'email@gmail.com'
+            ];
+        }
+        
+        $page = request()->get('page', 1);
+        $perPage = 5;
+        $total = count($users);
+        $users = array_slice($users, ($page - 1) * $perPage, $perPage);
+        
+        return new \Illuminate\Pagination\LengthAwarePaginator(
+            $users,
+            $total,
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+    }
+
 }

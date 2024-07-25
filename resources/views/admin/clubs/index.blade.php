@@ -68,6 +68,10 @@
                                 </div>
                             @endfor
                         </div>
+
+                        <div class="pagination-container">
+                            {{ $clubs->links('vendor.pagination.custom') }}
+                        </div>
                     </div>
                 </div>
 

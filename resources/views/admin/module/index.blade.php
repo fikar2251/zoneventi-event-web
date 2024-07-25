@@ -39,22 +39,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (range(1, 4) as $item)
+                                    @foreach ($users as $user)
                                         <tr>
-                                            <td class="text-center">{{ sprintf('%03d', $item) }}</td>
-                                            <td class="text-center">Adam Shafiq </td>
-                                            <td class="text-center">Admin</td>
-                                            <td class="text-center">email@gmail.com</td>
+                                            <td class="text-center">{{ $user['id'] }}</td>
+                                            <td class="text-center">{{ $user['name'] }}</td>
+                                            <td class="text-center">{{ $user['role'] }}</td>
+                                            <td class="text-center">{{ $user['email'] }}</td>
                                             <td>
                                                 <button class="btn btn-block"
                                                     style="background-color: #7A5BFF">Edit</button>
-                                                <button class="btn btn-block"
-                                                    style="background-color: #FF5B5B">Delete</button>
+                                                <button class="btn btn-block btn-delete" style="background-color: #FF5B5B"
+                                                    data-url="{{ url('your-delete-endpoint') }}">Delete</button>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+
+                        <!-- Pagination Links -->
+                        <div class="pagination-container">
+                            {{ $users->links('vendor.pagination.custom') }}
                         </div>
                     </div>
                 </div>
@@ -88,6 +93,63 @@
 @endsection
 
 @section('scripts')
+    <script type="text/javascript">
+        $('body').on('click', '.btn.btn-block.btn-delete', function(e) {
+            e.preventDefault();
+
+            const url = $(this).data('url');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "It will be permanently deleted!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                customClass: {
+                    popup: 'swal2-popup',
+                    confirmButton: 'swal2-confirm',
+                    cancelButton: 'swal2-cancel',
+                    content: 'swal2-content'
+                }
+            }).then(function(result) {
+                if (result.value) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            _method: 'DELETE',
+                            submit: true,
+                            _token: "{{ csrf_token() }}",
+                        },
+                        success: function(response) {
+                            if (response.code == 'success') {
+                                Swal.fire('Success', response.msg, 'success');
+                            } else {
+                                Swal.fire('Oops', response.msg, 'error');
+                            }
+
+                            if ($('.dataTable').length) {
+                                $('.dataTable').DataTable().draw(false);
+                            } else {
+                                window.location.reload();
+                            }
+                        },
+                        error: function() {
+                            Swal.fire('Oops', 'Something went wrong!', 'error');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var editModal = document.getElementById('editConfirmModal');

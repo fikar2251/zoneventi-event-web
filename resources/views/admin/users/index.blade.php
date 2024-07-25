@@ -37,15 +37,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (range(1, 4) as $item)
+                                    @foreach ($users as $user)
                                         <tr>
-                                            <td class="text-center">{{ sprintf('%03d', $item) }}</td>
+                                            <td class="text-center">{{ $user['id'] }}</td>
                                             <td class="text-center">
-                                                <p>Name: Andreina Tuccella</p>
-                                                <p>DOB: 01/11/2000</p>
-                                                <p>Gender: Female</p>
+                                                <p>Name: {{ $user['name'] }}</p>
+                                                <p>DOB: {{ $user['dob'] }}</p>
+                                                <p>Gender: {{ $user['gender'] }}</p>
                                             </td>
-                                            <td class="text-center">email@gmail.com</td>
+                                            <td class="text-center">{{ $user['email'] }}</td>
                                             <td>
                                                 <div>
                                                     <button class="btn btn-block"
@@ -59,6 +59,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+
+                        <!-- Pagination Links -->
+                        <div class="pagination-container">
+                            {{ $users->links('vendor.pagination.custom') }}
                         </div>
                     </div>
 
