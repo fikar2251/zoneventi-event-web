@@ -154,6 +154,63 @@
 
 @section('scripts')
     <script>
+        $('body').on('click', '.btn.btn-delete.text-12', function(e) {
+            e.preventDefault();
+
+            const url = $(this).data('url');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "It will be permanently deleted!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                customClass: {
+                    popup: 'swal2-popup',
+                    confirmButton: 'swal2-confirm',
+                    cancelButton: 'swal2-cancel',
+                    content: 'swal2-content'
+                }
+            }).then(function(result) {
+                if (result.value) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            _method: 'DELETE',
+                            submit: true,
+                            _token: "{{ csrf_token() }}",
+                        },
+                        success: function(response) {
+                            if (response.code == 'success') {
+                                Swal.fire('Success', response.msg, 'success');
+                            } else {
+                                Swal.fire('Oops', response.msg, 'error');
+                            }
+
+                            if ($('.dataTable').length) {
+                                $('.dataTable').DataTable().draw(false);
+                            } else {
+                                window.location.reload();
+                            }
+                        },
+                        error: function() {
+                            Swal.fire('Oops', 'Something went wrong!', 'error');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
         document.getElementById('club-logo').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -258,7 +315,6 @@
                 event.stopPropagation();
             });
 
-            // Update this part to select all edit buttons
             var editButtons = document.querySelectorAll('.btn.btn-edit-event');
             editButtons.forEach(function(button) {
                 button.addEventListener('click', openEditModal);
@@ -299,7 +355,6 @@
                 event.stopPropagation();
             });
 
-            // Update selector to match the Edit Club Details button
             document.querySelector('.btn.btn-edit.text-12').addEventListener('click', openEditModal);
         });
     </script>

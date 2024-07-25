@@ -12,7 +12,8 @@ class ClubsController extends Controller
      */
     public function index()
     {
-        return view('admin.clubs.index');
+        $clubs = $this->getStaticClubs();
+        return view('admin.clubs.index', compact('clubs'));
     }
 
     /**
@@ -85,5 +86,32 @@ class ClubsController extends Controller
     public function createEvent()
     {
         return view('admin.clubs.create-event');
+    }
+
+    private function getStaticClubs()
+    {
+        $clubs = [];
+        for ($i = 1; $i <= 15; $i++) {
+            $clubs[] = [
+                'id' => $i,
+                'name' => 'Heaven',
+                'location' => 'Teramo (TE)',
+                'posted_events' => 5,
+                'online_events' => 2
+            ];
+        }
+
+        $page = request()->get('page', 1);
+        $perPage = 5;
+        $total = count($clubs);
+        $clubs = array_slice($clubs, ($page - 1) * $perPage, $perPage);
+        
+        return new \Illuminate\Pagination\LengthAwarePaginator(
+            $clubs,
+            $total,
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
     }
 }
