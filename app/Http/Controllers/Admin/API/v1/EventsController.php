@@ -19,6 +19,7 @@ class EventsController extends Controller
             $response = $data->map(function ($datas){
                 unset($datas->getDetailClubs->created_at);
                 unset($datas->getDetailClubs->updated_at);
+                $datas->tags = str_replace(' ', '',explode(',', $datas->tags));
 
                 return $datas;
             });
