@@ -13,6 +13,22 @@ class Events extends Model
 
     protected $guarded = ['id'];
 
+    protected $fillable = [
+        'name',
+        'club_id',
+        'description',
+        'contact_number' ,
+        'whatsapp_number' ,
+        'event_time_start',
+        'event_time_end'  ,
+        'event_date',
+        'location' , 
+        'longitude' ,
+        'latitude' ,
+        'banner' ,
+        'tags' 
+    ];
+
     public function getDetailClubs(): BelongsTo  {
         return $this->belongsTo(Clubs::class, 'club_id');
     }
