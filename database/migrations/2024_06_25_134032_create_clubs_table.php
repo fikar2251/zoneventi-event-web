@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('owner_id')->references('id')->on('users');
             $table->integer('phone');
             $table->string('logo', 255);
-            $table->boolean('active')->default('FALSE');
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }
