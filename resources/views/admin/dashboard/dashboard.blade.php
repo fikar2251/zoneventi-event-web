@@ -6,7 +6,7 @@
     <main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
         <div class="container-fluid">
             <div class="row mt-60">
-                <div class="col-md-12">
+                <div class="col-md-12 col-md-6">
                     <div class="card mb-4 card-bg custom-height-card">
                         <div class="card-body text-white d-flex align-items-center">
                             <div class="d-flex justify-content-between w-100">
