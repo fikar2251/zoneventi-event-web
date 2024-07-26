@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\API\v1\AuthController;
+use App\Http\Controllers\Admin\API\v1\EventsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,10 +30,9 @@ Route::prefix('v1')->group(function() {
 
     Route::group([
         'middleware' => 'jwt.verify',
-        'prefix' => 'master'
     ], function() {
-        // Route::prefix('category')->name('category.')->group(function (){
-        //     Route::get('', [CategoriesController::class, 'index']);
-        // });
+        Route::prefix('events')->name('events.')->group(function (){
+            Route::get('', [EventsController::class, 'index']);
+        });
     });
 });

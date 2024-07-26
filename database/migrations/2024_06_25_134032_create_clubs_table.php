@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mob_users', function (Blueprint $table) {
+        Schema::create('clubs', function (Blueprint $table) {
             $table->id();
-            $table->string('gender')->nullable();
-            $table->dateTime('birthdate')->nullable();
-            $table->string('profile_picture')->nullable();
+            $table->string('name', 255);
+            $table->string('location', 255);
+            $table->foreignId('owner_id')->references('id')->on('users');
+            $table->integer('phone');
+            $table->string('logo', 255);
+            $table->boolean('active')->default('FALSE');
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mob_users');
+        Schema::dropIfExists('clubs');
     }
 };
