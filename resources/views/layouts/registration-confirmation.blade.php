@@ -31,6 +31,15 @@
                     <input type="text" id="user_id" name="user_id" class="input-register"
                         placeholder="Enter User ID" required>
                 </div>
+                <div class="form-group input-register password">
+                    <label for="password" style="font-size: 12px;">Password*</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" class="input-register"
+                            placeholder="Enter your password">
+                        <img src="{{ asset('assets/template/icon/Frame.svg') }}" alt="Toggle Password Visibility"
+                            class="eye-icon" id="togglePassword" onclick="togglePasswordVisibility()">
+                    </div>
+                </div>
                 <div class="form-group input-register owner-name">
                     <label for="owner_name" style="font-size: 12px;">Name of Premises Owner*</label>
                     <input type="text" id="owner_name" name="owner_name" class="input-register"
@@ -76,7 +85,8 @@
                     </div>
                 </div>
                 <div class="form-group input-register name-authorize">
-                    <label style="font-size: 12px;">Name of Authorised Contact Person* (If Different From Owner)</label>
+                    <label style="font-size: 12px;">Name of Authorised Contact Person* (If Different From
+                        Owner)</label>
                     <input type="text" name="name_authorize" id="name_authorize"
                         placeholder="Enter the nae of authorised contact person, if different from owner"
                         class="input-register">
@@ -84,8 +94,8 @@
                 <div class="form-group input-register telephone">
                     <label style="font-size: 12px;">Telephone Number of Contact Person* (If Different From
                         Owner)</label>
-                    <input type="text" name="telephone_number" id="telephone_number" placeholder="Enter the number"
-                        class="input-register">
+                    <input type="text" name="telephone_number" id="telephone_number"
+                        placeholder="Enter the number" class="input-register">
                 </div>
                 <div class="form-group input-register additional-details">
                     <label style="font-size: 12px;">Add any additional details or pertinent notes*</label>
@@ -105,6 +115,25 @@
             </form>
         </div>
     </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordFieldType = passwordField.getAttribute('type');
+
+            if (passwordFieldType === 'password') {
+                passwordField.setAttribute('type', 'text');
+                togglePassword.src = '{{ asset('assets/template/icon/Show.svg') }}';
+            } else {
+                passwordField.setAttribute('type', 'password');
+                togglePassword.src = '{{ asset('assets/template/icon/Frame.svg') }}';
+            }
+
+            togglePassword.style.width = '20px';
+            togglePassword.style.height = '20px';
+        }
+    </script>
 
 </body>
 
