@@ -13,6 +13,8 @@ class Events extends Model
 
     protected $guarded = ['id'];
 
+    protected $table = 'events';
+
     protected $fillable = [
         'name',
         'club_id',

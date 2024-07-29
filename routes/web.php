@@ -33,6 +33,9 @@ Route::get('/login', [AuthController::class, 'login']);
 Route::get('/registration', [AuthController::class, 'register']);
 Route::get('/registration-confirmation', [AuthController::class, 'registerConfirmation']);
 
+Route::post('/register', [AuthController::class, 'postRegister'])->name('submit-register');
+Route::post('/login', [AuthController::class, 'postLogin'])->name('submit-login');
+
 // -------------------------------------------- Dashboard  --------------------------------------------
 Route::get('/home', [DashboardController::class, 'dashboard'])->name('home');
 
