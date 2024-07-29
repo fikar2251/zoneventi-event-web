@@ -51,7 +51,7 @@ class AuthController extends Controller
             'user_id' => 'required',
             'owner_name' => 'required',
             'owner_phone' => 'required',
-            'owner_email' => 'required',
+            'owner_email' => 'required|unique:users',
             'password' => 'required|string|min:6',
             'country' => 'required',
             'city' => 'required',
