@@ -1,5 +1,4 @@
 .form-container {
-    max-width: 800px;
     margin: 0 auto;
     width: 100%;
     padding: 10px; 
@@ -272,6 +271,10 @@ select.form-control option {
         padding: 10px;
     }
 
+    .detail-form {
+        padding: 10px;
+    }
+
     .form-control {
         font-size: 14px;
         height: 45px;
@@ -288,7 +291,7 @@ select.form-control option {
         margin-right: 0;
     }
 
-    .col-md-6 {
+    .col-md-6, .col-md-12 {
         padding-left: 0;
         padding-right: 0;
     }

@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="detail-form">
+                <div class="form-container" style="max-width: 100%">
                     <form class="mt-5">
                         <div class="row">
                             <div class="col-md-12">
@@ -71,9 +71,23 @@
                                     <label for="event_date" class="form-label text-12">Event Date</label>
                                     <input type="date" class="form-control text-12" id="event_date" placeholder="Date">
                                 </div>
-                                <div class="form-group">
-                                    <label for="event_time" class="form-label text-12">Event Time</label>
-                                    <input type="time" class="form-control text-12" id="event_time" placeholder="Time">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="start_event_time" class="form-label text-12">Start
+                                                Event Time</label>
+                                            <input type="time" class="form-control text-12" id="start_event_time"
+                                                placeholder="Start Time">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="end_event_time" class="form-label text-12">End Event
+                                                Time</label>
+                                            <input type="time" class="form-control text-12" id="end_event_time"
+                                                placeholder="End Time">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="tags" class="form-label text-12">Tags (5 Max)</label>
@@ -82,7 +96,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-4">
+                        <div class="text-center mt-4">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-danger btn-lg mr-2 text-12">Publish as Feature Event
                                     for

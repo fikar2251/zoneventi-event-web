@@ -3,11 +3,10 @@
 @section('title', 'Notifications')
 
 @section('content')
-<main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
-    <div class="container-fluid">
+    <main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
         <div class="container-fluid">
             <div class="row mt-60">
-                <div class="form-container">
+                <div class="form-container" style="max-width: 800px">
                     <div class="text-center mt-5">
                         <h2 class="title text-white">Notification</h2>
                     </div>
@@ -16,10 +15,12 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="notification-title" class="form-label text-12">Notification title*</label>
-                                    <input type="text" class="form-control text-12" id="notification-title" placeholder="Title">
+                                    <input type="text" class="form-control text-12" id="notification-title"
+                                        placeholder="Title">
                                 </div>
                                 <div class="form-group">
-                                    <label for="notification-message" class="form-label text-12">Notification message*</label>
+                                    <label for="notification-message" class="form-label text-12">Notification
+                                        message*</label>
                                     <textarea class="form-control text-12" id="notification-message" rows="3" placeholder="Type message"></textarea>
                                 </div>
                             </div>
@@ -47,6 +48,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 @endsection

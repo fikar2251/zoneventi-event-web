@@ -5,13 +5,12 @@
 @section('content')
     <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
         <div class="row">
-            <div class="container">
+            <div class="container custom-container">
                 <div class="header d-flex align-items-center justify-content-between flex-wrap">
                     <div class="d-flex align-items-center w-100">
                         <div class="back-button">
                             <a href="{{ route('clubs-index') }}">
-                                <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
-                                    style="width: 50px; height: 50px">
+                                <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon-back">
                             </a>
                         </div>
                         <h2 class="title">Pending Club Request</h2>
