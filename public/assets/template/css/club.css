@@ -81,17 +81,6 @@
     color: var(--search-placeholder-color);
 }
 
-.search-btn {
-    height: 50px;
-    background-color: --var(--search-btn-bg-color);
-    border-radius: 16px;
-    border: none;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .search-btn img {
     width: 30px;
     height: 30px;

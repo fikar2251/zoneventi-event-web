@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="form-container">
+            <div class="form-container" style="max-width: 800px">
                 <div class="text-center">
                     <div class="upload-logo-container">
                         <input type="file" id="club-logo" class="d-none" accept="image/*">

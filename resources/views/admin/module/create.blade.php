@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="form-container">
+        <div class="form-container" style="max-width: 800px">
             <form class="mt-5">
                 <div class="row">
                     <div class="col-md-6">

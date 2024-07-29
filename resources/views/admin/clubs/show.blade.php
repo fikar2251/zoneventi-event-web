@@ -109,7 +109,7 @@
                                                 class="event-thumbnail">
                                         </div>
                                         <div class="event-content">
-                                            <div class="event-info ">
+                                            <div class="event-info">
                                                 <p class="event-date-time text-spacing"><span
                                                         class="event-date text-spacing">VEN 16
                                                         GIU</span> <span class="event-time text-spacing"> | 23:59 -
@@ -129,9 +129,10 @@
                                                 </div>
                                             </div>
                                             <div class="edit-icon">
-                                                <img src="{{ asset('assets/template/icon/edit.svg') }}" alt="Edit"
-                                                    class="edit-icon-button" id="editEventIcon"
-                                                    style="width: 40px; height: 40px">
+                                                <button class="btn btn-edit-event">
+                                                    <img src="{{ asset('assets/template/icon/edit.svg') }}" alt="Edit"
+                                                        class="edit-icon-button" style="width: 40px; height: 40px">
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -222,6 +223,17 @@
             }
         });
 
+        document.getElementById('file-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('file-preview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             var fileUpload = document.getElementById('file-upload');
             var filePreview = document.getElementById('file-preview');
@@ -229,7 +241,6 @@
             var cancelImage = document.getElementById('cancel-image');
             var uploadButton = document.querySelector('.file-upload-button');
 
-            // Tampilkan gambar default saat halaman dimuat
             defaultImage.style.display = 'block';
             uploadButton.style.display = 'none';
 
@@ -254,12 +265,12 @@
 
             cancelImage.addEventListener('click', function() {
                 defaultImage.style.display = 'none';
-                uploadButton.style.display = 'block';
+                uploadButton.style.display = 'flex'; // Changed from block to flex
                 filePreview.style.backgroundImage = 'none';
-                fileUpload.value = ''; // Reset file input
                 cancelImage.style.display = 'none';
             });
         });
+
 
         document.getElementById('file-upload').addEventListener('change', function(e) {
             var file = e.target.files[0];

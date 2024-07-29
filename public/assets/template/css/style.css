@@ -228,11 +228,6 @@ h5 {
     max-width: 500px;
 }
 
-.search-btn {
-    border-radius: 0 18px 18px 0;
-    background-color: #FF5C5C;
-}
-
 h2 {
     margin-top: 0;
     margin-bottom: 1.5rem;
@@ -384,4 +379,80 @@ tbody tr td {
     font-size: 16px;
     margin-top: 20px;
     right: 20px;
+}
+
+@media (max-width: 767px) {
+    .search-group {
+        width: 100%;
+    }
+    
+    .search-input {
+        height: 40px;
+    }
+    
+    .search-btn img {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .add-club-btn {
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.search-group {
+    position: relative;
+}
+
+.search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background-color: #FF5C5C;
+    border-radius: 16px;
+    border: none;
+    padding: 0 15px;
+}
+
+.add-club-btn {
+    background-color: #7A5BFF;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {  
+    .container-fluid {
+        margin-top: 30px;
+    }
+
+    .pagination-container {
+        justify-content: center;
+    }
+
+    .pagination {
+        justify-content: center;
+    }
+
+    .page-item {
+        margin: 1px;
+    }
+
+    .page-link {
+        width: 24px;
+        height: 24px;
+        font-size: 0.8rem;
+    }
+
+    .page-item:first-child .page-link,
+    .page-item:last-child .page-link {
+        font-size: 0.7rem;
+    }
 }

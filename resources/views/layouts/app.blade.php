@@ -17,6 +17,7 @@
             <span class="bar"></span>
         </button>
         <div class="row">
+            <div class="sidebar-overlay" id="sidebar-overlay"></div>
             @include('partials.sidebar')
 
             @yield('content')
@@ -25,12 +26,6 @@
     {{-- @include('partials.footer') --}}
 
     @include('partials.scripts')
-
-    <script>
-        document.getElementById('hamburger').addEventListener('click', function () {
-            document.getElementById('sidebar').classList.toggle('active');
-        });
-    </script>
 </body>
 
 </html>
