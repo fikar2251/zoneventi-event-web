@@ -29,6 +29,21 @@ class EventsController extends Controller
         }
     }
 
+    public function eventsByLocation(Request $request) {
+        $term = $request->keyword;
+
+        try {
+            $data = Events::select('location')->where('location', 'like', '%'.$term.'%')->groupBy('location')->get();
+            $response = $data->map(function ($datas){
+                $events = Events::where('location', $datas->location)->count();
+                $datas->events = $events;
+            });
+            return new ResponseResource('true', 'List Events', $data);
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', $th->getMessage(), null))->response()->setStatusCode(500);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */

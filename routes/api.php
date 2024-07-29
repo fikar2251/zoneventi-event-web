@@ -33,6 +33,7 @@ Route::prefix('v1')->group(function() {
     ], function() {
         Route::prefix('events')->name('events.')->group(function (){
             Route::get('', [EventsController::class, 'index']);
+            Route::post('/bylocation', [EventsController::class, 'eventsByLocation']);
         });
     });
 });
