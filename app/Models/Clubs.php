@@ -9,5 +9,7 @@ class Clubs extends Model
 {
     use HasFactory;
 
+    protected $table = 'clubs';
+
     protected $guarded = ['id'];
 }

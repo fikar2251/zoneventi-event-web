@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Web\Admin\Club;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clubs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ClubsController extends Controller
 {
@@ -29,7 +31,33 @@ class ClubsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'location' => 'required',
+            'phone' => 'required',
+            'owner_id' => 'required',
+            'logo' => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect('/clubs-create')->with('errors', $validator->errors());
+        }
+
+        try {
+            Clubs::create([
+                'name' => $request->name,
+                'location' => $request->location,
+                'owner_id' => $request->owner_id,
+                'phone'=> $request->phone,
+                'logo' => $request->logo
+            ]);
+
+            return redirect('/clubs')->with('success', 'Sucessfully add clubs');
+        } catch (\Throwable $th) {
+            return redirect('/clubs-create')->with('errors', $th->getMessage());
+        }
+        
+
     }
 
     /**
