@@ -34,6 +34,7 @@ Route::prefix('v1')->group(function() {
         Route::prefix('events')->name('events.')->group(function (){
             Route::get('', [EventsController::class, 'index']);
             Route::post('/bylocation', [EventsController::class, 'eventsByLocation']);
+            Route::post('/search', [EventsController::class, 'searchByEventsAndLocation']);
         });
     });
 });
