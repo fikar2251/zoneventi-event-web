@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\API\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ResponseResource;
 use App\Models\Events;
+use Illuminate\Database\Eloquent\Builder as Builder;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
@@ -38,6 +39,22 @@ class EventsController extends Controller
                 $events = Events::where('location', $datas->location)->count();
                 $datas->events = $events;
             });
+            return new ResponseResource('true', 'List Events', $data);
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', $th->getMessage(), null))->response()->setStatusCode(500);
+        }
+    }
+
+    public function searchByEventsAndLocation(Request $request) {
+        $keyword = $request->keyword;
+        try {
+            $data = Events::join('clubs', 'clubs.id', '=', 'events.club_id')->select('events.*', 'clubs.name as club_name')
+            ->where('events.name', 'like', "%{$keyword}%")
+            ->orWhere('events.event_date', 'like', "{$keyword}")
+            ->orWhere('events.location', 'like', "{$keyword}")
+            ->orWhere('clubs.name', 'like', "{$keyword}")
+            ->get();
+
             return new ResponseResource('true', 'List Events', $data);
         } catch (\Throwable $th) {
             return (new ResponseResource('false', $th->getMessage(), null))->response()->setStatusCode(500);
