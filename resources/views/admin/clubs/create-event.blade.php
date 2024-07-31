@@ -65,7 +65,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="contact_number" class="form-label text-12">Contact Number</label>
-                                    <input type="number" class="form-control" id="contact_number" placeholder="Number">
+                                    <input type="number" class="form-control text-12" id="contact_number"
+                                        placeholder="Number">
                                 </div>
                                 <div class="form-group">
                                     <label for="event_date" class="form-label text-12">Event Date</label>
