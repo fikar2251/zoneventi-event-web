@@ -4,16 +4,32 @@ namespace App\Http\Controllers\Admin\API\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ResponseResource;
+use App\Models\MobUsers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    public function index() {
+        try {
+            $data = MobUsers::with('user')->get();
+            return new ResponseResource(true, 'Users List', $data);
+        } catch (\Throwable $th) {
+            return (new ResponseResource(false, $th->getMessage(), null))->response()->setStatusCode(500);
+        }
+    }
+
     public function follow($userId) {
         $user = User::findOrFail($userId);
         $currentUser = Auth::user();
         try {
+
+            if ($currentUser->id == $userId) {
+                return (new ResponseResource(false, 'You cannot follow yourself', null))->response()->setStatusCode(400);
+            }
+
             if (!$currentUser->followings()->where('following_id', $user->id)->exists()) {
                 $currentUser->followings()->attach($user->id);
             }
@@ -30,6 +46,11 @@ class UserController extends Controller
         $currentUser = Auth::user();
 
         try {
+
+            if ($currentUser->id == $userId) {
+                return (new ResponseResource(false, 'You cannot unfollow yourself', null))->response()->setStatusCode(400);
+            }
+
             if ($currentUser->followings()->where('following_id', $user->id)->exists()) {
                 $currentUser->followings()->detach($user->id);
             }
