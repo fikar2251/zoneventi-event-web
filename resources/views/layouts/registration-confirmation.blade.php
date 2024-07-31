@@ -23,7 +23,9 @@
             <img src="{{ asset('assets/login/image/event-image.jpeg') }}" alt="Event Image">
         </div>
         <div class="form-container">
-            <form class="login-form">
+            <form class="login-form" action="{{ route('registration.step2') }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
                 <h2 class="form-title">Request For Club Account</h2>
                 <p style="font-size: 13px">You can request for an club account or claim an existing club ownership</p>
                 <div class="form-group input-register user-id">
@@ -65,11 +67,13 @@
                         <label for="city" style="font-size: 12px;">City</label>
                         <select name="city" id="city">
                             <option value="">City</option>
+                            <option value="Acate">Acate</option>
                         </select>
                     </div>
                     <div class="form-group input-register half-width">
                         <label for="postal_code" style="font-size: 12px;">Postal Code</label>
-                        <input type="text" id="postal_code" class="input-register" placeholder="Postal code">
+                        <input type="text" id="postal_code" name="postal_code" class="input-register"
+                            placeholder="Postal code">
                     </div>
                 </div>
                 <div class="form-group input-register form-group-date-time">
@@ -108,13 +112,47 @@
                         termini e
                         condizioni</label>
                 </div>
-                <button type="submit" class="btn" onclick="location.href='{{ url('/login') }}'">Next</button>
+                {{-- <button type="submit" class="btn" onclick="location.href='{{ url('/login') }}'">Next</button> --}}
+                <button type="submit" class="btn">Next</button>
                 <p style="font-size: 12px">Already have club Account? <a href="{{ url('/login') }}"
                         class="link">Log
                         In Now</a></p>
             </form>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast'
+            },
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
+        @if ($errors->any())
+            Toast.fire({
+                icon: 'error',
+                title: '{{ $errors->first() }}'
+            });
+        @endif
+
+        @if (session('success'))
+            Toast.fire({
+                icon: 'success',
+                title: '{{ session('success') }}'
+            });
+        @endif
+    </script>
 
     <script>
         function togglePasswordVisibility() {

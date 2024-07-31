@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Admin\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\MobUsers;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -10,10 +11,25 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->getStaticUsers();
-        return view('admin.users.index', compact('users'));
+        $query = MobUsers::with('user');
+        $search = $request->input('search');
+
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            })
+            ->orWhere('id', 'like', "%{$search}%");
+        }
+
+        $users = $query->paginate(5);
+
+        return view('admin.users.index', [
+            'users' => $users,
+            'search' => $search
+        ]);
     }
 
     /**

@@ -14,13 +14,11 @@
                         <img src="{{ asset('assets/template/img/ProfileShow.jpg') }}" alt="Profile"
                             class="profile-image">
                         <div class="user-details">
-                            <p><span class="label">Name:</span> <span class="value">Andreina
-                                    Tuccella</span></p>
-                            <p><span class="label">DOB:</span> <span class="value">01/11/2000</span>
+                            <p><span class="label">Name:</span> <span id="modalUserName" class="value"></span></p>
+                            <p><span class="label">DOB:</span> <span id="modalUserDOB" class="value"></span></p>
+                            <p><span class="label">Gender:</span> <span id="modalUserGender" class="value"></span>
                             </p>
-                            <p><span class="label">Gender:</span> <span class="value">Female</span>
-                            </p>
-                            <p><span class="label">Email:</span> <span class="value">email@gmail.com</span></p>
+                            <p><span class="label">Email:</span> <span id="modalUserEmail" class="value"></span></p>
                         </div>
                     </div>
                 </div>

@@ -21,27 +21,33 @@
         </div>
 
         <div class="form-container" style="max-width: 800px">
-            <form class="mt-5">
+            <form class="mt-5" action="{{ route('admins-store') }}" method="POST">
+                @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="name" class="form-label text-12">Name</label>
-                            <input type="text" class="form-control text-12" id="name" placeholder="Enter name">
+                            <input type="text" class="form-control text-12" name="name" id="name"
+                                placeholder="Enter name">
                         </div>
                         <div class="form-group">
                             <label for="password" class="form-label text-12">Password</label>
-                            <input type="password" class="form-control text-12" id="password" placeholder="Set a password">
+                            <input type="password" class="form-control text-12" name="password" id="password"
+                                placeholder="Set a password">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="email" class="form-label text-12">Email</label>
-                            <input type="email" class="form-control text-12" id="email" placeholder="Enter email">
+                            <input type="email" class="form-control text-12" name="email" id="email"
+                                placeholder="Enter email">
                         </div>
                         <div class="form-group">
                             <label for="role" class="form-label text-12">Role</label>
-                            <select class="form-control text-12" id="role">
-                                <option>Select option</option>
+                            <select class="form-control text-12" id="role" name="role">
+                                <option value="">Select option</option>
+                                <option value="admin">Admin</option>
+                                <option value="owner">Owner</option>
                             </select>
                         </div>
                     </div>

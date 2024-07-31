@@ -20,30 +20,32 @@
             </div>
 
             <div class="form-container" style="max-width: 800px">
-                <div class="text-center">
-                    <div class="upload-logo-container">
-                        <input type="file" id="club-logo" class="d-none" accept="image/*">
-                        <label for="club-logo" class="upload-logo-label">
-                            <div class="upload-logo-circle" id="logo-preview">
-                                <img src="{{ asset('assets/template/icon/Vector.svg') }}" alt="upload-icon"
-                                    class="upload-icon">
-                                <span class="upload-logo-text">Upload Logo</span>
-                                <small class="upload-logo-small">Upload the thumb of the event</small>
-                            </div>
-                        </label>
+                <form action="{{ route('club-store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="text-center">
+                        <div class="upload-logo-container">
+                            <input type="file" id="club-logo" name="logo" class="d-none" accept="image/*">
+                            <label for="club-logo" class="upload-logo-label">
+                                <div class="upload-logo-circle" id="logo-preview">
+                                    <img src="{{ asset('assets/template/icon/Vector.svg') }}" alt="upload-icon"
+                                        class="upload-icon">
+                                    <span class="upload-logo-text">Upload Logo</span>
+                                    <small class="upload-logo-small">Upload the thumb of the event</small>
+                                </div>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <form class="mt-5">
-                    <div class="row">
+                    <div class="row mt-5">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="club_name" class="form-label text-12">Club Name</label>
-                                <input type="text" class="form-control text-12" id="club_name" placeholder="Name">
+                                <input type="text" class="form-control text-12" name="name" id="club_name"
+                                    placeholder="Name">
                             </div>
                             <div class="form-group">
                                 <label for="club_location" class="form-label text-12">Club Location</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control text-12" id="club_location"
+                                    <input type="text" class="form-control text-12" name="location" id="club_location"
                                         placeholder="Location">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
@@ -62,7 +64,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="club_phone" class="form-label text-12">Club Phone Number</label>
-                                <input type="number" class="form-control text-12" id="club_phone" placeholder="Number">
+                                <input type="number" class="form-control text-12" name="phone" id="club_phone"
+                                    placeholder="Number">
                             </div>
                         </div>
                     </div>

@@ -60,6 +60,49 @@ label .upload-info {
     color: #B0B0B0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    font-family: 'Lexend', sans-serif !important;
+    font-size: 12px !important;
+    background-color: #1D1F36 !important;
+    color: #fff !important;
+    box-shadow: 0 0 0px 1000px #1D1F36 inset !important;
+    -webkit-text-fill-color: #fff !important;
+    caret-color: #fff !important; 
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23898C9F" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    padding-right: 40px;
+}
+
+select.form-control:focus {
+    background-color: #1D1F36;
+    color: white;
+    outline: none;
+    box-shadow: none;
+}
+
+select.form-control option {
+    font-size: 14px;
+    color: #fff;
+}
+
+select:focus {
+    background-color: #1D1F36;
+    color: #fff;
+    outline: none;
+    box-shadow: none;
+}
+
 
 /* .upload-logo-container {
     margin-bottom: 30px;
