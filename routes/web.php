@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/club-create', [ClubsController::class, 'create'])->name('club-create');
     Route::post('/club-create', [ClubsController::class, 'store'])->name('club-store');
     Route::get('/clubs-detail/{id}', [ClubsController::class, 'show'])->name('club-detail');
-    Route::get('/clubs-detail/event-create', [ClubsController::class, 'createEvent'])->name('event-create');
+    Route::get('/clubs-detail/{id}/event-create', [ClubsController::class, 'createEvent'])->name('event-create');
     Route::get('/clubs-pending', [ClubsController::class, 'pending'])->name('club-pending');
     Route::get('/clubs-pending-request', [ClubsController::class, 'detail'])->name('club-pending-request');
 
