@@ -189,6 +189,7 @@ class AuthController extends Controller
             'password' => $request->password,
             'name' => $request->owner_name,
             'user_id' =>$request->user_id,
+            'role' => 'owner'
         ]);
 
 
@@ -219,7 +220,7 @@ class AuthController extends Controller
             'document_number' => $request->document_number,
             'documents_expire_date' => $request->expire_date,
             'documents_file' => $picUrl,
-            'role' => 'owner'
+            
         ]);
 
         return redirect('login')->with('success', 'Registered Successfully');
