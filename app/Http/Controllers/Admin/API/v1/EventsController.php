@@ -50,9 +50,9 @@ class EventsController extends Controller
         try {
             $data = Events::join('clubs', 'clubs.id', '=', 'events.club_id')->select('events.*', 'clubs.name as club_name')
             ->where('events.name', 'like', "%{$keyword}%")
-            ->orWhere('events.event_date', 'like', "{$keyword}")
-            ->orWhere('events.location', 'like', "{$keyword}")
-            ->orWhere('clubs.name', 'like', "{$keyword}")
+            ->orWhere('events.event_date', 'like', "%{$keyword}%")
+            ->orWhere('events.location', 'like', "%{$keyword}%")
+            ->orWhere('clubs.name', 'like', "%{$keyword}%")
             ->get();
 
             return new ResponseResource('true', 'List Events', $data);
