@@ -8,18 +8,19 @@
             <div class="container-fluid">
                 <div class="row mt-60">
                     <div class="col-md-12">
-                        <div class="d-flex justify-content-between align-items-center">
+                        <form action="{{ route('users-list') }}" method="GET"
+                            class="d-flex justify-content-between align-items-center">
                             <div class="input-group search-group">
-                                <input type="text" class="form-control search-input"
-                                    placeholder="Search by name, id or email">
+                                <input type="text" name="search" class="form-control search-input"
+                                    placeholder="Search by name, id or email" value="{{ request('search') }}">
                                 <div class="input-group-append">
-                                    <button class="btn search-btn" type="button">
+                                    <button class="btn search-btn" type="submit" id="searchButton">
                                         <img src="{{ asset('assets/template/icon/Search.svg') }}" alt="Search">
                                     </button>
                                 </div>
                             </div>
                             <button class="btn blocked-club-btn" type="button">Blocked Users</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
@@ -37,26 +38,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @if ($users->isEmpty())
                                         <tr>
-                                            <td class="text-center">{{ $user['id'] }}</td>
-                                            <td class="text-center">
-                                                <p>Name: {{ $user['name'] }}</p>
-                                                <p>DOB: {{ $user['dob'] }}</p>
-                                                <p>Gender: {{ $user['gender'] }}</p>
-                                            </td>
-                                            <td class="text-center">{{ $user['email'] }}</td>
-                                            <td>
-                                                <div>
-                                                    <button class="btn btn-block"
-                                                        style="background-color: #7A5BFF">Edit</button>
-                                                    <button class="btn btn-block block-btn"
-                                                        style="background-color: #FF5B5B"
-                                                        data-name="Andreina Tuccella">Block</button>
-                                                </div>
-                                            </td>
+                                            <td colspan="4" class="text-center">No data available in table</td>
                                         </tr>
-                                    @endforeach
+                                    @else
+                                        @foreach ($users as $user)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td class="text-center">
+                                                    <p>Name: {{ $user->user->name }}</p>
+                                                    <p>DOB: {{ explode(' ', $user->birthdate)[0] }}</p>
+                                                    <p>Gender: {{ $user->gender }}</p>
+                                                </td>
+                                                <td class="text-center">{{ $user->user->email }}</td>
+                                                <td>
+                                                    <div>
+                                                        <button class="btn btn-block edit-btn"
+                                                            style="background-color: #7A5BFF" data-id="{{ $user['id'] }}"
+                                                            data-name="{{ $user->user->name }}"
+                                                            data-dob="{{ explode(' ', $user->birthdate)[0] }}"
+                                                            data-gender="{{ $user->gender }}"
+                                                            data-email="{{ $user->user->email }}">Edit</button>
+                                                        <button class="btn btn-block block-btn"
+                                                            style="background-color: #FF5B5B"
+                                                            data-name="Andreina Tuccella">Block</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -74,6 +85,10 @@
                     @include('modals.edit-modal-block')
 
                 </div>
+            </div>
+
+            <div class="loading-overlay" id="loadingOverlay">
+                <img src="{{ asset('assets/template/animation/loading.gif') }}" alt="Loading" width="100">
             </div>
         </div>
     </main>
@@ -131,10 +146,20 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            var searchButton = document.getElementById('searchButton');
+            var searchForm = document.querySelector('form');
+            var loadingOverlay = document.getElementById('loadingOverlay');
+
+            searchButton.addEventListener('click', function() {
+                loadingOverlay.style.display = 'flex';
+                searchForm.submit();
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
             var editModal = document.getElementById('editConfirmModal');
             var editModalContent = editModal.querySelector('.edit-modal-content');
             var editBackButton = document.getElementById('editBackButton');
-            // var saveChangesButton = document.getElementById('saveChanges');
+            var saveChangesButton = document.getElementById('saveChanges');
 
             function openEditModal() {
                 editModal.style.display = 'block';
@@ -152,11 +177,14 @@
                 }, 300);
             }
 
+            function populateModal(user) {
+                document.getElementById('modalUserName').textContent = user.name;
+                document.getElementById('modalUserDOB').textContent = user.dob;
+                document.getElementById('modalUserGender').textContent = user.gender;
+                document.getElementById('modalUserEmail').textContent = user.email;
+            }
+
             editBackButton.addEventListener('click', closeEditModal);
-            // saveChangesButton.addEventListener('click', function() {
-            //     // Handle save changes logic here
-            //     closeEditModal();
-            // });
 
             editModal.addEventListener('click', function(event) {
                 if (event.target === editModal) {
@@ -168,8 +196,18 @@
                 event.stopPropagation();
             });
 
-            document.querySelectorAll('.btn-block[style*="background-color: #7A5BFF"]').forEach(function(btn) {
-                btn.addEventListener('click', openEditModal);
+            document.querySelectorAll('.edit-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var user = {
+                        id: this.dataset.id,
+                        name: this.dataset.name,
+                        dob: this.dataset.dob,
+                        gender: this.dataset.gender,
+                        email: this.dataset.email
+                    };
+                    populateModal(user);
+                    openEditModal();
+                });
             });
         });
     </script>

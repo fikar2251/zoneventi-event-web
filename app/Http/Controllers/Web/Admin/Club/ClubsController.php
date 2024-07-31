@@ -12,10 +12,21 @@ class ClubsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clubs = $this->getStaticClubs();
-        return view('admin.clubs.index', compact('clubs'));
+        $query = Clubs::query();
+        $search = $request->input('search');
+
+        if ($search) {
+            $query->where('name', 'like', "%{$search}%");   
+        }
+
+        $clubs = $query->paginate(5);
+
+        // $clubs = $this->getStaticClubs();
+        return view('admin.clubs.index', [
+            'clubs' => $clubs
+        ]);
     }
 
     /**
@@ -35,40 +46,49 @@ class ClubsController extends Controller
             'name' => 'required',
             'location' => 'required',
             'phone' => 'required',
-            'owner_id' => 'required',
-            'logo' => 'required',
+            // 'owner_id' => 'required',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
         if ($validator->fails()) {
-            return redirect('/clubs-create')->with('errors', $validator->errors());
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        
+        $logoPath = null;
+
+        if ($request->hasFile('logo')) {
+            $logoFile = $request->file('logo');
+            $logoName = $logoFile->hashName();
+            $logoPath = $logoFile->storeAs('public/clubs', $logoName);
+
+            $logoPath = 'storage/clubs/' . $logoName;
         }
 
-        try {
             Clubs::create([
                 'name' => $request->name,
                 'location' => $request->location,
-                'owner_id' => $request->owner_id,
+                // 'owner_id' => $request->owner_id,
                 'phone'=> $request->phone,
-                'logo' => $request->logo
+                'logo' => $logoPath
             ]);
 
-            return redirect('/clubs')->with('success', 'Sucessfully add clubs');
-        } catch (\Throwable $th) {
-            return redirect('/clubs-create')->with('errors', $th->getMessage());
-        }
-        
+            return redirect('clubs')->with('success', 'Sucessfully add clubs');
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($id)
     {
-        $events = range(1, 3);
+        $club = Clubs::find($id);
+        $events = range(1, 4);
         $eventCount = count($events);
 
         return view('admin.clubs.show', [
+            'club' => $club,
             'events' => $events,
             'eventCount' => $eventCount
         ]);
@@ -111,9 +131,17 @@ class ClubsController extends Controller
         return view('admin.clubs.pending');
     }
 
-    public function createEvent()
+    public function createEvent($id)
     {
-        return view('admin.clubs.create-event');
+        $club = Clubs::find($id);
+        $events = range(1, 4);
+        $eventCount = count($events);
+
+        return view('admin.clubs.create-event', [
+            'club' => $club,
+            'events' => $events,
+            'eventCount' => $eventCount
+        ]);
     }
 
     private function getStaticClubs()

@@ -3,17 +3,39 @@
 namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\MobUsers;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AdminsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->getStaticUsers();
-        return view('admin.module.index', compact('users'));
+        $query = User::with('getDetailMobUser');
+        $search = $request->input('search');
+        $role = $request->input('role');
+
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            })
+            ->orWhere('id', 'like', "%{$search}%");
+        }
+
+        if ($role && $role !== 'all') {
+            $query->where('role', $role);
+        }
+
+        $users = $query->paginate(5);
+
+        return view('admin.module.index', [
+            'users' => $users
+        ]);
     }
 
     /**
@@ -29,7 +51,27 @@ class AdminsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+             'name' => 'required',
+             'email' => 'required|email',
+             'password' => 'required|string|min:6',
+             'role' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => $request->role
+        ]);
+
+        return redirect('admins-list')->with('success', 'Successfully added new admin');
     }
 
     /**
@@ -59,9 +101,13 @@ class AdminsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $delete = MobUsers::with('user')->findOrFail($id);
+        $delete->delete() == true
+            ? $return = ['code' => 'success', 'msg' => 'Data deleted successfully']
+            : $return = ['code' => 'error', 'msg' => 'Something went wrong!'];
+        return response()->json($return);
     }
 
     private function getStaticUsers()

@@ -45,7 +45,8 @@
                         </div>
                         <div class="buttons d-flex">
                             <button class="btn btn-edit text-12">Edit Club Details</button>
-                            <a href="{{ route('event-create') }}" class="btn btn-add text-12">Add New Event</a>
+                            <a href="{{ route('event-create', ['id' => $club->id]) }}" class="btn btn-add text-12">Add New
+                                Event</a>
                             <button class="btn btn-delete text-12">Delete Club</button>
                         </div>
                     </div>

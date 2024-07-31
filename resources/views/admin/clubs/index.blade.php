@@ -47,18 +47,18 @@
                     <div class="col-12">
                         <h4 class="text-white mb-4">All Clubs <span class="text-muted">125 Total</span></h4>
                         <div class="row">
-                            @for ($i = 0; $i < 8; $i++)
+                            @foreach ($clubs as $club)
                                 <div class="col-md-3 col-sm-6 mb-4">
                                     <div class="card club-card">
-                                        <a href="{{ route('club-detail') }}" class="club-link">
+                                        <a href="{{ route('club-detail', $club->id) }}" class="club-link">
                                             <div class="card-body text-center">
-                                                <img src="{{ asset('assets/template/icon/ImgClub.svg') }}" alt="Club Image"
+                                                <img src="{{ $club->logo }}" alt="Logo"
                                                     class="img-fluid rounded-circle mb-3 club-img">
-                                                <h5 class="text-header-club">Heaven</h5>
+                                                <h5 class="text-header-club">{{ $club->name }}</h5>
                                                 <div class="club-location">
                                                     <img src="{{ asset('assets/template/icon/Location.svg') }}"
                                                         alt="location" class="location-icon-club">
-                                                    <span class="location-text">Teramo (TE)</span>
+                                                    <span class="location-text">{{ $club->location }}</span>
                                                 </div>
                                                 <p class="text-post-event">5 Posted Events</p>
                                                 <p class="text-success">2 Event Online</p>
@@ -66,7 +66,7 @@
                                         </a>
                                     </div>
                                 </div>
-                            @endfor
+                            @endforeach
                         </div>
 
                         <div class="pagination-container">

@@ -13,6 +13,8 @@
     <link rel="shortcut icon" href="{{ asset('assets/login/image/logo.png') }}">
 
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 
 <body>
@@ -21,16 +23,18 @@
             <img src="{{ asset('assets/login/image/event-image.jpeg') }}" alt="Event Image">
         </div>
         <div class="form-container">
-            <form class="login-form">
+            <form class="login-form" action="{{ route('submit-login') }}" method="POST">
+                @csrf
                 <h2 class="form-title">Log In to Zoneventi</h2>
                 <p class="p-weight" style="font-size: 13px">Log in with the details that we send to you</p>
                 <div class="form-group input-register">
                     <label for="user_id" style="font-size: 12px;">User ID*</label>
-                    <input type="text" id="user_id" class="input-register" placeholder="Enter user ID" required>
+                    <input type="text" id="user_id" class="input-register" placeholder="Enter user ID">
                 </div>
                 <div class="form-group input-register">
                     <label for="email" style="font-size: 12px;">Email Address*</label>
-                    <input type="email" id="email" class="input-register" placeholder="Enter your email" required>
+                    <input type="email" name="email" id="email" class="input-register"
+                        placeholder="Enter your email">
                 </div>
                 <div class="form-group password input-register">
                     <label for="password" style="font-size: 12px;">Password*</label>
@@ -50,6 +54,38 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast'
+            },
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
+        @if ($errors->any())
+            Toast.fire({
+                icon: 'error',
+                title: '{{ $errors->first() }}'
+            });
+        @endif
+
+        @if (session('success'))
+            Toast.fire({
+                icon: 'success',
+                title: '{{ session('success') }}'
+            });
+        @endif
+    </script>
     <script>
         function togglePasswordVisibility() {
             const passwordField = document.getElementById('password');

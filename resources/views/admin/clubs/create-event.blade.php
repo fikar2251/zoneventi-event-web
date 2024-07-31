@@ -10,7 +10,7 @@
                     <div class="header d-flex align-items-center justify-content-between flex-wrap">
                         <div class="d-flex align-items-center w-100">
                             <div class="back-button">
-                                <a href="{{ route('club-detail') }}">
+                                <a href="{{ route('club-detail', $club->id) }}">
                                     <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
                                         style="width: 50px; height: 50px">
                                 </a>

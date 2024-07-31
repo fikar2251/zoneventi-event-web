@@ -84,7 +84,8 @@
                 </li>
             @endif
             <li class="nav-item logout">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="#"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <img src="{{ asset('assets/template/icon/Login.svg') }}" alt="Log Out" class="nav-icon">
                     <span style="color: #FF0000">Log Out</span>
                 </a>
@@ -92,3 +93,7 @@
         </ul>
     </div>
 </nav>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
