@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\API\v1\AuthController;
 use App\Http\Controllers\Admin\API\v1\EventsController;
+use App\Http\Controllers\Admin\API\v1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,12 @@ Route::prefix('v1')->group(function() {
             Route::get('', [EventsController::class, 'index']);
             Route::post('/bylocation', [EventsController::class, 'eventsByLocation']);
             Route::post('/search', [EventsController::class, 'searchByEventsAndLocation']);
+        });
+
+        Route::prefix('users')->name('events.')->group(function (){
+            Route::post('/follow/{user}', [UserController::class, 'follow'])->name('follow');
+            Route::post('/unfollow/{user}', [UserController::class, 'unfollow'])->name('unfollow');
+            Route::get('/follows', [UserController::class, 'listFollowers'])->name('follows');
         });
     });
 });
