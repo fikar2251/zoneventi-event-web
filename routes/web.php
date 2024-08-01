@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\Admin\AdminsController;
 use App\Http\Controllers\Web\Admin\AuthController;
 use App\Http\Controllers\Web\Admin\Club\ClubsController;
+use App\Http\Controllers\Web\Admin\Events\EventsController;
 use App\Http\Controllers\Web\Admin\Home\DashboardController;
 use App\Http\Controllers\Web\Admin\Module\NotificationsController;
 use App\Http\Controllers\Web\Admin\Module\SettingsController;
@@ -58,6 +59,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/clubs-delete/{id}', [ClubsController::class, 'destroy'])->name('club-delete');
     Route::get('/clubs-accept/{id}', [ClubsController::class, 'accept'])->name('club-accept');
     Route::get('/clubs-declined/{id}', [ClubsController::class, 'declined'])->name('club-declined');
+
+    // -------------------------------------------- Events  --------------------------------------------
+    Route::get('/events', [EventsController::class, 'index'])->name('events-index');
+    Route::post('/events-create', [EventsController::class, 'store'])->name('events-store');
+    Route::get('/events-detail/{id}', [EventsController::class, 'show'])->name('events-detail');
+    Route::put('/events-update/{id}', [EventsController::class, 'update'])->name('events-update');
+    Route::delete('/events-delete/{id}', [EventsController::class, 'destroy'])->name('events-delete');
 
     // -------------------------------------------- Users  --------------------------------------------
     Route::get('/users-list', [UsersController::class, 'index'])->name('users-list');

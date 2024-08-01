@@ -140,9 +140,11 @@ class ClubsController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+            // return redirect()->back()
+            //     ->withErrors($validator)
+            //     ->withInput();
+
+            return (new ResponseResource(false, 'Errors', $validator->errors()))->response()->setStatusCode(400);
         }
 
         try {
@@ -176,7 +178,7 @@ class ClubsController extends Controller
     
             return new ResponseResource(true, 'Successfully update data', $clubs);
         } catch (\Throwable $th) {
-            return (new ResponseResource(false, $th->getMessage(), null));
+            return (new ResponseResource(false, $th->getMessage(), null))->response()->setStatusCode(500);
         }
         
        
