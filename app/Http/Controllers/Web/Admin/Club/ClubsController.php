@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Admin\Club;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ResponseResource;
 use App\Models\Clubs;
 use App\Models\User;
 use App\Models\UserDetail;
@@ -60,27 +61,33 @@ class ClubsController extends Controller
                 ->withInput();
         }
         
-        $logoPath = null;
+        
+        try {
+            $logoPath = null;
 
-        if ($request->hasFile('logo')) {
-            $logoFile = $request->file('logo');
-            $logoName = $logoFile->hashName();
-            $logoPath = $logoFile->storeAs('public/clubs', $logoName);
-
-            // $logoPath = 'storage/clubs/' . $logoName;
-            $logoPath = url(Storage::url($logoPath));
+            if ($request->hasFile('logo')) {
+                $logoFile = $request->file('logo');
+                $logoName = $logoFile->hashName();
+                $logoPath = $logoFile->storeAs('public/clubs', $logoName);
+    
+                // $logoPath = 'storage/clubs/' . $logoName;
+                $logoPath = url(Storage::url($logoPath));
+            }
+    
+                Clubs::create([
+                    'name' => $request->name,
+                    'location' => $request->location,
+                    'owner_id' => $request->owner_id,
+                    'phone'=> $request->phone,
+                    'logo' => $logoPath,
+                    'status' => 0
+                ]);
+    
+                return redirect('clubs')->with('success', 'Sucessfully add clubs');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('errors', $th->getMessage());
         }
-
-            Clubs::create([
-                'name' => $request->name,
-                'location' => $request->location,
-                'owner_id' => $request->owner_id,
-                'phone'=> $request->phone,
-                'logo' => $logoPath,
-                'status' => 0
-            ]);
-
-            return redirect('clubs')->with('success', 'Sucessfully add clubs');
+        
 
     }
 
@@ -137,36 +144,42 @@ class ClubsController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        try {
+            $logoPath = null;
         
-        $logoPath = null;
-        
-        $clubs = Clubs::find($id);
-
-        if ($request->hasFile('logo')) {
-
-            $path = str_replace(url('/storage'), '', $clubs->logo);
-            $path = ltrim($path, '/'); // Menghapus '/' di awal path
-
-            // Mengecek apakah file ada
-            if (Storage::disk('public')->exists($path)) {
-                Storage::disk('public')->delete($path);
+            $clubs = Clubs::find($id);
+    
+            if ($request->hasFile('logo')) {
+    
+                $path = str_replace(url('/storage'), '', $clubs->logo);
+                $path = ltrim($path, '/'); // Menghapus '/' di awal path
+    
+                // Mengecek apakah file ada
+                if (Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+    
+                $logoFile = $request->file('logo');
+                $logoName = $logoFile->hashName();
+                $logoPath = $logoFile->storeAs('public/clubs', $logoName);
+    
+                // $logoPath = 'storage/clubs/' . $logoName;
+                $logoPath = url(Storage::url($logoPath));
+                $clubs->logo = $logoPath;
             }
-
-            $logoFile = $request->file('logo');
-            $logoName = $logoFile->hashName();
-            $logoPath = $logoFile->storeAs('public/clubs', $logoName);
-
-            // $logoPath = 'storage/clubs/' . $logoName;
-            $logoPath = url(Storage::url($logoPath));
-            $clubs->logo = $logoPath;
+            $clubs->name = $request->name;
+            $clubs->location = $request->location;
+            $clubs->owner_id = $request->owner_id;
+            $clubs->phone = $request->phone;
+            $clubs->save();
+    
+            return new ResponseResource(true, 'Successfully update data', $clubs);
+        } catch (\Throwable $th) {
+            return (new ResponseResource(false, $th->getMessage(), null));
         }
-        $clubs->name = $request->name;
-        $clubs->location = $request->location;
-        $clubs->owner_id = $request->owner_id;
-        $clubs->phone = $request->phone;
-        $clubs->save();
-
-        return redirect('clubs')->with('success', 'Sucessfully update clubs');
+        
+       
     }
 
     /**
