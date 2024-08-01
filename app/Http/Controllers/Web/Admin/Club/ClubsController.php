@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Web\Admin\Club;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clubs;
+use App\Models\User;
+use App\Models\UserDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ClubsController extends Controller
@@ -46,8 +50,8 @@ class ClubsController extends Controller
             'name' => 'required',
             'location' => 'required',
             'phone' => 'required',
-            // 'owner_id' => 'required',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'owner_id' => 'required',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
         if ($validator->fails()) {
@@ -63,15 +67,17 @@ class ClubsController extends Controller
             $logoName = $logoFile->hashName();
             $logoPath = $logoFile->storeAs('public/clubs', $logoName);
 
-            $logoPath = 'storage/clubs/' . $logoName;
+            // $logoPath = 'storage/clubs/' . $logoName;
+            $logoPath = url(Storage::url($logoPath));
         }
 
             Clubs::create([
                 'name' => $request->name,
                 'location' => $request->location,
-                // 'owner_id' => $request->owner_id,
+                'owner_id' => $request->owner_id,
                 'phone'=> $request->phone,
-                'logo' => $logoPath
+                'logo' => $logoPath,
+                'status' => 0
             ]);
 
             return redirect('clubs')->with('success', 'Sucessfully add clubs');
@@ -97,9 +103,11 @@ class ClubsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function detail()
+    public function detail($id)
     {
-        return view('admin.clubs.detail');
+        $club = Clubs::find($id);
+        $detail = UserDetail::where('user_id', $club->owner_id)->first();
+        return view('admin.clubs.detail', compact('detail'));
     }
 
     /**
@@ -107,7 +115,7 @@ class ClubsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $club = Clubs::find($id);
     }
 
     /**
@@ -115,7 +123,50 @@ class ClubsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'location' => 'required',
+            'phone' => 'required',
+            'owner_id' => 'required',
+            // 'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        
+        $logoPath = null;
+        
+        $clubs = Clubs::find($id);
+
+        if ($request->hasFile('logo')) {
+
+            $path = str_replace(url('/storage'), '', $clubs->logo);
+            $path = ltrim($path, '/'); // Menghapus '/' di awal path
+
+            // Mengecek apakah file ada
+            if (Storage::disk('public')->exists($path)) {
+                Storage::disk('public')->delete($path);
+            }
+
+            $logoFile = $request->file('logo');
+            $logoName = $logoFile->hashName();
+            $logoPath = $logoFile->storeAs('public/clubs', $logoName);
+
+            // $logoPath = 'storage/clubs/' . $logoName;
+            $logoPath = url(Storage::url($logoPath));
+            $clubs->logo = $logoPath;
+        }
+        $clubs->name = $request->name;
+        $clubs->location = $request->location;
+        $clubs->owner_id = $request->owner_id;
+        $clubs->phone = $request->phone;
+        $clubs->save();
+
+        return redirect('clubs')->with('success', 'Sucessfully update clubs');
     }
 
     /**
@@ -123,13 +174,27 @@ class ClubsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $clubs = Clubs::find($id);
+        $path = str_replace(url('/storage'), '', $clubs->logo);
+        $path = ltrim($path, '/'); // Menghapus '/' di awal path
+
+        // Mengecek apakah file ada
+        if (Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->delete($path);
+        }
+
+        $clubs->delete();
+
     }
+
 
     public function pending()
     {
-        return view('admin.clubs.pending');
+        $pending = Clubs::where('status', 0)->get();
+        $declined = Clubs::where('status', 2)->get();
+        return view('admin.clubs.pending', compact('pending', 'declined'));
     }
+
 
     public function createEvent($id)
     {
@@ -142,6 +207,25 @@ class ClubsController extends Controller
             'events' => $events,
             'eventCount' => $eventCount
         ]);
+    }
+
+    public function accept($id) {
+
+        try {
+            $update = Clubs::where('id', $id)->update(['status' => 1]);
+            return view('admin.clubs.index')->with('success', 'Succesfully accept club');
+        } catch (\Throwable $th) {
+            return view('admin.clubs.index')->with('errors', $th->getMessage());
+        }
+    }
+
+    public function declined($id) {
+        try {
+            $update = Clubs::where('id', $id)->update(['status' => 2]);
+            return view('admin.clubs.index')->with('success', 'Succesfully denied club');
+        } catch (\Throwable $th) {
+            return view('admin.clubs.index')->with('errors', $th->getMessage());
+        }
     }
 
     private function getStaticClubs()

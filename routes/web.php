@@ -37,6 +37,7 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/register', [AuthController::class, 'postRegister'])->name('submit-register');
     Route::post('/login', [AuthController::class, 'postLogin'])->name('submit-login');
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -51,7 +52,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/clubs-detail/{id}', [ClubsController::class, 'show'])->name('club-detail');
     Route::get('/clubs-detail/{id}/event-create', [ClubsController::class, 'createEvent'])->name('event-create');
     Route::get('/clubs-pending', [ClubsController::class, 'pending'])->name('club-pending');
-    Route::get('/clubs-pending-request', [ClubsController::class, 'detail'])->name('club-pending-request');
+    Route::get('/clubs-pending-request/{id}', [ClubsController::class, 'detail'])->name('club-pending-request');
+    Route::get('/clubs-edit/{id}', [ClubsController::class, 'edit'])->name('club-edit');
+    Route::put('/clubs-update/{id}', [ClubsController::class, 'update'])->name('club-update');
+    Route::delete('/clubs-delete/{id}', [ClubsController::class, 'destroy'])->name('club-delete');
+    Route::get('/clubs-accept/{id}', [ClubsController::class, 'accept'])->name('club-accept');
+    Route::get('/clubs-declined/{id}', [ClubsController::class, 'declined'])->name('club-declined');
 
     // -------------------------------------------- Users  --------------------------------------------
     Route::get('/users-list', [UsersController::class, 'index'])->name('users-list');
