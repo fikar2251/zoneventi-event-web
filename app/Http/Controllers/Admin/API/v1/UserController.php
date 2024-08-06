@@ -21,7 +21,8 @@ class UserController extends Controller
         }
     }
 
-    public function follow($userId) {
+    public function follow(Request $request) {
+        $userId = $request->user_id;
         $user = User::findOrFail($userId);
         $currentUser = Auth::user();
         try {
@@ -41,7 +42,8 @@ class UserController extends Controller
 
     }
 
-    public function unfollow($userId)  {
+    public function unfollow(Request $request)  {
+        $userId = $request->user_id;
         $user = User::findOrFail($userId);
         $currentUser = Auth::user();
 

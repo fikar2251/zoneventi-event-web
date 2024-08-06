@@ -39,8 +39,8 @@ Route::prefix('v1')->group(function() {
         });
 
         Route::prefix('users')->name('events.')->group(function (){
-            Route::post('/follow/{user}', [UserController::class, 'follow'])->name('follow');
-            Route::post('/unfollow/{user}', [UserController::class, 'unfollow'])->name('unfollow');
+            Route::post('/follow', [UserController::class, 'follow'])->name('follow');
+            Route::post('/unfollow', [UserController::class, 'unfollow'])->name('unfollow');
             Route::get('/follows', [UserController::class, 'listFollowers'])->name('follows');
             Route::get('', [UserController::class, 'index'])->name('get-all-users');
         });
