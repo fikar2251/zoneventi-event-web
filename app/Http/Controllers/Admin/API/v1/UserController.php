@@ -80,4 +80,48 @@ class UserController extends Controller
             return (new ResponseResource(false, $th->getMessage(), null))->response()->setStatusCode(500);
         }
     }
+
+    public function searchInFollowers(Request $request) {
+        
+        $term = $request->keyword;
+        $userId = Auth::guard('api')->user()->id;
+        $user = User::findOrFail($userId);
+        try {
+            if ($term != null) {
+                $data =$user->followers()->where('name', 'like', '%'.$term.'%')->get();
+            }else{
+                $data = $user->followers()->get();
+            }
+            // $followers = $data->followers;
+            // $followings = $data->followings;
+            // $data->total_followers = $followers->count();
+            // $data->total_following = $followings->count();
+            
+            return new ResponseResource('true', 'List Users', $data);
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', $th->getMessage(), null))->response()->setStatusCode(500);
+        }
+    }
+
+    public function searchInFollowings(Request $request) {
+        
+        $term = $request->keyword;
+        $userId = Auth::guard('api')->user()->id;
+        $user = User::findOrFail($userId);
+        try {
+            if ($term != null) {
+                $data =$user->followings()->where('name', 'like', '%'.$term.'%')->get();
+            }else{
+                $data = $user->followings()->get();
+            }
+            // $followers = $data->followers;
+            // $followings = $data->followings;
+            // $data->total_followers = $followers->count();
+            // $data->total_following = $followings->count();
+            
+            return new ResponseResource('true', 'List Users', $data);
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', $th->getMessage(), null))->response()->setStatusCode(500);
+        }
+    }
 }
