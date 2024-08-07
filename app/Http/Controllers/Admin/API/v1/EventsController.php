@@ -48,6 +48,7 @@ class EventsController extends Controller
     public function searchByEventsAndLocation(Request $request) {
         $keyword = $request->keyword;
         try {
+            
             $data = Events::join('clubs', 'clubs.id', '=', 'events.club_id')->select('events.*', 'clubs.name as club_name')
             ->where('events.name', 'like', "%{$keyword}%")
             ->orWhere('events.event_date', 'like', "%{$keyword}%")
@@ -60,6 +61,25 @@ class EventsController extends Controller
             return (new ResponseResource('false', $th->getMessage(), null))->response()->setStatusCode(500);
         }
     }
+
+    
+
+    // $currentLatitude = $request->input('latitude');
+    //     $currentLongitude = $request->input('longitude');
+    //     $radius = $request->input('radius', 10); // default radius 10 km
+
+    //     $places = Events::select('*')
+    //             ->selectRaw("ROUND((6371 * acos(cos(radians(?)) 
+    //             * cos(radians(latitude)) 
+    //             * cos(radians(longitude) - radians(?)) 
+    //             + sin(radians(?)) 
+    //             * sin(radians(latitude)))), 2) AS distance_km", 
+    //             [$currentLatitude, $currentLongitude, $currentLatitude])
+    //         ->having('distance_km', '<', $radius)
+    //         ->orderBy('distance_km')
+    //         ->get();
+
+    //     return response()->json($places);
 
     /**
      * Show the form for creating a new resource.
