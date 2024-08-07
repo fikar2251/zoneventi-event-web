@@ -21,7 +21,8 @@ class UserController extends Controller
         }
     }
 
-    public function follow($userId) {
+    public function follow(Request $request) {
+        $userId = $request->user_id;
         $user = User::findOrFail($userId);
         $currentUser = Auth::user();
         try {
@@ -41,7 +42,8 @@ class UserController extends Controller
 
     }
 
-    public function unfollow($userId)  {
+    public function unfollow(Request $request)  {
+        $userId = $request->user_id;
         $user = User::findOrFail($userId);
         $currentUser = Auth::user();
 
@@ -65,9 +67,9 @@ class UserController extends Controller
         try {
             $userId = request('id');
             if ($userId) {
-                $user = User::findOrFail($userId);
+                $user = User::with(['followers.getDetailMobUser', 'followings.getDetailMobUser'])->findOrFail($userId);
             }else{
-                $user = User::findOrFail(Auth::user()->id);
+                $user = User::with(['followers.getDetailMobUser', 'followings.getDetailMobUser'])->findOrFail(Auth::user()->id);
             }
             $followers = $user->followers;
             $followings = $user->followings;
@@ -76,6 +78,50 @@ class UserController extends Controller
             return new ResponseResource(true, 'Succes', $user);
         } catch (\Throwable $th) {
             return (new ResponseResource(false, $th->getMessage(), null))->response()->setStatusCode(500);
+        }
+    }
+
+    public function searchInFollowers(Request $request) {
+        
+        $term = $request->keyword;
+        $userId = Auth::guard('api')->user()->id;
+        $user = User::findOrFail($userId);
+        try {
+            if ($term != null) {
+                $data =$user->followers()->where('name', 'like', '%'.$term.'%')->get();
+            }else{
+                $data = $user->followers()->get();
+            }
+            // $followers = $data->followers;
+            // $followings = $data->followings;
+            // $data->total_followers = $followers->count();
+            // $data->total_following = $followings->count();
+            
+            return new ResponseResource('true', 'List Users', $data);
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', $th->getMessage(), null))->response()->setStatusCode(500);
+        }
+    }
+
+    public function searchInFollowings(Request $request) {
+        
+        $term = $request->keyword;
+        $userId = Auth::guard('api')->user()->id;
+        $user = User::findOrFail($userId);
+        try {
+            if ($term != null) {
+                $data =$user->followings()->where('name', 'like', '%'.$term.'%')->get();
+            }else{
+                $data = $user->followings()->get();
+            }
+            // $followers = $data->followers;
+            // $followings = $data->followings;
+            // $data->total_followers = $followers->count();
+            // $data->total_following = $followings->count();
+            
+            return new ResponseResource('true', 'List Users', $data);
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', $th->getMessage(), null))->response()->setStatusCode(500);
         }
     }
 }
