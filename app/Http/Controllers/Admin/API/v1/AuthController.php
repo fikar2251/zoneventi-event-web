@@ -155,6 +155,10 @@ class AuthController extends Controller
 
     public function getUser() {
         $user = User::with('getDetailMobUser')->find(Auth::guard('api')->user()->id);
+        $followers = $user->followers;
+        $followings = $user->followings;
+        $user->total_followers = $followers->count();
+        $user->total_following = $followings->count();
         return (new ResponseResource(true, 'Users Data', $user))->response()->setStatusCode(200);
     }
 
