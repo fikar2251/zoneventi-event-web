@@ -67,9 +67,9 @@ class UserController extends Controller
         try {
             $userId = request('id');
             if ($userId) {
-                $user = User::findOrFail($userId);
+                $user = User::with(['followers.getDetailMobUser', 'followings.getDetailMobUser'])->findOrFail($userId);
             }else{
-                $user = User::findOrFail(Auth::user()->id);
+                $user = User::with(['followers.getDetailMobUser', 'followings.getDetailMobUser'])->findOrFail(Auth::user()->id);
             }
             $followers = $user->followers;
             $followings = $user->followings;
