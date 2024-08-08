@@ -87,6 +87,11 @@ h5 {
     color: var(--font-color-muted);
 }
 
+.card {
+    height: 100%;
+    margin-bottom: 20px; /* Add this line to create space at the bottom */
+}
+
 .card-body .d-flex {
     align-items: center;
 }

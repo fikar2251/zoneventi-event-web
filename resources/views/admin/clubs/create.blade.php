@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
-        <div class="row">
-            <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
                 <div class="header d-flex align-items-center justify-content-between flex-wrap">
                     <div class="d-flex align-items-center w-100">
                         <div class="back-button">
@@ -17,89 +17,88 @@
                         <h2 class="title mx-auto">Add New Club</h2>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-container" style="max-width: 800px">
-                <form action="{{ route('club-store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="text-center">
-                        <div class="upload-logo-container">
-                            <input type="file" id="club-logo" name="logo" class="d-none" accept="image/*">
-                            <label for="club-logo" class="upload-logo-label">
-                                <div class="upload-logo-circle" id="logo-preview">
-                                    <img src="{{ asset('assets/template/icon/Vector.svg') }}" alt="upload-icon"
-                                        class="upload-icon">
-                                    <span class="upload-logo-text">Upload Logo</span>
-                                    <small class="upload-logo-small">Upload the thumb of the event</small>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="club_name" class="form-label text-12">Club Name</label>
-                                <input type="text" class="form-control text-12" name="name" id="club_name"
-                                    placeholder="Name">
+                <div class="form-container">
+                    <form action="{{ route('club-store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="text-center">
+                            <div class="upload-logo-container">
+                                <input type="file" id="club-logo" name="logo" class="d-none" accept="image/*">
+                                <label for="club-logo" class="upload-logo-label">
+                                    <div class="upload-logo-circle" id="logo-preview">
+                                        <img src="{{ asset('assets/template/icon/Vector.svg') }}" alt="upload-icon"
+                                            class="upload-icon">
+                                        <span class="upload-logo-text">Upload Logo</span>
+                                        <small class="upload-logo-small">Upload the thumb of the event</small>
+                                    </div>
+                                </label>
                             </div>
-                            <div class="form-group">
-                                <label for="club_location" class="form-label text-12">Club Location</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control text-12" name="location" id="club_location"
-                                        placeholder="Location">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <img src="{{ asset('assets/template/icon/Location-Form.svg') }}" alt="Location"
-                                                width="20" height="20">
-                                        </span>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="club_name" class="form-label text-12">Club Name</label>
+                                    <input type="text" class="form-control text-12" name="name" id="club_name"
+                                        placeholder="Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="club_location" class="form-label text-12">Club Location</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control text-12" name="location"
+                                            id="club_location" placeholder="Location">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <img src="{{ asset('assets/template/icon/Location-Form.svg') }}"
+                                                    alt="Location" width="20" height="20">
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="assign_owner" class="form-label text-12">Assign Owner</label>
-                                <select name="owner_id" id="owner_id" class="form-control text-12">
-                                    <option value="">Select option</option>
-                                    @foreach ($owners as $owner)
-                                        <option value="{{ $owner->id }}">{{ $owner->name }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="assign_owner" class="form-label text-12">Assign Owner</label>
+                                    <select name="owner_id" id="owner_id" class="form-control text-12">
+                                        <option value="">Select option</option>
+                                        @foreach ($owners as $owner)
+                                            <option value="{{ $owner->id }}">{{ $owner->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="club_phone" class="form-label text-12">Club Phone Number</label>
+                                    <input type="number" class="form-control text-12" name="phone" id="club_phone"
+                                        placeholder="Number">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="club_phone" class="form-label text-12">Club Phone Number</label>
-                                <input type="number" class="form-control text-12" name="phone" id="club_phone"
-                                    placeholder="Number">
-                            </div>
                         </div>
-                    </div>
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary btn-sm px-4 text-12">Add Club</button>
-                    </div>
-                </form>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-sm px-4 text-12">Add Club</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection
 
-@section('scripts')
-    <script>
-        document.getElementById('club-logo').addEventListener('change', function(e) {
-            var file = e.target.files[0];
-            if (file) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var preview = document.getElementById('logo-preview');
-                    preview.style.backgroundImage = 'url(' + e.target.result + ')';
-                    preview.style.backgroundSize = 'cover';
-                    preview.style.backgroundPosition = 'center';
+    @section('scripts')
+        <script>
+            document.getElementById('club-logo').addEventListener('change', function(e) {
+                var file = e.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var preview = document.getElementById('logo-preview');
+                        preview.style.backgroundImage = 'url(' + e.target.result + ')';
+                        preview.style.backgroundSize = 'cover';
+                        preview.style.backgroundPosition = 'center';
 
-                    preview.querySelector('.upload-icon').style.display = 'none';
-                    preview.querySelector('.upload-logo-text').style.display = 'none';
-                    preview.querySelector('.upload-logo-small').style.display = 'none';
+                        preview.querySelector('.upload-icon').style.display = 'none';
+                        preview.querySelector('.upload-logo-text').style.display = 'none';
+                        preview.querySelector('.upload-logo-small').style.display = 'none';
+                    }
+                    reader.readAsDataURL(file);
                 }
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
-@endsection
+            });
+        </script>
+    @endsection
