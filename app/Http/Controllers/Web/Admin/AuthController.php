@@ -170,13 +170,14 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            $user = auth()->user();
             $request->session()->regenerate();
-            return redirect('/home')->with('success', 'Login successful!');
+            if ($user->role == 'admin') {
+                return redirect('/home')->with('success', 'Login successful!');
+            } else {
+                return redirect('/owner/club-events')->with('success', 'Login successful!');
+            }
         }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->withInput();
     }
 
     public function logout(Request $request)
