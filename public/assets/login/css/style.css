@@ -25,7 +25,7 @@ body {
 }
 
 .form-container {
-    margin-left: 100px;
+    margin-left: 150px;
     width: 40%;
     padding: 50px;
 }
@@ -155,13 +155,6 @@ body {
     height: 20px;
 }
 
-
-
-#user_id, #email, #password {
-    height: 40px;
-    font-size: 12px;
-}
-
 option {
     font-size: 12px;
 }
@@ -186,7 +179,7 @@ input, select, textarea {
     -webkit-appearance: none; 
     -moz-appearance: none;
     appearance: none; 
-    height: 40px;
+    height: 50px;
 }
 
 input:focus {
