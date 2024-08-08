@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web\Admin\Module;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clubs;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NotificationsController extends Controller
@@ -12,7 +14,14 @@ class NotificationsController extends Controller
      */
     public function index()
     {
-        return view('admin.notifications.index');
+        $users = User::all();
+
+        $clubs = Clubs::all();
+
+        return view('admin.notifications.index', [
+            'users' => $users,
+            'clubs' => $clubs
+        ]);
     }
 
     /**
