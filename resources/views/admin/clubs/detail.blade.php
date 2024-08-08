@@ -28,17 +28,17 @@
                             <div class="form-group">
                                 <label for="document_type" class="form-label text-12">Select the document's type*</label>
                                 <input type="text" class="form-control text-12" id="document_type" placeholder="Type"
-                                    value="{{ $detail->documents_type }}" readonly>
+                                    value="{{ $detail->documents_type }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="document_number" class="form-label text-12">Enter document's number*</label>
                                 <input type="text" class="form-control text-12" id="document_number" placeholder="Number"
-                                    value="{{ $detail->document_number }}" readonly>
+                                    value="{{ $detail->document_number }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="expire_date" class="form-label text-12">Expire date*</label>
                                 <input type="date" class="form-control text-12" id="expire_date" placeholder="Date"
-                                    value="{{ $detail->documents_expire_date }}" readonly>
+                                    value="{{ $detail->documents_expire_date }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="club_document" class="form-label text-12">Club Document*</label>
@@ -48,17 +48,17 @@
                             <div class="form-group">
                                 <label for="premises_owner" class="form-label text-12">Name of Premises Owner*</label>
                                 <input type="text" class="form-control text-12" id="premises_owner"
-                                    placeholder="Premises Owner" value="{{ $detail->full_name }}" readonly>
+                                    placeholder="Premises Owner" value="{{ $detail->full_name }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="owner_email" class="form-label text-12">Owner's email*</label>
                                 <input type="text" class="form-control text-12" id="owner_email" placeholder="Email"
-                                    value="{{ $detail->email }}" readonly>
+                                    value="{{ $detail->email }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="address" class="form-label text-12">Address of Premises*</label>
                                 <input type="text" class="form-control text-12" id="address" placeholder="Email"
-                                    value="{{ $detail->country }}" readonly>
+                                    value="{{ $detail->country }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="date" class="form-label text-12">Select the date and time of the on-site
@@ -67,7 +67,7 @@
                                     <input type="date" class="form-control text-12 mr-2" id="date"
                                         placeholder="Date" value="{{ $detail->date_visit }}">
                                     <input type="time" class="form-control text-12" id="time" placeholder="Time"
-                                        value="{{ $detail->time_visit }}" readonly>
+                                        value="{{ $detail->time_visit }}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -75,19 +75,19 @@
                                     Person*
                                     (If Different From Owner)*</label>
                                 <input type="text" class="form-control text-12" id="name_of_authorised"
-                                    placeholder="Name of Authorised" value="{{ $detail->contact_person_name }}" readonly>
+                                    placeholder="Name of Authorised" value="{{ $detail->contact_person_name }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="telephone_number" class="form-label text-12">Telephone Number of Contact
                                     Person* (If Different From Owner)*
                                     (If Different From Owner)*</label>
                                 <input type="text" class="form-control text-12" id="telephone_number"
-                                    placeholder="Telephone Number" value="{{ $detail->contact_person_phone }}" readonly>
+                                    placeholder="Telephone Number" value="{{ $detail->contact_person_phone }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="additional" class="form-label text-12">Add any additional details or
                                     pertinent notes*</label>
-                                <textarea class="form-control" id="additional" rows="3" name="additional" placeholder="Empty" readonly>{{ $detail->notes }}</textarea>
+                                <textarea class="form-control" id="additional" rows="3" name="additional" placeholder="Empty" disabled>{{ $detail->notes }}</textarea>
                             </div>
                         </div>
                         <div class="col-md-6" style="text-align: right">
