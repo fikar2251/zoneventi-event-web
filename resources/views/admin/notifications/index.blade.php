@@ -36,13 +36,19 @@
                                 <div class="form-group">
                                     <label for="send-to" class="form-label text-12">Send Notification to*</label>
                                     <select class="form-control text-12" id="send-to">
-                                        <option>All user</option>
+                                        <option>Select option</option>
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="select-club" class="form-label text-12">Select specific club*</label>
                                     <select class="form-control text-12" id="select-club">
                                         <option>Select option</option>
+                                        @foreach ($clubs as $club)
+                                            <option value="{{ $club->id }}">{{ $club->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <p class="text-muted">Total number of users will receive notification: <span
