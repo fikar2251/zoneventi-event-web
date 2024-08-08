@@ -19,14 +19,14 @@
             </li>
             @if ($role == 'superadmin')
                 <li class="nav-item">
-                    <a class="nav-link {{ setActiveClass(['home']) || (request()->routeIs('club-pending') && !request()->routeIs('clubs-index')) ? 'active' : '' }}"
+                    <a class="nav-link {{ setActiveClass(['home']) && !request()->routeIs('clubs-index') ? 'active' : '' }}"
                         href="{{ route('home') }}">
                         <img src="{{ asset('assets/template/icon/Home.svg') }}" alt="Home" class="nav-icon">
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ setActiveClass(['clubs-index', 'club-create', 'club-detail', 'event-create']) || (request()->routeIs('club-pending') && request()->routeIs('clubs-index')) ? 'active' : '' }}"
+                    <a class="nav-link {{ setActiveClass(['clubs-index', 'club-create', 'club-detail', 'event-create', 'club-pending']) || (request()->routeIs('club-pending') && request()->routeIs('clubs-index')) ? 'active' : '' }}"
                         href="{{ route('clubs-index') }}">
                         <img src="{{ asset('assets/template/icon/Club.svg') }}" alt="All Clubs" class="nav-icon">
                         <span>All Clubs</span>

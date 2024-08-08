@@ -16,7 +16,6 @@ class EventsController extends Controller
     }
 
     public function store(Request $request)  {
-
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
@@ -31,8 +30,11 @@ class EventsController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect('/clubs-detail/event-create')->with('errors', $validator->errors());
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
+
         try {
             $picUrl = null;
             if ($request->hasFile('banner')) {
@@ -56,9 +58,9 @@ class EventsController extends Controller
                 'banner' => $picUrl,
                 'tags' => $request->tags
             ]);
-            return redirect('')->with('success', 'Successfully add events');
+            return redirect()->route('club-detail', ['id' => $request->club_id])->with('success', 'Successfully added event');
         } catch (\Throwable $th) {
-            return redirect('')->with('errors', $th->getMessage());
+            return redirect()->back()->with('errors', $th->getMessage());
         }
         
     }
@@ -67,7 +69,7 @@ class EventsController extends Controller
         $events = Events::with('getDetailClubs')->find($id);
     }
 
-    public function update(Request $request, string $id) {
+    public function update(Request $request, $clubId, $eventId) {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
@@ -81,55 +83,56 @@ class EventsController extends Controller
         ]);
         
         if ($validator->fails()) {
-            // return redirect('/clubs-detail/event-create')->with('errors', $validator->errors());
-
-            return (new ResponseResource(false, 'Errors', $validator->errors()))->response()->setStatusCode(400);
+            return response()->json(['success' => false, 'message' => $validator->errors()->first()], 400);
         }
-        try {
-            $picUrl = null;
-            $events = Events::find($id);
-            if ($request->hasFile('banner')) {
+        
+        $picUrl = null;
+        $events = Events::find($eventId);
+        if (!$events) {
+            return response()->json(['success' => false, 'message' => 'Event not found'], 404);
+        }
 
-                $path = str_replace(url('/storage'), '', $events->banner);
-                $path = ltrim($path, '/'); // Menghapus '/' di awal path
-    
-                // Mengecek apakah file ada
-                if (Storage::disk('public')->exists($path)) {
-                    Storage::disk('public')->delete($path);
-                }
+        if ($request->hasFile('banner')) {
+            $path = str_replace(url('/storage'), '', $events->banner);
+            $path = ltrim($path, '/'); 
 
-                $file = $request->file('banner');
-                $path = $file->storeAs('public/banner_events',$file->getClientOriginalName());
-                $picUrl  = url(Storage::url($path));
-                $events->banner = $picUrl;
+            if (Storage::disk('public')->exists($path)) {
+                Storage::disk('public')->delete($path);
             }
 
-            $events->name = $request->name;
-            $events->description = $request->description;
-            $events->contact_number = $request->contact_number;
-            $events->whatsapp_number = $request->whatsapp_number;
-            $events->event_time_start = $request->event_time_start;
-            $events->event_time_end = $request->event_time_end;
-            $events->event_date = $request->event_date;
-            $events->location = $request->location;
-            $events->longitude = $request->longitude;
-            $events->latitude = $request->latitude;
-            $events->tags = $request->tags;
-            $events->save();
-           
-            return new ResponseResource(true, 'Successfully update data', $events);
-        } catch (\Throwable $th) {
-            return (new ResponseResource(false, $th->getMessage(), null))->response()->setStatusCode(500);
-        }
+            $file = $request->file('banner');
+            $path = $file->storeAs('public/banner_events',$file->getClientOriginalName());
+            $picUrl  = url(Storage::url($path));
+            $events->banner = $picUrl;
+        } 
+
+        $events->name = $request->name;
+        $events->description = $request->description;
+        $events->contact_number = $request->contact_number;
+        $events->whatsapp_number = $request->whatsapp_number;
+        $events->event_time_start = $request->event_time_start;
+        $events->event_time_end = $request->event_time_end;
+        $events->event_date = $request->event_date;
+        $events->location = $request->location;
+        $events->longitude = $request->longitude;
+        $events->latitude = $request->latitude;
+        $events->tags = $request->tags;
+        $events->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Event updated successfully',
+            'events' => $events
+        ]);
+        
     }
 
     public function destroy(string $id)
     {
         $events = Events::find($id);
         $path = str_replace(url('/storage'), '', $events->logo);
-        $path = ltrim($path, '/'); // Menghapus '/' di awal path
-
-        // Mengecek apakah file ada
+        $path = ltrim($path, '/'); 
+        
         if (Storage::disk('public')->exists($path)) {
             Storage::disk('public')->delete($path);
         }

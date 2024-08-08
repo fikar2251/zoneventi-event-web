@@ -29,7 +29,7 @@ class UserDetail extends Model
         'contact_person_phone',
         'notes',
         'documents_type',
-        'documents_number',
+        'document_number',
         'documents_expire_date',
         'documents_file',
     ];

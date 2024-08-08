@@ -242,6 +242,7 @@ select {
     border: 1px solid #1D1F36;
     border-radius: 16px;
     background-color: #1D1F36;
+    color: #898C9F; /* Default text color */
     width: 100%;
     box-sizing: border-box;
     margin-top: 10px;
@@ -256,9 +257,10 @@ select {
     background-position: right 10px center;
 }
 
-.selectize-control.single .selectize-input.dropdown-active {
+.selectize-control.single .selectize-input.dropdown-active,
+.selectize-control.single .selectize-input.focus {
     background-color: #1D1F36;
-    color: #fff;
+    color: #898C9F;
     outline: none;
     box-shadow: none;
 }
@@ -268,6 +270,7 @@ select {
     border: 1px solid #1D1F36;
     border-radius: 0 0 16px 16px;
     margin-top: -3px;
+    color: #898C9F;
 }
 
 .selectize-dropdown .option {
@@ -281,9 +284,19 @@ select {
     color: #fff;
 }
 
-/* Menghilangkan elemen dropdown arrow bawaan Selectize */
+/* Hide default Selectize dropdown arrow */
 .selectize-control.single .selectize-input:after {
     display: none;
+}
+
+/* Style for the placeholder text */
+.selectize-input > input::placeholder {
+    color: #898C9F;
+}
+
+/* Style for the selected item */
+.selectize-input > .item {
+    color: #fff;
 }
 
 .form-group, .form-group-row {

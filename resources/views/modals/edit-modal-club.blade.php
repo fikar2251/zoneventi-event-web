@@ -1,11 +1,11 @@
 <div id="editClubModal" class="modal">
-    <div class="modal-content edit-modal-content">
+    <div class="modal-content edit-modal-content-club">
         <div class="modal-header">
             <button id="editBackButtonClub" class="back-btn">
                 <img src="{{ asset('assets/template/icon/Back-Modal.svg') }}" alt="Back" class="back-modal-icon">
             </button>
             <h2 class="header-title">Edit Club</h2>
-            <button id="saveChanges" class="btn btn-primary save-change-button">Save Change</button>
+            <button id="saveChangeClub" class="btn btn-primary save-change-button">Save Change</button>
         </div>
         <div class="modal-body">
             <div class="row">
@@ -25,21 +25,23 @@
                             </label>
                         </div>
                     </div>
-                    <form class="mt-3">
+                    <form class="mt-3" action="{{ route('club-update', ['id', $clubs->id]) }}">
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="club_name" class="form-label-modal text-12">Club
                                         Name</label>
-                                    <input type="text" class="form-control text-12" id="club_name" placeholder="Name"
-                                        value="Zoldic Club">
+                                    <input type="text" class="form-control text-12" id="club_name"
+                                        placeholder="Name">
                                 </div>
                                 <div class="form-group">
                                     <label for="club_location" class="form-label-modal text-12">Club
                                         Location</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control text-12" id="club_location"
-                                            placeholder="Location" value="London Street, UK">
+                                            placeholder="Location">
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 <img src="{{ asset('assets/template/icon/Location-Form.svg') }}"
@@ -53,14 +55,18 @@
                                 <div class="form-group">
                                     <label for="assign_owner" class="form-label-modal text-12">Assign
                                         Owner</label>
-                                    <input type="text" class="form-control text-12" id="assign_owner"
-                                        placeholder="Owner email" value="owner@gmail.com">
+                                    <select name="owner_id" id="owner_id" class="form-control text-12">
+                                        <option value="">Select option</option>
+                                        @foreach ($owners as $owner)
+                                            <option value="{{ $owner->id }}">{{ $owner->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="club_phone" class="form-label-modal text-12">Club
                                         Phone Number</label>
                                     <input type="text" class="form-control text-12" id="club_phone"
-                                        placeholder="Number" value="+44 2920 3839 2890 00">
+                                        placeholder="Number">
                                 </div>
                             </div>
                         </div>

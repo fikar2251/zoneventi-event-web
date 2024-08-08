@@ -20,23 +20,25 @@
             </div>
 
             <div class="detail-form">
-                <form class="mt-5">
+                <form class="mt-5" action="{{ route('club-action', ['id' => $club->id]) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="action" id="action" value="accept">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="document_type" class="form-label text-12">Select the document's type*</label>
                                 <input type="text" class="form-control text-12" id="document_type" placeholder="Type"
-                                    value="Lease Agreement">
+                                    value="{{ $detail->documents_type }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="document_number" class="form-label text-12">Enter document's number*</label>
                                 <input type="text" class="form-control text-12" id="document_number" placeholder="Number"
-                                    value="23456">
+                                    value="{{ $detail->document_number }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="expire_date" class="form-label text-12">Expire date*</label>
                                 <input type="date" class="form-control text-12" id="expire_date" placeholder="Date"
-                                    value="2024-01-01">
+                                    value="{{ $detail->documents_expire_date }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="club_document" class="form-label text-12">Club Document*</label>
@@ -46,58 +48,53 @@
                             <div class="form-group">
                                 <label for="premises_owner" class="form-label text-12">Name of Premises Owner*</label>
                                 <input type="text" class="form-control text-12" id="premises_owner"
-                                    placeholder="Premises Owner" value="Admon Shafi">
+                                    placeholder="Premises Owner" value="{{ $detail->full_name }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="owner_email" class="form-label text-12">Owner's email*</label>
                                 <input type="text" class="form-control text-12" id="owner_email" placeholder="Email"
-                                    value="email@gmail.com">
+                                    value="{{ $detail->email }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="address" class="form-label text-12">Address of Premises*</label>
                                 <input type="text" class="form-control text-12" id="address" placeholder="Email"
-                                    value="London Street, Uk">
+                                    value="{{ $detail->country }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="date" class="form-label text-12">Select the date and time of the on-site
                                     visit for verifications*</label>
                                 <div class="d-flex">
                                     <input type="date" class="form-control text-12 mr-2" id="date"
-                                        placeholder="Date" value="2024-01-01">
+                                        placeholder="Date" value="{{ $detail->date_visit }}">
                                     <input type="time" class="form-control text-12" id="time" placeholder="Time"
-                                        value="12:00">
+                                        value="{{ $detail->time_visit }}" readonly>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="address" class="form-label text-12">Address of Premises*</label>
-                                <input type="text" class="form-control text-12" id="address" placeholder="Email"
-                                    value="London Street, Uk">
                             </div>
                             <div class="form-group">
                                 <label for="name_of_authorised" class="form-label text-12">Name of Authorised Contact
                                     Person*
                                     (If Different From Owner)*</label>
                                 <input type="text" class="form-control text-12" id="name_of_authorised"
-                                    placeholder="Name of Authorised" value="Mike Willaim">
+                                    placeholder="Name of Authorised" value="{{ $detail->contact_person_name }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="telephone_number" class="form-label text-12">Telephone Number of Contact
                                     Person* (If Different From Owner)*
                                     (If Different From Owner)*</label>
                                 <input type="text" class="form-control text-12" id="telephone_number"
-                                    placeholder="Telephone Number" value="+44 2938 283948 77">
+                                    placeholder="Telephone Number" value="{{ $detail->contact_person_phone }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="additional" class="form-label text-12">Add any additional details or
                                     pertinent notes*</label>
-                                <textarea class="form-control" id="additional" rows="3" name="additional" placeholder="Empty"></textarea>
+                                <textarea class="form-control" id="additional" rows="3" name="additional" placeholder="Empty" readonly>{{ $detail->notes }}</textarea>
                             </div>
                         </div>
-                        <div class="col-md-6" style="text-align: right"> <!-- Added d-flex and align-items-start -->
-                            <button type="submit" class="btn btn-primary mr-2 text-12">Accept Club</button>
-                            <!-- Changed to btn-lg -->
-                            <button type="submit" class="btn btn-danger text-12">Denied</button>
-                            <!-- Changed to btn-lg -->
+                        <div class="col-md-6" style="text-align: right">
+                            <button type="submit" class="btn btn-primary mr-2 text-12"
+                                onclick="document.getElementById('action').value='accept'">Accept Club</button>
+                            <button type="submit" class="btn btn-danger text-12"
+                                onclick="document.getElementById('action').value='decline'">Decline Club</button>
                         </div>
                     </div>
                 </form>

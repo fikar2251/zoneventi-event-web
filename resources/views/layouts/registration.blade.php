@@ -30,7 +30,7 @@
                     club ownership</p>
                 <div class="form-group input-register">
                     <label for="document_type" style="font-size: 12px;">Select the document's type*</label>
-                    <select name="document_type" id="document_type">
+                    <select name="document_type" id="document_type" class="form-control">
                         <option value="" style="font-size: 12px">Select Option</option>
                         <option value="lease_agreement"
                             {{ old('document_type') == 'lease_agreement' ? 'selected' : '' }}>Lease Agreement</option>
@@ -44,12 +44,12 @@
                 </div>
                 <div class="form-group input-register">
                     <label for="document_number" style="font-size: 12px;">Enter document's number*</label>
-                    <input type="text" name="document_number" id="document_number" class="input-register"
-                        placeholder="VAT Code" value="{{ old('document_number') }}">
+                    <input type="text" name="document_number" id="document_number"
+                        class="form-control input-register" placeholder="VAT Code" value="{{ old('document_number') }}">
                 </div>
                 <div class="form-group input-register">
                     <label for="expire_date" style="font-size: 12px;">Expire date*</label>
-                    <input type="date" name="expire_date" id="expire_date" class="input-register"
+                    <input type="date" name="expire_date" id="expire_date" class="form-control input-register"
                         placeholder="Enter date" value="{{ old('expire_date') }}">
                 </div>
                 <div class="form-group input-register file-upload">
