@@ -1,7 +1,3 @@
-@php
-    $role = 'superadmin';
-@endphp
-
 <nav class="col-md-2 sidebar fixed-sidebar" id="sidebar">
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
@@ -11,13 +7,13 @@
                 <div>
                     <h2 class="user-name">Adom Shafi</h2>
                 </div>
-                @if ($role == 'superadmin')
+                @if (auth()->user()->role == 'admin')
                     <p class="text-muted left-user-info">Superadmin</p>
                 @else
                     <p class="text-muted left-user-info">Club Id: <span style="color: #fff">1930XL6</span></p>
                 @endif
             </li>
-            @if ($role == 'superadmin')
+            @if (auth()->user()->role == 'admin')
                 <li class="nav-item">
                     <a class="nav-link {{ setActiveClass(['home']) && !request()->routeIs('clubs-index') ? 'active' : '' }}"
                         href="{{ route('home') }}">
@@ -59,7 +55,7 @@
                     </a>
                 </li>
             @endif
-            @if ($role == 'owner')
+            @if (auth()->user()->role == 'owner')
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('club-event-owner') ? 'active' : '' }}"
                         href="{{ route('club-event-owner') }}">
