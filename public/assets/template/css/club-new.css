@@ -5,6 +5,13 @@
     padding: 10px;
 }
 
+.form-control[readonly],
+.form-control:disabled {
+    background-color: #1D1F36 !important;
+    color: white !important;
+}
+
+
 .file-upload-button {
     display: flex;
     flex-direction: column;
@@ -72,11 +79,6 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: #fff !important;
     caret-color: #fff !important; 
     transition: background-color 5000s ease-in-out 0s;
-}
-
-.form-control[readonly] {
-    background-color: #1D1F36 !important;
-    color: white;
 }
 
 select.form-control {
