@@ -29,17 +29,18 @@
                 <p class="p-weight" style="font-size: 13px">Log in with the details that we send to you</p>
                 <div class="form-group input-register">
                     <label for="user_id" style="font-size: 12px;">User ID*</label>
-                    <input type="text" id="user_id" class="input-register" placeholder="Enter user ID">
+                    <input type="text" id="user_id" class="form-control input-register"
+                        placeholder="Enter user ID">
                 </div>
                 <div class="form-group input-register">
                     <label for="email" style="font-size: 12px;">Email Address*</label>
-                    <input type="email" name="email" id="email" class="input-register"
+                    <input type="email" name="email" id="email" class="form-control input-register"
                         placeholder="Enter your email">
                 </div>
                 <div class="form-group password input-register">
                     <label for="password" style="font-size: 12px;">Password*</label>
                     <div class="password-container">
-                        <input type="password" id="password" name="password" class="input-register"
+                        <input type="password" id="password" name="password" class=" form-controlinput-register"
                             placeholder="Enter your password">
                         <img src="{{ asset('assets/template/icon/Frame.svg') }}" alt="Toggle Password Visibility"
                             class="eye-icon" id="togglePassword" onclick="togglePasswordVisibility()">

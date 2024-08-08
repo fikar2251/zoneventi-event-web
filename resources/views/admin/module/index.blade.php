@@ -99,7 +99,7 @@
             </div>
 
             <div class="loading-overlay" id="loadingOverlay">
-                <img src="{{ asset('assets/template/animation/loading.gif') }}" alt="Loading" width="100">
+                <img src="{{ asset('assets/template/animation/loading.gif') }}" alt="Loading" width="50">
             </div>
         </div>
         </div>
@@ -110,11 +110,10 @@
 @section('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        var $jq = jQuery.noConflict();
-        $jq(document).on('click', '.btn-delete', function(e) {
+        $('body').on('click', '.btn-delete', function(e) {
             e.preventDefault();
 
-            const url = $jq(this).data('url');
+            const url = $(this).data('url');
 
             Swal.fire({
                 title: 'Are you sure?',
@@ -129,30 +128,34 @@
                     cancelButton: 'swal2-cancel',
                     content: 'swal2-content'
                 }
-            }).then(function(e) {
-                if (e.value) {
-                    $jq.ajax({
+            }).then(function(result) {
+                if (result.value) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
                         url: url,
                         type: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': $jq('meta[name="csrf-token"]').attr('content')
-                        },
                         dataType: 'json',
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                        },
                         success: function(response) {
                             if (response.code === 'success') {
-                                Swal.fire('Success', response.msg, 'success');
+                                Swal.fire('Success', response.msg, 'success').then(() => {
+                                    window.location.href =
+                                        '{{ route('admins-list') }}';
+                                });
                             } else {
                                 Swal.fire('Oops', response.msg, 'error');
                             }
-
-                            if ($jq('.dataTable').length) {
-                                $jq('.dataTable').DataTable().draw(false);
-                            } else {
-                                window.location.reload();
-                            }
                         },
-                        error: function() {
-                            Swal.fire('Oops', 'Something went wrong!', 'error');
+                        error: function(xhr, status, error) {
+                            Swal.fire('Oops', 'Something went wrong! ' + xhr.responseText,
+                                'error');
                         }
                     });
                 }

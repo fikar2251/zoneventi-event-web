@@ -20,11 +20,11 @@ class AdminsController extends Controller
         $role = $request->input('role');
 
         if ($search) {
-            $query->whereHas('user', function ($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                    ->orWhere('email', 'like', "%{$search}%");
-            })
-            ->orWhere('id', 'like', "%{$search}%");
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('id', 'like', "%{$search}%");
+            });
         }
 
         if ($role && $role !== 'all') {
@@ -37,7 +37,7 @@ class AdminsController extends Controller
             'users' => $users
         ]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -103,11 +103,13 @@ class AdminsController extends Controller
      */
     public function destroy($id)
     {
-        $delete = MobUsers::with('user')->findOrFail($id);
-        $delete->delete() == true
-            ? $return = ['code' => 'success', 'msg' => 'Data deleted successfully']
-            : $return = ['code' => 'error', 'msg' => 'Something went wrong!'];
-        return response()->json($return);
+        $delete = User::with('getDetailMobUser')->findOrFail($id);
+
+        $delete->delete();
+        
+        return response()->json([
+            'code' => 'success',
+            'msg' => 'Data deleted successfully']);
     }
 
     private function getStaticUsers()

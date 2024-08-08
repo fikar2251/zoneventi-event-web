@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Admin Clubs')
+@section('title', 'All Clubs')
 
 @section('content')
     <main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
@@ -13,7 +13,7 @@
                                 <div class="d-flex justify-content-between w-100">
                                     <div style="margin-top: 40px">
                                         <h5 class="text-section">Pending Request</h5>
-                                        <p class="total-pending">10 club request pending</p>
+                                        <p class="total-pending">{{ $clubPending }} club request pending</p>
                                     </div>
                                     <div>
                                         <a href="{{ route('club-pending') }}">
@@ -29,23 +29,27 @@
 
                 <div class="row mb-4">
                     <div class="col-12">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="input-group search-group">
-                                <input type="text" class="form-control search-input" placeholder="Search by name">
-                                <div class="input-group-append">
-                                    <button class="btn search-btn" type="button">
-                                        <img src="{{ asset('assets/template/icon/Search.svg') }}" alt="Search">
-                                    </button>
+                        <form action="{{ route('clubs-index') }}" method="GET">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="input-group search-group">
+                                    <input type="text" name="search" class="form-control search-input"
+                                        placeholder="Search by name" value="{{ request('search') }}">
+                                    <div class="input-group-append">
+                                        <button class="btn search-btn" type="submit" id="searchButton">
+                                            <img src="{{ asset('assets/template/icon/Search.svg') }}" alt="Search">
+                                        </button>
+                                    </div>
                                 </div>
+                                <a href="{{ route('club-create') }}" class="btn add-club-btn" type="button">Add new
+                                    Club</a>
                             </div>
-                            <a href="{{ route('club-create') }}" class="btn add-club-btn" type="button">Add new Club</a>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12">
-                        <h4 class="text-white mb-4">All Clubs <span class="text-muted">125 Total</span></h4>
+                        <h4 class="text-white mb-4">All Clubs <span class="text-muted">{{ $countClubs }} Total</span></h4>
                         <div class="row">
                             @foreach ($clubs as $club)
                                 <div class="col-md-3 col-sm-6 mb-4">
@@ -60,8 +64,8 @@
                                                         alt="location" class="location-icon-club">
                                                     <span class="location-text">{{ $club->location }}</span>
                                                 </div>
-                                                <p class="text-post-event">5 Posted Events</p>
-                                                <p class="text-success">2 Event Online</p>
+                                                <p class="text-post-event">{{ $club->upcomingEvents }} Posted Events</p>
+                                                <p class="text-success">{{ $club->ongoingEvents }} Event Online</p>
                                             </div>
                                         </a>
                                     </div>
@@ -74,51 +78,64 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <button class="btn filter-btn" type="button">
-                    <img src="{{ asset('assets/template/icon/Filter.svg') }}" alt="Filter">
-                </button>
+            <button class="btn filter-btn" type="button">
+                <img src="{{ asset('assets/template/icon/Filter.svg') }}" alt="Filter">
+            </button>
 
-                <!-- Filter Modal -->
-                <div id="filterPopup" class="filter-popup">
-                    <div class="filter-popup-content">
-                        <h2 class="filter-header-popup">Filter</h2>
-                        <div class="filter-section">
-                            <div class="section-header">
-                                <h3>City</h3>
-                                {{-- <span class="search-icon">Q</span> --}}
-                            </div>
-                            <div class="scrollable-options">
-                                <span class="option-tag">Madrid</span>
-                                <span class="option-tag selected">Barcelona</span>
-                                <span class="option-tag">Sevilli</span>
-                                <span class="option-tag">Sev</span>
-                            </div>
+            <div class="loading-overlay" id="loadingOverlay">
+                <img src="{{ asset('assets/template/animation/loading.gif') }}" alt="Loading" width="50">
+            </div>
+
+            <!-- Filter Modal -->
+            <div id="filterPopup" class="filter-popup">
+                <div class="filter-popup-content">
+                    <h2 class="filter-header-popup">Filter</h2>
+                    <div class="filter-section">
+                        <div class="section-header">
+                            <h3>City</h3>
                         </div>
-                        <div class="filter-section">
-                            <h3>Sort By</h3>
-                            <div class="scrollable-options">
-                                <span class="option-tag">Most Followers</span>
-                                <span class="option-tag selected">Lowest Followers</span>
-                            </div>
+                        <div class="scrollable-options">
+                            <span class="option-tag">Madrid</span>
+                            <span class="option-tag selected">Barcelona</span>
+                            <span class="option-tag">Sevilli</span>
+                            <span class="option-tag">Sev</span>
                         </div>
-                        <div class="filter-section">
-                            <h3>Sort By</h3>
-                            <div class="scrollable-options">
-                                <span class="option-tag selected">Most Published Events</span>
-                                <span class="option-tag">Lowest Published</span>
-                            </div>
-                        </div>
-                        <button id="applyFilter" class="btn btn-primary text-12">Apply Filter</button>
                     </div>
+                    <div class="filter-section">
+                        <h3>Sort By</h3>
+                        <div class="scrollable-options">
+                            <span class="option-tag">Most Followers</span>
+                            <span class="option-tag selected">Lowest Followers</span>
+                        </div>
+                    </div>
+                    <div class="filter-section">
+                        <h3>Sort By</h3>
+                        <div class="scrollable-options">
+                            <span class="option-tag selected">Most Published Events</span>
+                            <span class="option-tag">Lowest Published</span>
+                        </div>
+                    </div>
+                    <button id="applyFilter" class="btn btn-primary text-12">Apply Filter</button>
                 </div>
             </div>
     </main>
-    </div>
 @endsection
 
 @section('scripts')
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchButton = document.getElementById('searchButton');
+            var searchForm = document.querySelector('form');
+            var loadingOverlay = document.getElementById('loadingOverlay');
+
+            searchButton.addEventListener('click', function() {
+                loadingOverlay.style.display = 'flex';
+                searchForm.submit();
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             var filterPopup = document.getElementById("filterPopup");
             var filterBtn = document.querySelector(".filter-btn");

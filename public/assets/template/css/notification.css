@@ -46,6 +46,7 @@
 textarea.form-control {
     height: auto;
     min-height: 100px;
+    font-size: 12px;
 }
 
 .form-control::placeholder {
@@ -96,6 +97,42 @@ textarea.form-control {
 
 .btn-danger:hover {
     background-color: #e73d3e;
+}
+
+.custom-select {
+    position: relative;
+}
+
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #2b2b2b;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.custom-select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #fff;
+}
+
+.custom-select select:focus {
+    outline: none;
+    border-color: #4a4a4a;
+}
+
+.custom-select select option {
+    background-color: #2b2b2b;
+    color: #fff;
 }
 
 label {

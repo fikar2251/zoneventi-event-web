@@ -34,9 +34,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/registration-confirmation', [AuthController::class, 'registerConfirmation'])->name('registration.confirmation');
     Route::post('/registration-confirmation', [AuthController::class, 'postRegisterStep2'])->name('registration.step2');
     Route::get('/get-city-list', [AuthController::class, 'getCityList'])->name('getCityList');
+    Route::get('/get-city', [AuthController::class, 'getCity'])->name('getCity');
     Route::post('/register/step2', [AuthController::class, 'postRegisterStep2'])->name('register.step2');
-
-    Route::post('/register', [AuthController::class, 'postRegister'])->name('submit-register');
     Route::post('/login', [AuthController::class, 'postLogin'])->name('submit-login');
 
 });
@@ -50,21 +49,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/clubs', [ClubsController::class, 'index'])->name('clubs-index');
     Route::get('/club-create', [ClubsController::class, 'create'])->name('club-create');
     Route::post('/club-create', [ClubsController::class, 'store'])->name('club-store');
-    Route::get('/clubs-detail/{id}', [ClubsController::class, 'show'])->name('club-detail');
-    Route::get('/clubs-detail/{id}/event-create', [ClubsController::class, 'createEvent'])->name('event-create');
+    Route::get('/clubs-detail/{id}', [ClubsController::class, 'show'])->name('club-detail');      
     Route::get('/clubs-pending', [ClubsController::class, 'pending'])->name('club-pending');
     Route::get('/clubs-pending-request/{id}', [ClubsController::class, 'detail'])->name('club-pending-request');
+    Route::get('/clubs-detail/{id}/event-create', [ClubsController::class, 'createEvent'])->name('event-create');
     Route::get('/clubs-edit/{id}', [ClubsController::class, 'edit'])->name('club-edit');
-    Route::put('/clubs-update/{id}', [ClubsController::class, 'update'])->name('club-update');
+    Route::put('/clubs-detail/{id}', [ClubsController::class, 'update'])->name('club-update');
     Route::delete('/clubs-delete/{id}', [ClubsController::class, 'destroy'])->name('club-delete');
-    Route::get('/clubs-accept/{id}', [ClubsController::class, 'accept'])->name('club-accept');
-    Route::get('/clubs-declined/{id}', [ClubsController::class, 'declined'])->name('club-declined');
+    Route::post('/clubs-pending-request/{id}/club-action', [ClubsController::class, 'action'])->name('club-action');
 
     // -------------------------------------------- Events  --------------------------------------------
+    Route::post('/clubs-detail/{id}/event-create', [EventsController::class, 'store'])->name('events-store');
     Route::get('/events', [EventsController::class, 'index'])->name('events-index');
-    Route::post('/events-create', [EventsController::class, 'store'])->name('events-store');
     Route::get('/events-detail/{id}', [EventsController::class, 'show'])->name('events-detail');
-    Route::put('/events-update/{id}', [EventsController::class, 'update'])->name('events-update');
+    Route::put('/clubs-detail/{clubId}/events-update/{eventId}', [EventsController::class, 'update'])->name('events-update');
     Route::delete('/events-delete/{id}', [EventsController::class, 'destroy'])->name('events-delete');
 
     // -------------------------------------------- Users  --------------------------------------------

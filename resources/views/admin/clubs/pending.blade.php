@@ -25,45 +25,60 @@
 
             <!-- List Data Pending -->
             <div class="list-data" id="pending-data">
-                @foreach (range(1, 5) as $item)
-                    <div class="list-item">
-                        <div class="list-item-left">
-                            <div class="list-item-icon"></div>
-                            <div class="list-item-info">
-                                <h3 class="list-item-title">Zoldic Club</h3>
-                                <p class="list-item-location"><img src="{{ asset('assets/template/icon/Location.svg') }}"
-                                        alt="location" class="location-icon-pending"> San Benedetto (AP) - Via G.Melozzi 2
-                                </p>
+                @if ($pending->isEmpty())
+                    <div class="no-data-message-club">
+                        <p>No pending club requests available</p>
+                    </div>
+                @else
+                    @foreach ($pending as $item)
+                        <div class="list-item">
+                            <div class="list-item-left">
+                                <div class="list-item-icon">
+                                    @if ($item->logo)
+                                        <img src="{{ $item->logo }}" alt="Club Logo" class="club-logo-icon">
+                                    @endif
+                                </div>
+                                <div class="list-item-info">
+                                    <h3 class="list-item-title">{{ $item->name }}</h3>
+                                    <p class="list-item-location"><img
+                                            src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
+                                            class="location-icon-pending"> {{ $item->location }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="list-item-right">
+                                <a href="{{ route('club-pending-request', $item->id) }}">
+                                    <img src="{{ asset('assets/template/icon/Stroke1.svg') }}" alt="Arrow"
+                                        class="arrow-icon">
+                                </a>
                             </div>
                         </div>
-                        <div class="list-item-right">
-                            <a href="{{ route('club-pending-request') }}">
-                                <img src="{{ asset('assets/template/icon/Stroke1.svg') }}" alt="Arrow"
-                                    class="arrow-icon">
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
 
             <!-- List Data Declined -->
             <div class="list-data hidden" id="declined-data">
-                @foreach (range(1, 5) as $item)
-                    <div class="list-item">
-                        <div class="list-item-left">
-                            <div class="list-item-icon"></div>
-                            <div class="list-item-info">
-                                <h3 class="list-item-title">Declined Club {{ $item }}</h3>
-                                <p class="list-item-location"><img src="{{ asset('assets/template/icon/Location.svg') }}"
-                                        alt="location" class="location-icon-pending"> San Benedetto (AP) - Via G.Melozzi 2
-                                </p>
+                @if ($declined->isEmpty())
+                    <div class="no-data-message">
+                        <p>No declined club requests available</p>
+                    </div>
+                @else
+                    @foreach ($declined as $item)
+                        <div class="list-item">
+                            <div class="list-item-left">
+                                <div class="list-item-icon"></div>
+                                <div class="list-item-info">
+                                    <h3 class="list-item-title">{{ $item->name }}</h3>
+                                    <p class="list-item-location"><img
+                                            src="{{ asset('assets/template/icon/Location.svg') }}" alt="location"
+                                            class="location-icon-pending"> {{ $item->location }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="list-item-right">
-                            <img src="{{ asset('assets/template/icon/Stroke1.svg') }}" alt="Arrow" class="arrow-icon">
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

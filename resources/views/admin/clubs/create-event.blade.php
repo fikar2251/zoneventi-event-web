@@ -21,7 +21,10 @@
                 </div>
 
                 <div class="form-container" style="max-width: 100%">
-                    <form class="mt-5">
+                    <form class="mt-5" action="{{ route('events-store', $club->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" name="club_id" value="{{ $club->id }}" hidden>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group input-register file-upload text-center">
@@ -31,24 +34,26 @@
                                         <span style="font-size: 14px" class="upload-text">Upload Image or Video</span>
                                         <span class="upload-info">Upload the thumb of the event</span>
                                     </label>
-                                    <input type="file" id="file-upload" style="display: none;" accept="image/*,video/*">
+                                    <input type="file" id="file-upload" name="banner" style="display: none;"
+                                        accept="image/*,video/*">
                                     <div id="file-preview" class="file-preview mt-3"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="event_name" class="form-label text-12">Event Name</label>
-                                    <input type="text" class="form-control text-12" id="event_name" placeholder="Name">
+                                    <input type="text" class="form-control text-12" name="name" id="event_name"
+                                        placeholder="Name">
                                 </div>
                                 <div class="form-group">
                                     <label for="event_details" class="form-label text-12">Event Details</label>
-                                    <textarea class="form-control text-12" id="event_details" rows="3" placeholder="Type Details"></textarea>
+                                    <textarea class="form-control text-12" name="description" id="event_details" rows="3" placeholder="Type Details"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="club_location" class="form-label text-12">Event Location</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control text-12" id="club_location"
-                                            placeholder="Uk Street, London (Default)">
+                                            name="location" placeholder="Uk Street, London (Default)">
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 <img src="{{ asset('assets/template/icon/Location-Form.svg') }}"
@@ -61,38 +66,44 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="whats_app" class="form-label text-12">What's App Number</label>
-                                    <input type="number" class="form-control text-12" id="whats_app" placeholder="Number">
-                                </div>
-                                <div class="form-group">
-                                    <label for="contact_number" class="form-label text-12">Contact Number</label>
-                                    <input type="number" class="form-control text-12" id="contact_number"
+                                    <input type="number" class="form-control text-12" name="whatsapp_number" id="whats_app"
                                         placeholder="Number">
                                 </div>
                                 <div class="form-group">
+                                    <label for="contact_number" class="form-label text-12">Contact Number</label>
+                                    <input type="number" class="form-control text-12" name="contact_number"
+                                        id="contact_number" placeholder="Number">
+                                </div>
+                                <div class="form-group">
                                     <label for="event_date" class="form-label text-12">Event Date</label>
-                                    <input type="date" class="form-control text-12" id="event_date" placeholder="Date">
+                                    <input type="date" class="form-control text-12" name="event_date" id="event_date"
+                                        placeholder="Date">
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="start_event_time" class="form-label text-12">Start Event
                                                 Time</label>
-                                            <input type="time" class="form-control text-12" id="start_event_time"
-                                                placeholder="Start Time">
+                                            <input type="time" class="form-control text-12" name="event_time_start"
+                                                id="start_event_time" placeholder="Start Time">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="end_event_time" class="form-label text-12">End Event Time</label>
-                                            <input type="time" class="form-control text-12" id="end_event_time"
-                                                placeholder="End Time">
+                                            <input type="time" class="form-control text-12" name="event_time_end"
+                                                id="end_event_time" placeholder="End Time">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group mt-3">
                                     <label for="tags" class="form-label text-12">Tags (5 Max)</label>
-                                    <input type="text" class="form-control text-12" id="tags"
-                                        placeholder="Enter Tag">
+                                    <select class="form-control text-12" name="tags" id="tags">
+                                        <option value="">Select option</option>
+                                        <option value="Hip hop">Hip hop</option>
+                                        <option value="Disco">Disco</option>
+                                        <option value="Reggaeton">Reggaeton</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -104,12 +115,12 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="longitude" class="form-label text-12">Longitude</label>
-                                    <input type="text" class="form-control text-12" id="longitude"
+                                    <input type="text" class="form-control text-12" name="longitude" id="longitude"
                                         placeholder="Longitude">
                                 </div>
                                 <div class="form-group">
                                     <label for="latitude" class="form-label text-12">Latitude</label>
-                                    <input type="text" class="form-control text-12" id="latitude"
+                                    <input type="text" class="form-control text-12" name="latitude" id="latitude"
                                         placeholder="Latitude">
                                 </div>
                             </div>
