@@ -3,13 +3,21 @@
 @section('title', 'Notifications')
 
 @section('content')
-    <main role="main" class="col-md-9 col-lg-10 ml-sm-auto px-md-4">
-        <div class="container-fluid">
-            <div class="row mt-60">
-                <div class="form-container" style="max-width: 800px">
-                    <div class="text-center mt-5">
-                        <h2 class="title text-white">Notification</h2>
+    <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="header d-flex align-items-center justify-content-between flex-wrap">
+                    <div class="d-flex align-items-center w-100">
+                        <div class="back-button">
+                            <a href="{{ route('notifications') }}">
+                                <img src="{{ asset('assets/template/icon/Back.svg') }}" alt="Back" class="nav-icon"
+                                    style="width: 50px; height: 50px">
+                            </a>
+                        </div>
+                        <h2 class="title mx-auto">Notifications</h2>
                     </div>
+                </div>
+                <div class="form-container">
                     <form class="mt-5">
                         <div class="row">
                             <div class="col-md-6">
@@ -48,5 +56,5 @@
                 </div>
             </div>
         </div>
-    </main>
-@endsection
+        </main>
+    @endsection
