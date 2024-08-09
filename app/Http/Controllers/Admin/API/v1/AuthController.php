@@ -168,26 +168,32 @@ class AuthController extends Controller
     }
 
     public function updateProfile(Request $request) {
+        
         $picUrl = null;
-        if ($request->hasFile('profile_picture')) {
-            $file = $request->file('profile_picture');
+        $userField = ['name', 'email'];
+        $profileField = ['gender', 'birthdate','profile_picture'];
+        if ($request->hasFile('profile_pictures')) {
+            $file = $request->file('profile_pictures');
             $path = $file->storeAs('public/profile_picture',Auth::user()->name . '.'.$file->getClientOriginalExtension());
             $picUrl  = url(Storage::url($path));
+            $request->merge(['profile_picture' => $picUrl]);
         }
+
         try {
+            // $userData = User::updateOrCreate([
+            //     'id' => Auth::user()->id
+            // ],[
+            //     'name' => $request->name,
+            //     'email' => $request->email
+            // ]);
+
             $userData = User::updateOrCreate([
                 'id' => Auth::user()->id
-            ],[
-                'name' => $request->name,
-                'email' => $request->email
-            ]);
+            ],$request->only($userField));
+
             $data = MobUsers::updateOrCreate([ 
                 'user_id' => Auth::user()->id, 
-            ], [
-                'gender' => $request->gender, 
-                'birthdate' => $request->birthdate, 
-                'profile_picture' =>  $picUrl,
-            ]);
+            ],$request->only($profileField));
             return new ResponseResource('true', 'Data Successfully Updated', null);
         } catch (\Throwable $th) {
             return (new ResponseResource('false', 'Data Failed Inserted', $th->getMessage()))->response()->setStatusCode(500);
