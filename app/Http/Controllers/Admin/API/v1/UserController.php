@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\API\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ResponseResource;
+use App\Models\Clubs;
 use App\Models\MobUsers;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -36,6 +37,53 @@ class UserController extends Controller
             }
 
             return new ResponseResource(true, 'Succes Following', $currentUser);
+        } catch (\Throwable $th) {
+            return (new ResponseResource(false, $th->getMessage(), null))->response()->setStatusCode(500);
+        }
+
+    }
+
+    
+    public function clubFollow(Request $request) {
+        $clubId = $request->club_id;
+        $club = Clubs::findOrFail($clubId);
+        $currentUser = Auth::user();
+        try {
+
+            // if ($club->id == $clubId) {
+            //     return (new ResponseResource(false, 'You cannot follow yourself', null))->response()->setStatusCode(400);
+            // }
+
+            if (!$currentUser->clubs()->where('club_id', $club->id)->exists()) {
+                $currentUser->clubs()->attach($club->id);
+            }else{
+                return (new ResponseResource(false, 'Already Following Clubs', null))->response()->setStatusCode(400);
+            }
+
+            return new ResponseResource(true, 'Succes Following', $club);
+        } catch (\Throwable $th) {
+            return (new ResponseResource(false, $th->getMessage(), null))->response()->setStatusCode(500);
+        }
+
+    }
+
+    public function clubUnfollow(Request $request) {
+        $clubId = $request->club_id;
+        $club = Clubs::findOrFail($clubId);
+        $currentUser = Auth::user();
+        try {
+
+            // if ($club->id == $clubId) {
+            //     return (new ResponseResource(false, 'You cannot follow yourself', null))->response()->setStatusCode(400);
+            // }
+
+            if ($currentUser->clubs()->where('club_id', $club->id)->exists()) {
+                $currentUser->clubs()->detach($club->id);
+            }else{
+                return (new ResponseResource(false, 'Already Unfollowing Clubs', null))->response()->setStatusCode(400);
+            }
+
+            return new ResponseResource(true, 'Succes Unfollowing', $club);
         } catch (\Throwable $th) {
             return (new ResponseResource(false, $th->getMessage(), null))->response()->setStatusCode(500);
         }
@@ -106,20 +154,65 @@ class UserController extends Controller
     public function searchInFollowings(Request $request) {
         
         $term = $request->keyword;
+
         $userId = Auth::guard('api')->user()->id;
         $user = User::findOrFail($userId);
         try {
             if ($term != null) {
-                $data =$user->followings()->where('name', 'like', '%'.$term.'%')->get();
+                $data =$user->followings()->with('getDetailMobUser')->where('name', 'like', '%'.$term.'%')->get();
             }else{
-                $data = $user->followings()->get();
+                $data = $user->followings()->with('getDetailMobUser')->get();
             }
-            // $followers = $data->followers;
-            // $followings = $data->followings;
-            // $data->total_followers = $followers->count();
-            // $data->total_following = $followings->count();
+
             
             return new ResponseResource('true', 'List Users', $data);
+        } catch (\Throwable $th) {
+            return (new ResponseResource('false', $th->getMessage(), null))->response()->setStatusCode(500);
+        }
+    }
+
+    public function searchInFollowingsClub(Request $request) {
+        
+        $term = $request->keyword;
+        $longitude = $request->longitude;
+        $latitude = $request->latitude;
+
+        $radius = $request->input('radius', 10); // default radius 10 km
+
+
+        $userId = Auth::guard('api')->user()->id;
+        $user = User::findOrFail($userId);
+        try {
+            if ($term != null) {
+                $userClubs =$user->clubs()->where('name', 'like', '%'.$term.'%')
+                ->select('*')
+                ->selectRaw("ROUND((6371 * acos(cos(radians(?)) 
+                * cos(radians(latitude)) 
+                * cos(radians(longitude) - radians(?)) 
+                + sin(radians(?)) 
+                * sin(radians(latitude)))), 2) AS distance", 
+                [$latitude, $longitude, $latitude])
+                ->having('distance', '<', $radius)
+                ->orderBy('distance')
+                ->where('status', 1)
+                ->get();
+            }else{
+                $userClubs = $user->clubs()
+                ->select('*')
+                ->selectRaw("ROUND((6371 * acos(cos(radians(?)) 
+                * cos(radians(latitude)) 
+                * cos(radians(longitude) - radians(?)) 
+                + sin(radians(?)) 
+                * sin(radians(latitude)))), 2) AS distance", 
+                [$latitude, $longitude, $latitude])
+                ->having('distance', '<', $radius)
+                ->orderBy('distance')
+                ->where('status', 1)
+                ->get();
+            }
+
+            
+            return new ResponseResource('true', 'List Users', $userClubs);
         } catch (\Throwable $th) {
             return (new ResponseResource('false', $th->getMessage(), null))->response()->setStatusCode(500);
         }
